@@ -2,13 +2,26 @@
  *
  * @author marttpq
  */
-package net.handytrack;
+package net.handytrack.database;
 import java.sql.*;
 public class DBconnect {
     public Connection con = null;
     public Statement stm;
     public ResultSet rs;
-    private String url = "jdbc:sqlite:resources/DB.db";
+    private static String url;
+    private static DBconnect instance;
+    public DBconnect(){
+        this.url = "jdbc:sqlite:resources/DB.db";
+    }
+    public DBconnect(String url){
+        this.url = url;
+    }
+    public static DBconnect getInstance(){
+        if(instance == null){
+            instance = new DBconnect();
+        }
+        return instance;
+    }
 
     public ResultSet getConnect(String s){
         try{
