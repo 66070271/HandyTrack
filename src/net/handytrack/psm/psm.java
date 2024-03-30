@@ -11,6 +11,8 @@ package net.handytrack.psm;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBconnect;
 import net.handytrack.database.DBmanipulation;
+import java.time.format.*;
+import java.time.*;
 
 import javax.swing.*;
 import java.util.Calendar;
@@ -808,8 +810,10 @@ public class psm extends javax.swing.JFrame {
             Double weight = Double.parseDouble(txtweight.getText());
             int zip = Integer.parseInt(txtzip.getText());
             Double cost = Double.parseDouble(txtcost.getText());
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            String time = dtf.format(LocalDateTime.now());
             try {
-                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country);
+                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province,Date,Status) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s','%s','Receive');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country,time);
                 //String sqi = String.format("INSERT INTO product (TrackNum) VALUES('%s')", track);
                 //db.getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
@@ -827,7 +831,6 @@ public class psm extends javax.swing.JFrame {
             txtweight.setText("");
             txtzip.setText("");
             txtcost.setText("");
-            db.disconnect();
         } catch (NumberFormatException e) {
             if (txtsend.getText().equals("")) {
                 jLabel14.setVisible(true);
