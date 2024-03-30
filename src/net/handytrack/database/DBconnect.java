@@ -10,9 +10,9 @@ import java.sql.Statement;
 
 public abstract class DBconnect {
     protected static String url;
-    public Connection con = null;
-    public Statement stm;
-    public ResultSet rs;
+    protected Connection con = null;
+    protected Statement stm;
+    protected ResultSet rs;
 
     public DBconnect() {
         this.url = "jdbc:sqlite:resources/DB.db";
