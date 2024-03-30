@@ -5,6 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBquery extends DBconnect{
+    public DBquery(){
+        super();
+    }
+    public DBquery(String url){
+        super(url);
+    }
     private static DBquery instance;
     public static DBquery getInstance(){
         if(instance == null){

@@ -9,9 +9,10 @@
  */
 package net.handytrack;
 import net.handytrack.database.DBquery;
+import net.handytrack.infoInterface.Status;
 
 import java.sql.*;
-public class TrackInfo implements Info{
+public class TrackInfo implements Status {
         private ResultSet rs;
         private String Recieved;
         private String Sort;
@@ -33,44 +34,7 @@ public class TrackInfo implements Info{
                               e.printStackTrace();
                               }
                   }
-            
 
-                    @Override
-        public String getNameS(){
-           return"";
-        }
-        @Override
-        public String getNameR(){
-        return"";
-        }
-        @Override
-        public String getDate(){
-             return"";
-        }
-        @Override
-        public int getCost(){
-            return 0;
-        }
-        @Override
-        public String getAddress(){
-             return"";
-        }
-        @Override
-        public Double getWeight(){
-             return 0.0;
-        }
-        @Override
-        public String getType(){
-             return"";
-        }
-        @Override
-        public int getContact(){
-             return 0;
-        }
-        @Override
-        public String getStatus(){
-             return"";
-        }
         @Override
        public String getRecieved(){
            return this.Recieved;

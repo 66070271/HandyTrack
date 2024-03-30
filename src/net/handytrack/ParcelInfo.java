@@ -10,9 +10,12 @@
 package net.handytrack;
 
 import net.handytrack.database.DBquery;
+import net.handytrack.infoInterface.Parcel;
+import net.handytrack.infoInterface.Person;
+import net.handytrack.infoInterface.Status;
 
 import java.sql.*;
-public class ParcelInfo implements Info {
+public class ParcelInfo implements Person, Parcel {
         private String TrackNum;
         private String Date;
         private int Cost;
@@ -79,25 +82,6 @@ public class ParcelInfo implements Info {
         public String getStatus(){
             return this.Status;
         }
-        @Override
-       public String getRecieved(){
-           return"";
-       }
-        @Override
-       public String getSort(){
-           return"";
-       }
-        @Override
-       public String getTransit(){
-           return"";
-       }
-        @Override
-       public String getFinish(){
-           return"";
-       }
-        @Override
-       public String getDelivery(){
-           return"";
-       }
+
        
 }

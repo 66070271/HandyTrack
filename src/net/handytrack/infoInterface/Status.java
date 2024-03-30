@@ -7,17 +7,9 @@
  *
  * @author marttpq
  */
-package net.handytrack;
-public interface  Info {
-        public abstract String getNameS();
-        public abstract String getNameR();
-        public abstract int getCost();
-        public abstract String getType();
-        public abstract String getStatus();
-        public abstract String getDate();
-        public abstract Double getWeight();
-        public abstract int getContact();
-        public abstract String getAddress();
+package net.handytrack.infoInterface;
+public interface Status {
+
         public abstract String getRecieved();
         public abstract String getSort();
         public abstract String getTransit();
