@@ -814,8 +814,8 @@ public class psm extends javax.swing.JFrame {
             String time = dtf.format(LocalDateTime.now());
             try {
                 String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province,Date,Status) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s','%s','Receive');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country,time);
-                //String sqi = String.format("INSERT INTO product (TrackNum) VALUES('%s')", track);
-                //db.getUpdate(sqi);
+                String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track,time);
+                DBmanipulation.getInstance().getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
@@ -831,6 +831,7 @@ public class psm extends javax.swing.JFrame {
             txtweight.setText("");
             txtzip.setText("");
             txtcost.setText("");
+            JOptionPane.showMessageDialog(null, "Successfully registered!!", "ALERT", JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException e) {
             if (txtsend.getText().equals("")) {
                 jLabel14.setVisible(true);
