@@ -317,5 +317,6 @@ public class RealTrack implements ActionListener, FocusListener, KeyListener {
         delPic.setIcon(deli);
         finishPic.setIcon(finish);
         Address.setIcon(new ImageIcon("resources/Picture/image_1.png"));
+        //
     }
 }
