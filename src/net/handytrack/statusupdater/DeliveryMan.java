@@ -124,6 +124,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()){
+                String trackn = rs.getString("TrackNum");
 //                String id = rs.getString("ID");
                 String rname = rs.getString("NameR");
                 String radd = rs.getString("Road");
@@ -132,7 +133,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String zadd = rs.getString("Zip");
                 String pnum = rs.getString("contactNum");
                 String gstatus = rs.getString("Status");
-                String trackn = rs.getString("TrackNum");
                 String address = (radd +  ", " + dadd +  ", " + padd + ", " + zadd);
                 String[] row = {trackn, rname, address, pnum, gstatus, "Change"};
                 model.addRow(row);
@@ -148,16 +148,16 @@ public class DeliveryMan implements ActionListener, ItemListener {
     public String getSorttime(int state) {
         int selectedRow = table.getSelectedRow();
         String data1 = model.getValueAt(selectedRow, 0).toString();
-        String data2 = model.getValueAt(selectedRow, 1).toString();
-        String sql = String.format("SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'", data1, data2);
+
+        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", data1);
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
-            while (rs.next()){
-                timereceive = rs.getString("ReceiveTime");
-                timesort = rs.getString("SortingTime");
-                timetransit = rs.getString("InTransitTime");
-                timedelivery = rs.getString("DeliveryTime");
-                timecomplete = rs.getString("CompleteTime");
+            if (rs.next()){
+                timereceive = rs.getString("Recieved");
+                timesort = rs.getString("Sorting");
+                timetransit = rs.getString("Transit");
+                timedelivery = rs.getString("Delivery");
+                timecomplete = rs.getString("Finish");
                 }
             } 
             catch (Exception e) {
@@ -318,6 +318,8 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getInTransits().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
+
+//                    sc.getRtime().setText(getSorttime(1));
                 } 
                 else if (currentstats.equals("Sorting")) {
                     sc.getReceives().setEnabled(false);
