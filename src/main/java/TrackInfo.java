@@ -17,7 +17,7 @@ public class TrackInfo   extends Info{
         private String Finish;
             public TrackInfo(String num){
                   DBconnect db = new DBconnect();
-                  String sql = String.format("SELECT * FROM product.trackinfo WHERE TrackNum = '%s'",num);
+                  String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'",num);
                   this.rs = db.getConnect(sql);
                   try{
                       if(this.rs.next()){

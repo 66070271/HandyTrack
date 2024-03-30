@@ -12,13 +12,12 @@ public class DBconnect {
     public Connection con = null;
     public Statement stm;
     public ResultSet rs;
-    private String url = "jdbc:mysql://127.0.0.1:3306/product";
-    private String username = "root";
-    private String password = "admin12345";
+    private String url = "jdbc:sqlite:src/main/resources/DB.db";
+
     public ResultSet getConnect(String s){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url,username,password);
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection(url);
             stm = con.createStatement();
             rs = stm.executeQuery(s);
         }catch(SQLException e){

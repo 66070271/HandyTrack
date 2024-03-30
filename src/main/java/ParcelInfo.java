@@ -22,7 +22,7 @@ public class ParcelInfo extends Info {
         private ResultSet rs;
         public  ParcelInfo(String num){
                   DBconnect db = new DBconnect();
-                  String sql = String.format("SELECT * FROM product.product WHERE TrackNum = '%s'",num);
+                  String sql = String.format("SELECT * FROM product WHERE TrackNum = '%s'",num);
                   this.rs = db.getConnect(sql);
             try{
                 if(this.rs.next()){
