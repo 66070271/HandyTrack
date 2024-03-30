@@ -20,7 +20,7 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
     private JButton submit, history,option;
     private JLabel title, l1, NameS, recPic, soPic, tranPic, delPic,finishPic, NameR, Address, Cost, Type, Status,logo;
     private JTextField jtf;
-    private static final ImageIcon CheckPic = new ImageIcon("src/main/resources/Picture/Check.png");
+    private static final ImageIcon CheckPic = new ImageIcon("resources/Picture/Check.png");
     public RealTrack() {
         fr = new JFrame("Tracker");
         p1 = new JPanel();
@@ -46,7 +46,7 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
         finishPic = new JLabel();
         option = new JButton("Option");
         p3.add(option);
-        logo.setIcon(new ImageIcon("src/main/resources/Picture/image_1.png"));
+        logo.setIcon(new ImageIcon("resources/Picture/image_1.png"));
         plogo.add(logo);
         plogo.setVisible(false);
         
@@ -78,10 +78,10 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
         Status = new JLabel("", (int) Component.CENTER_ALIGNMENT);
         Status.setFont(new Font("Aerial", Font.PLAIN, 18));
 
-        submit = new JButton(new ImageIcon("src/main/resources/Picture/Mirror.png"));
+        submit = new JButton(new ImageIcon("resources/Picture/Mirror.png"));
         history = new JButton();
         jtf = new JTextField("Enter your tracking number.", 70);
-        title = new JLabel("Handy Track", new ImageIcon("src/main/resources/Picture/Delivery.png"), (int) Component.CENTER_ALIGNMENT);
+        title = new JLabel("Handy Track", new ImageIcon("resources/Picture/Delivery.png"), (int) Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Aerial", Font.PLAIN, 24));
         l1 = new JLabel();
         jtf.setPreferredSize(new Dimension(60, 60));
@@ -133,7 +133,7 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
         fr.add(p2, BorderLayout.CENTER);
         fr.add(p3, BorderLayout.SOUTH);
         
-         Address.setIcon(new ImageIcon("src/main/resources/Picture/image_1.png"));
+         Address.setIcon(new ImageIcon("resources/Picture/image_1.png"));
 
         jtf.addActionListener(this);
         submit.addActionListener(this);
@@ -153,18 +153,18 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
             ParcelInfo pc = new ParcelInfo(jtf.getText());
             TrackInfo ti = new TrackInfo(jtf.getText());
             
-            ImageIcon nore = new ImageIcon("src/main/resources/noPic/Recieved.png");
-            ImageIcon notransit = new ImageIcon("src/main/resources/noPic/Transit.png");
-            ImageIcon nost = new ImageIcon("src/main/resources/noPic/Sort.png");
-            ImageIcon nodeli = new ImageIcon("src/main/resources/noPic/Deli.png");
-            ImageIcon nofinish =  new ImageIcon("src/main/resources/noPic/Finish.png");
+            ImageIcon nore = new ImageIcon("resources/noPic/Recieved.png");
+            ImageIcon notransit = new ImageIcon("resources/noPic/Transit.png");
+            ImageIcon nost = new ImageIcon("resources/noPic/Sort.png");
+            ImageIcon nodeli = new ImageIcon("resources/noPic/Deli.png");
+            ImageIcon nofinish =  new ImageIcon("resources/noPic/Finish.png");
             
             
-             ImageIcon re = new ImageIcon("src/main/resources/Picture/Recieved.png");
-             ImageIcon transit = new ImageIcon("src/main/resources/Picture/Transit.png");
-             ImageIcon st = new ImageIcon("src/main/resources/Picture/Sort.png");
-             ImageIcon deli = new ImageIcon("src/main/resources/Picture/Deli.png");
-             ImageIcon finish = new ImageIcon("src/main/resources/Picture/Finish.png");
+             ImageIcon re = new ImageIcon("resources/Picture/Recieved.png");
+             ImageIcon transit = new ImageIcon("resources/Picture/Transit.png");
+             ImageIcon st = new ImageIcon("resources/Picture/Sort.png");
+             ImageIcon deli = new ImageIcon("resources/Picture/Deli.png");
+             ImageIcon finish = new ImageIcon("resources/Picture/Finish.png");
              
             if(jtf.getText().equals("") || jtf.getText().equals("Enter your tracking number.")){
                 JOptionPane.showMessageDialog(null,"Please insert your tracking number.","ALERT",JOptionPane.ERROR_MESSAGE);
@@ -176,13 +176,13 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
                 NameR.setText("");
                 Type.setText("");
                 Address.setText("");
-                Type.setIcon(new ImageIcon("src/main/resources/Picture/Caution.png"));
+                Type.setIcon(new ImageIcon("resources/Picture/Caution.png"));
                 recPic.setIcon(nore);
                 soPic.setIcon(nost);
                 tranPic.setIcon(notransit);
                 delPic.setIcon(nodeli);
                 finishPic.setIcon(nofinish);
-                Address.setIcon(new ImageIcon("src/main/resources/noPic/LOGO.png"));
+                Address.setIcon(new ImageIcon("resources/noPic/LOGO.png"));
                 recPic.setText(String.format("Waiting in progress..."));
                 soPic.setText(String.format("Waiting in progress..."));
                 tranPic.setText(String.format("Waiting in progress..."));
@@ -290,17 +290,17 @@ public class RealTrack implements ActionListener,FocusListener,KeyListener {
         }
     }
     public void setdefImage(){
-            ImageIcon re = new ImageIcon("src/main/resources/Picture/Recieved.png");
-            ImageIcon transit = new ImageIcon("src/main/resources/Picture/Transit.png");
-            ImageIcon st = new ImageIcon("src/main/resources/Picture/Sort.png");
-            ImageIcon deli = new ImageIcon("src/main/resources/Picture/Deli.png");
-            ImageIcon finish = new ImageIcon("src/main/resources/Picture/Finish.png");
+            ImageIcon re = new ImageIcon("resources/Picture/Recieved.png");
+            ImageIcon transit = new ImageIcon("resources/Picture/Transit.png");
+            ImageIcon st = new ImageIcon("resources/Picture/Sort.png");
+            ImageIcon deli = new ImageIcon("resources/Picture/Deli.png");
+            ImageIcon finish = new ImageIcon("resources/Picture/Finish.png");
             recPic.setIcon(re);
             soPic.setIcon(st);
             tranPic.setIcon(transit);
             delPic.setIcon(deli);
             finishPic.setIcon(finish);
-            Address.setIcon(new ImageIcon("src/main/resources/Picture/image_1.png"));
+            Address.setIcon(new ImageIcon("resources/Picture/image_1.png"));
     }
   
 

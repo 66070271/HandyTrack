@@ -11,7 +11,7 @@ package net.handytrack;
 import net.handytrack.DBconnect;
 
 import java.sql.*;
-public class ParcelInfo extends Info {
+public class ParcelInfo implements Info {
         private String TrackNum;
         private String Date;
         private int Cost;
@@ -29,13 +29,13 @@ public class ParcelInfo extends Info {
                   this.rs = db.getConnect(sql);
             try{
                 if(this.rs.next()){
+                    this.Type = this.rs.getString("Type");
                     this.NameS = this.rs.getString("NameS");
                     this.NameR =  this.rs.getString("NameR");
                     this.Date = this.rs.getString("Date");
                     this.Cost = Integer.parseInt(this.rs.getString("Cost"));
                     this.Address = this.rs.getString("Address");
                     this.Weight = Double.valueOf(this.rs.getString("Weight"));
-                    this.Type = this.rs.getString("OLO");
                     this.Contact = this.rs.getInt("contactNum");
                     this.Status = this.rs.getString("Status");
                 }

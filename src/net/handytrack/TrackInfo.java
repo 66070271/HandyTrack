@@ -12,7 +12,7 @@ import net.handytrack.DBconnect;
 import net.handytrack.Info;
 
 import java.sql.*;
-public class TrackInfo   extends Info{
+public class TrackInfo implements Info{
         private ResultSet rs;
         private String Recieved;
         private String Sort;
