@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author marttpq
  */
+package net.handytrack;
 import java.sql.*;
 public class DBconnect {
     public Connection con = null;
@@ -31,6 +27,7 @@ public class DBconnect {
     public void getUpdate(String s){
         try{
             stm = con.createStatement();
+            con = DriverManager.getConnection(url);
             stm.executeUpdate(s);
         }catch(SQLException e){
             e.printStackTrace();

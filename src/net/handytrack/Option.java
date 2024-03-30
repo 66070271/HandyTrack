@@ -7,9 +7,11 @@
  *
  * @author marttpq
  */
+package net.handytrack;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 public class Option {
         private JFrame fr;
         private JPanel p1,p2,p3,p4;

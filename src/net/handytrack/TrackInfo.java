@@ -7,6 +7,10 @@
  *
  * @author marttpq
  */
+package net.handytrack;
+import net.handytrack.DBconnect;
+import net.handytrack.Info;
+
 import java.sql.*;
 public class TrackInfo   extends Info{
         private ResultSet rs;
