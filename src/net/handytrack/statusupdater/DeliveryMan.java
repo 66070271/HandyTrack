@@ -217,25 +217,25 @@ public class DeliveryMan implements ActionListener, ItemListener {
             else {
                 System.out.println(sc.getStatus());
             }
-                String sql = String.format("UPDATE trackinfo SET Status = '%s' WHERE (ID = '%s' AND NameR = '%s')", sc.getStatus(), data1, data2);
+                String sql = String.format("UPDATE product SET Status = '%s' WHERE (ID = '%s' AND NameR = '%s')", sc.getStatus(), data1, data2);
                 DBmanipulation.getInstance().getUpdate(sql);
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 time = dtf.format(LocalDateTime.now());
                 
                 if (sc.getStatus().equals("Receive")){
-                    String statustime = String.format("UPDATE trackinfo SET ReceiveTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    String statustime = String.format("UPDATE trackinfo SET Recieved = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Sorting")){
-                    String statustime = String.format("UPDATE trackinfo SET SortingTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    String statustime = String.format("UPDATE trackinfo SET Sorting = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("In Transit")){
-                    String statustime = String.format("UPDATE trackinfo SET InTransitTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    String statustime = String.format("UPDATE trackinfo SET Transit = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Complete")){
-                    String statustime = String.format("UPDATE trackinfo SET CompleteTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    String statustime = String.format("UPDATE trackinfo SET Finish = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 
