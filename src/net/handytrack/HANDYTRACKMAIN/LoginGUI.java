@@ -330,22 +330,21 @@ public class LoginGUI {
     }
 
     public Boolean loginuser(){
+        String name = usernameField.getText();
+        String pass = new String(passwordField.getPassword());
+
+        String sql = String.format("SELECT * FROM login WHERE username = '%s' and password = '%s'", name, pass);
+        ResultSet rs = DBquery.getInstance().getSelect(sql);
         try {
-            String name = usernameField.getText();
-            String pass = new String(passwordField.getPassword());
-
-            ResultSet rs = null;
-
-            String sql = String.format("SELECT * FROM login WHERE username = '%S' and password = '%S'", name, pass);
-            String sql1 = String.format("SELECT * FROM login WHERE iduser = '%S'" , userId);
-            rs = DBquery.getInstance().getSelect(sql);
-            ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
-            if (rs.next()) {
+            if(rs.next()) {
                 userId = rs.getInt("iduser"); // Store the userId if login is successful
+                String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'",userId);
+                ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
                 if (rs1.getString("password").equals(pass)){
                     return true;
+                }else{
+                    return false;
                 }
-                return true;
             } else {
                 return false;
             }
