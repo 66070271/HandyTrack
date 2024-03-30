@@ -8,7 +8,7 @@ public class DBconnect {
     public Connection con = null;
     public Statement stm;
     public ResultSet rs;
-    private String url = "jdbc:sqlite:src/main/resources/DB.db";
+    private String url = "jdbc:sqlite:resources/DB.db";
 
     public ResultSet getConnect(String s){
         try{
