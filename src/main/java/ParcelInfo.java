@@ -33,7 +33,7 @@ public class ParcelInfo extends Info {
                     Address = this.rs.getString("Address"); 
                     Weight = Double.valueOf(this.rs.getString("Weight"));
                     Type = this.rs.getString("Type");
-                    Contact = Integer.parseInt(this.rs.getString("ContactNum"));
+                    Contact = this.rs.getInt("contactNum");
                     Status = this.rs.getString("Status");
                 }
             }catch(SQLException e){
