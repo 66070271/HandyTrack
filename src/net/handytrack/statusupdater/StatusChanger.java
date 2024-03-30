@@ -110,18 +110,19 @@ import java.awt.event.ActionListener;
 
 public class StatusChanger implements ActionListener{
     private JFrame fr;
-    private JRadioButton receives, sortings, intransits, completes;
+    private JRadioButton receives, sortings, intransits, deliverys, completes;
     private JButton done;
     private JPanel pn, pn2, pn3;
     private ButtonGroup group;
     private String statusnow;
-    private JLabel rtime, stime, ttime, ctime;
+    private JLabel rtime, stime, ttime, dtime, ctime;
     
     public StatusChanger() {
         fr = new JFrame("Change Status");
         receives = new JRadioButton("Receive");
         sortings = new JRadioButton("Sorting");
         intransits = new JRadioButton("In Transit");
+        deliverys = new JRadioButton("Delivery");
         completes = new JRadioButton("Complete");
         done = new JButton("Done");
         group = new ButtonGroup();
@@ -132,22 +133,26 @@ public class StatusChanger implements ActionListener{
         rtime = new JLabel("");
         stime = new JLabel("");
         ttime = new JLabel("");
+        dtime = new JLabel("");
         ctime = new JLabel("");
         
         group.add(receives);        
         group.add(sortings);
         group.add(intransits);
+        group.add(deliverys);
         group.add(completes);
         
         pn.add(receives);        
         pn.add(sortings);
         pn.add(intransits);
+        pn.add(deliverys);
         pn.add(completes);
         pn.setLayout(new GridLayout(0, 1));
         pn2.setLayout(new GridLayout(4, 1));
         pn2.add(rtime);
         pn2.add(stime);
         pn2.add(ttime);
+        pn2.add(dtime);
         pn2.add(ctime);
       
         pn3.setLayout(new GridLayout(1, 2));
@@ -164,6 +169,7 @@ public class StatusChanger implements ActionListener{
         receives.addActionListener(this);
         sortings.addActionListener(this);
         completes.addActionListener(this);
+        deliverys.addActionListener(this);
         intransits.addActionListener(this);
         
     }
@@ -173,6 +179,7 @@ public class StatusChanger implements ActionListener{
        if (receives.isSelected()) { this.statusnow = "Receive"; }
        else if (sortings.isSelected()) { this.statusnow = "Sorting"; }
        else if (intransits.isSelected()) { this.statusnow = "In Transit"; }
+       else if (deliverys.isSelected()) { this.statusnow = "Delivery"; }
        else if (completes.isSelected()) { this.statusnow = "Complete"; }
        else { JOptionPane.showMessageDialog(fr, "Please choose the status!", "Error!", JOptionPane.WARNING_MESSAGE); } 
 //       fr.dispose(); 
@@ -196,6 +203,9 @@ public class StatusChanger implements ActionListener{
     public JRadioButton getInTransits() {
         return intransits;
     }
+    public JRadioButton getDeliverys() {
+        return deliverys;
+    }
     public JRadioButton getCompletes() {
         return completes;
     }
@@ -207,6 +217,9 @@ public class StatusChanger implements ActionListener{
     }
     public JLabel getTtime() {
         return ttime;
+    }
+    public JLabel getDtime() {
+         return dtime;
     }
     public JLabel getCtime() {
         return ctime;

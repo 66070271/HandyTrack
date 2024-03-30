@@ -22,7 +22,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JTextField searchtf;
     private JLabel lb1, lb2;
     private StatusChanger sc;
-    private String selectSort, selectStatus, time, timereceive, timesort, timetransit, timecomplete;
+    private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete;
 
     public DeliveryMan() {
         fr = new JFrame("Delivery Status Updater");
@@ -31,6 +31,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         statussort.addItem("Receive");
         statussort.addItem("Sorting");
         statussort.addItem("In Transit");
+        statussort.addItem("Delivery");
         statussort.addItem("Complete");
         statussort.setSelectedIndex(0);
         
@@ -154,6 +155,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 timereceive = rs.getString("ReceiveTime");
                 timesort = rs.getString("SortingTime");
                 timetransit = rs.getString("InTransitTime");
+                timedelivery = rs.getString("DeliveryTime");
                 timecomplete = rs.getString("CompleteTime");
                 }
             } 
@@ -168,8 +170,11 @@ public class DeliveryMan implements ActionListener, ItemListener {
         }
         else if (state == 3) {
             return timetransit;
-        } 
+        }
         else if (state == 4) {
+            return timedelivery;
+        }
+        else if (state == 5) {
             return timecomplete;
         } 
         return "Error";
@@ -232,6 +237,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 }
                 else if (sc.getStatus().equals("In Transit")){
                     String statustime = String.format("UPDATE trackinfo SET Transit = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    DBmanipulation.getInstance().getUpdate(statustime);
+                }
+                else if (sc.getStatus().equals("Delivery")){
+                    String statustime = String.format("UPDATE trackinfo SET Delivery = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Complete")){
@@ -308,23 +317,34 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getSortings().setEnabled(true);
                     sc.getInTransits().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
+                    sc.getDeliverys().setEnabled(false);
                 } 
                 else if (currentstats.equals("Sorting")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(true);
+                    sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
                 }
                 else if (currentstats.equals("In Transit")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
+                    sc.getDeliverys().setEnabled(true);
+                    sc.getCompletes().setEnabled(false);
+                }
+                else if (currentstats.equals("Delivery")) {
+                    sc.getReceives().setEnabled(false);
+                    sc.getSortings().setEnabled(false);
+                    sc.getInTransits().setEnabled(false);
+                    sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(true);
                 }
                 else if (currentstats.equals("Complete")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
+                    sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
                 }
                 sc.getFr().setVisible(true);
