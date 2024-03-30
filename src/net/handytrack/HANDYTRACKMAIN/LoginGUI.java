@@ -152,7 +152,6 @@ public class LoginGUI {
                 if (e.getSource() == signinButton) {
                     if (loginuser()) {
                         JOptionPane.showMessageDialog(null, "Login successful!");
-//                        HANDYTRACKMAIN receiver = new HANDYTRACKMAIN();
                         new HANDYTRACKMAIN();
                         fr.dispose();
                     }
@@ -330,20 +329,22 @@ public class LoginGUI {
 
     }
 
-    public Boolean loginuser() {
+    public Boolean loginuser(){
         try {
             String name = usernameField.getText();
             String pass = new String(passwordField.getPassword());
+
             ResultSet rs = null;
 
-            String sql = String.format("SELECT * FROM user WHERE UserName = '%S' and PassWord = '%S'", name, pass);
+            String sql = String.format("SELECT * FROM login WHERE username = '%S' and password = '%S'", name, pass);
+            String sql1 = String.format("SELECT * FROM login WHERE iduser = '%S'" , userId);
             rs = DBquery.getInstance().getSelect(sql);
-
+            ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
             if (rs.next()) {
-                userId = rs.getInt("iduser"); // Store the userId if login is successful 
-                this.name = rs.getString("UserName");
-                this.num = rs.getString("tel");
-                DBmanipulation.getInstance().disconnect();
+                userId = rs.getInt("iduser"); // Store the userId if login is successful
+                if (rs1.getString("password").equals(pass)){
+                    return true;
+                }
                 return true;
             } else {
                 return false;
