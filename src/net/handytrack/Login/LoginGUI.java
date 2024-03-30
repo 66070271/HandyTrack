@@ -334,7 +334,7 @@ public class LoginGUI {
 
             ResultSet rs = null;
 
-            String sql = String.format("SELECT * FROM user WHERE username = '%S' and password = '%S'", name, pass);
+            String sql = String.format("SELECT * FROM login WHERE username = '%S' and password = '%S'", name, pass);
             rs = DBquery.getInstance().getSelect(sql);
             if (rs.next()) {
                 userId = rs.getInt("iduser"); // Store the userId if login is successful
