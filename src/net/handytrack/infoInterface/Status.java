@@ -4,15 +4,19 @@
  */
 
 /**
- *
  * @author marttpq
  */
 package net.handytrack.infoInterface;
+
 public interface Status {
 
-        public abstract String getRecieved();
-        public abstract String getSort();
-        public abstract String getTransit();
-        public abstract String getDelivery();
-        public abstract String getFinish();
+    public abstract String getRecieved();
+
+    public abstract String getSort();
+
+    public abstract String getTransit();
+
+    public abstract String getDelivery();
+
+    public abstract String getFinish();
 }
