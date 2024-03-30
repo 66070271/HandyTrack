@@ -228,23 +228,23 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 time = dtf.format(LocalDateTime.now());
                 
                 if (sc.getStatus().equals("Receive")){
-                    String statustime = String.format("UPDATE trackinfo SET Recieved = '%s' WHERE TrackNum = '%s')", time, data1);
+                    String statustime = String.format("UPDATE trackinfo SET Recieved = '%s' WHERE TrackNum = '%s'", time, data1);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Sorting")){
-                    String statustime = String.format("UPDATE trackinfo SET Sorting = '%s' WHERE TrackNum = '%s')", time, data1);
+                    String statustime = String.format("UPDATE trackinfo SET Sorting = '%s' WHERE TrackNum = '%s'", time, data1);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("In Transit")){
-                    String statustime = String.format("UPDATE trackinfo SET Transit = '%s' WHERE TrackNum = '%s')", time, data1);
+                    String statustime = String.format("UPDATE trackinfo SET Transit = '%s' WHERE TrackNum = '%s'", time, data1);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Delivery")){
-                    String statustime = String.format("UPDATE trackinfo SET Delivery = '%s' WHERE TrackNum = '%s')", time, data1);
+                    String statustime = String.format("UPDATE trackinfo SET Delivery = '%s' WHERE TrackNum = '%s'", time, data1);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Complete")){
-                    String statustime = String.format("UPDATE trackinfo SET Finish = '%s' WHERE TrackNum = '%s')", time, data1);
+                    String statustime = String.format("UPDATE trackinfo SET Finish = '%s' WHERE TrackNum = '%s'", time, data1);
                     DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 
