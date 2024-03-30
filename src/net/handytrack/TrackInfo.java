@@ -8,7 +8,7 @@
  * @author marttpq
  */
 package net.handytrack;
-import net.handytrack.database.DBconnect;
+import net.handytrack.database.DBquery;
 
 import java.sql.*;
 public class TrackInfo implements Info{
@@ -20,7 +20,7 @@ public class TrackInfo implements Info{
         private String Finish;
             public TrackInfo(String num){
                   String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'",num);
-                  this.rs = DBconnect.getInstance().getConnect(sql);
+                  this.rs = DBquery.getInstance().getSelect(sql);
                   try{
                       if(this.rs.next()){
                          this.Recieved = this.rs.getString("Recieved");

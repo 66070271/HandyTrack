@@ -9,7 +9,7 @@
  */
 package net.handytrack;
 
-import net.handytrack.database.DBconnect;
+import net.handytrack.database.DBquery;
 
 import java.sql.*;
 public class ParcelInfo implements Info {
@@ -26,7 +26,7 @@ public class ParcelInfo implements Info {
         private ResultSet rs;
         public  ParcelInfo(String num){
                   String sql = String.format("SELECT * FROM product WHERE TrackNum = '%s'",num);
-                  this.rs = DBconnect.getInstance().getConnect(sql);
+                  this.rs = DBquery.getInstance().getSelect(sql);
             try{
                 if(this.rs.next()){
                     this.Type = this.rs.getString("Type");

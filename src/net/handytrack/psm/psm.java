@@ -13,6 +13,8 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import net.handytrack.database.DBconnect;
+import net.handytrack.database.DBquery;
+
 public class psm extends javax.swing.JFrame {
 
     /**
@@ -711,7 +713,7 @@ public class psm extends javax.swing.JFrame {
     private void subtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subtonActionPerformed
         // TODO add your handling code here
         try {
-            db = new DBconnect();
+            db = new DBquery();
             
             Calendar CAL = Calendar.getInstance();
             String serial = String.format("OOP-%02d%02d%02d%02d", CAL.get(Calendar.SECOND), CAL.get(Calendar.MINUTE), CAL.get(Calendar.DATE), CAL.get(Calendar.MILLISECOND));
