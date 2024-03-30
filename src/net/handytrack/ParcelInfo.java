@@ -7,6 +7,9 @@
  *
  * @author marttpq
  */
+package net.handytrack;
+import net.handytrack.DBconnect;
+
 import java.sql.*;
 public class ParcelInfo extends Info {
         private String TrackNum;

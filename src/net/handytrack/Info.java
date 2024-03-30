@@ -7,6 +7,7 @@
  *
  * @author marttpq
  */
+package net.handytrack;
 public abstract class Info {
         public abstract String getNameS();
         public abstract String getNameR();
