@@ -29,15 +29,15 @@ public class ParcelInfo extends Info {
                   this.rs = db.getConnect(sql);
             try{
                 if(this.rs.next()){
-                    NameS = this.rs.getString("NameS");
-                    NameR =  this.rs.getString("NameR");
-                    Date = this.rs.getString("Date");
-                    Cost = Integer.parseInt(this.rs.getString("Cost"));
-                    Address = this.rs.getString("Address"); 
-                    Weight = Double.valueOf(this.rs.getString("Weight"));
-                    Type = this.rs.getString("Type");
-                    Contact = this.rs.getInt("contactNum");
-                    Status = this.rs.getString("Status");
+                    this.NameS = this.rs.getString("NameS");
+                    this.NameR =  this.rs.getString("NameR");
+                    this.Date = this.rs.getString("Date");
+                    this.Cost = Integer.parseInt(this.rs.getString("Cost"));
+                    this.Address = this.rs.getString("Address");
+                    this.Weight = Double.valueOf(this.rs.getString("Weight"));
+                    this.Type = this.rs.getString("OLO");
+                    this.Contact = this.rs.getInt("contactNum");
+                    this.Status = this.rs.getString("Status");
                 }
             }catch(SQLException e){
                Status = "Sorry, your package couldn't be found.";
