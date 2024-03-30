@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBquery extends DBconnect{
-    public DBquery(){
+    private DBquery(){
         super();
     }
-    public DBquery(String url){
+    private DBquery(String url){
         super(url);
     }
     private static DBquery instance;

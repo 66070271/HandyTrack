@@ -13,6 +13,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import net.handytrack.database.DBconnect;
+import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 
 public class psm extends javax.swing.JFrame {
@@ -713,7 +714,7 @@ public class psm extends javax.swing.JFrame {
     private void subtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subtonActionPerformed
         // TODO add your handling code here
         try {
-            db = new DBquery();
+
             
             Calendar CAL = Calendar.getInstance();
             String serial = String.format("OOP-%02d%02d%02d%02d", CAL.get(Calendar.SECOND), CAL.get(Calendar.MINUTE), CAL.get(Calendar.DATE), CAL.get(Calendar.MILLISECOND));
@@ -734,7 +735,7 @@ public class psm extends javax.swing.JFrame {
                 String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Country) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s');", track,sender,recive,weight,type,number,cost,sex,road,zip,district,country);
                 //String sqi = String.format("INSERT INTO product (TrackNum) VALUES('%s')", track);
                 //db.getUpdate(sqi);
-                db.getUpdate(sql);
+                DBmanipulation.getInstance().getUpdate(sql);
             } catch(NumberFormatException e) {
                 e.printStackTrace();
             }

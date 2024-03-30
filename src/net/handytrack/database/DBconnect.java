@@ -16,15 +16,7 @@ public abstract class DBconnect {
         this.url = url;
     }
 
-    public void getUpdate(String s){
-        try{
-            stm = con.createStatement();
-            con = DriverManager.getConnection(url);
-            stm.executeUpdate(s);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
+
     public void disconnect(){
         try{
             stm.close();
