@@ -24,10 +24,13 @@ public class HANDYTRACKMAIN implements MouseListener {
     private summarize s;
     private track t;
     private manage m;
-    private int userId;
+
     private LoginGUI g;
+    private User user;
+    private int keyuser;
 
     public HANDYTRACKMAIN() {
+
         fr = new JFrame("HANDYTRACKMAIN");
         part1 = new JPanel();
         part2 = new JPanel();
@@ -49,6 +52,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         lsum = new JLabel("Summarize", JLabel.CENTER);
         lman = new JLabel("Manage", JLabel.CENTER);
         p = new profile();
+
         a = new add();
         s = new summarize();
         t = new track();
@@ -124,7 +128,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setJMenuBar(jm);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(800, 800);
-        fr.setVisible(true);
+        fr.setVisible(false);
     }
 
     @Override
@@ -185,37 +189,32 @@ public class HANDYTRACKMAIN implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
+    public void fetchUser(){
+        String sql = String.format("SELECT * FROM login WHERE iduser = '%d'",this.keyuser );
+        ResultSet rs = DBquery.getInstance().getSelect(sql);
+        try{
+            if(rs.next()){
+                this.user = new User(rs.getString("name"),rs.getString("surename"),rs.getString("email"),rs.getString("tel"));
+                p.getLname().setText(user.getName());
+                p.getLtel().setText(user.getTel());
+                p.setKeyuser(this.keyuser);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
-    public HANDYTRACKMAIN(int userId) {
-        this.userId = userId;
-        fetchUserData();
-    }
-    public void setUserID(int userid){
-        this.userId = userid;
-    }
+
     public void setname(String s,String a){
         p.setName(s);
         p.setName(a);
     }
-    private void fetchUserData() {
-        try {
 
-            // SQL query to fetch user data using primary key
-            String sql = String.format("SELECT * FROM user WHERE iduser = %d", userId);
-            ResultSet rs = DBquery.getInstance().getSelect(sql);
-
-            if (rs.next()) {
-                // Extract data from ResultSet and store username
-                String username = rs.getString("username");
-
-                // Show welcome message with username
-                JOptionPane.showMessageDialog(null, "Welcome, " + username + "!");
-            }else{
-                JOptionPane.showMessageDialog(null, "Invalid user ID!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public JFrame getFrame(){
+        return this.fr;
+    }
+    public void setKeyuser(int key){
+        this.keyuser = key;
     }
     public static void main(String[] args) {
         try {

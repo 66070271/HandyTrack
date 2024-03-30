@@ -1,5 +1,7 @@
 package net.handytrack.HANDYTRACKMAIN;
 
+import net.handytrack.database.DBmanipulation;
+
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +16,8 @@ public class profile extends JPanel implements ActionListener, Serializable {
     private JLabel lname, ltel;
  //   private DBConnect db;
     private String p, name, pass, num;
+
+    private int keyuser;
 
     public profile() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // ปรับ
@@ -39,12 +43,16 @@ public class profile extends JPanel implements ActionListener, Serializable {
         this.add(ltel);
 
     }
+    public JLabel getLname(){
+        return lname;
+    }
+    public JLabel getLtel(){
+        return ltel;
+    }
 
     public void actionPerformed(ActionEvent e) {
         // ทำเมื่อกดที่วงกลม
-        String url = "jdbc:mysql://localhost:3306/user";
-        String username = "root";
-        String password = "12345";
+
         try {
             if (e.getSource() == c) {
                 // เปิดไฟล์ภาพ
@@ -63,14 +71,13 @@ public class profile extends JPanel implements ActionListener, Serializable {
                 }
             }
             //การอัพเดดภาพลงบน sql
-            Connection dom = DriverManager.getConnection("jdbc:mysql://localhost:3306/user", "root", "12345");
-            PreparedStatement ps = dom.prepareStatement("insert into user (UserName,PassWord,Picture,tel) values(?,?,?,?)");
-            InputStream lm = new FileInputStream(new File(p));
+            Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
+            PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
+
+
 //            byte[] imageBytes = lm.readAllBytes();
-            ps.setString(1, name);
-            ps.setString(2, pass);
-            ps.setBlob(3, lm);
-            ps.setString(4, num);
+            ps.setBlob(1,new FileInputStream(p));
+            ps.setInt(2,this.keyuser);
             ps.executeUpdate();
 //                ps.executeQuery();
             JOptionPane.showMessageDialog(null, "Data Inserted");
@@ -116,5 +123,8 @@ public class profile extends JPanel implements ActionListener, Serializable {
 
     public void settel(String s) {
         ltel.setText(s);
+    }
+    public void setKeyuser(int i){
+        this.keyuser = i;
     }
 }

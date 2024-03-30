@@ -26,9 +26,11 @@ public class LoginGUI {
     private JLabel welcomeLabel, prolabel, locklabel, logolabel;
     private JPanel pwel, ppro, ppas, plogo, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30;
     private ImageIcon pro, scalepro, lock, scalelock, logo, scalelogo;
+    private HANDYTRACKMAIN hdm;
 
     @SuppressWarnings("empty-statement")
     public LoginGUI() {
+        hdm = new HANDYTRACKMAIN();
         fr = new JFrame("Handy Track's LOGIN");
         this.userId = userId;
         prolabel = new JLabel();
@@ -152,7 +154,7 @@ public class LoginGUI {
                 if (e.getSource() == signinButton) {
                     if (loginuser()) {
                         JOptionPane.showMessageDialog(null, "Login successful!");
-                        new HANDYTRACKMAIN();
+                        hdm.getFrame().setVisible(true);
                         fr.dispose();
                     }
                 } else {
@@ -341,6 +343,8 @@ public class LoginGUI {
                 String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'",userId);
                 ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
                 if (rs1.getString("password").equals(pass)){
+                    hdm.setKeyuser(this.userId);
+                    hdm.fetchUser();
                     return true;
                 }else{
                     return false;
@@ -357,4 +361,5 @@ public class LoginGUI {
     public int getuserId() {
         return userId;
     }
+
 }
