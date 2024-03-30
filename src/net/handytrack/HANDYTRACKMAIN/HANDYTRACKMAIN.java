@@ -1,3 +1,4 @@
+package net.handytrack.HANDYTRACKMAIN;
 
 import java.util.*;
 import javax.swing.*;
@@ -5,6 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+import net.handytrack.database.DBmanipulation;
+import net.handytrack.database.DBquery;
+
 import java.io.*;
 import java.sql.*;
 
@@ -195,11 +199,10 @@ public class HANDYTRACKMAIN implements MouseListener {
     }
     private void fetchUserData() {
         try {
-            DBConnect db = new DBConnect();
 
             // SQL query to fetch user data using primary key
             String sql = String.format("SELECT * FROM user WHERE iduser = %d", userId);
-            ResultSet rs = db.getConnect(sql);
+            ResultSet rs = DBquery.getInstance().getSelect(sql);
 
             if (rs.next()) {
                 // Extract data from ResultSet and store username

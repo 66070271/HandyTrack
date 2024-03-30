@@ -1,3 +1,4 @@
+package net.handytrack.HANDYTRACKMAIN;
 
 import java.util.*;
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class profile extends JPanel implements ActionListener, Serializable {
 
     private circle c;
     private JLabel lname, ltel;
-    private DBConnect db;
+ //   private DBConnect db;
     private String p, name, pass, num;
 
     public profile() {

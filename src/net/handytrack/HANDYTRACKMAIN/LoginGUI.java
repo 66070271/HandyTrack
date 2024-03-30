@@ -1,3 +1,4 @@
+package net.handytrack.HANDYTRACKMAIN;
 
 import java.sql.*;
 import java.awt.*;
@@ -8,10 +9,13 @@ import java.util.Locale;
 import javax.swing.border.Border;
 import javax.swing.border.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import net.handytrack.Login.*;
+import net.handytrack.database.DBmanipulation;
+import net.handytrack.database.DBquery;
 
 public class LoginGUI {
 
-    private DBConnect db;
+    //private DBConnect db;
     private int userId;
     private String name;
     private String num;
@@ -330,17 +334,16 @@ public class LoginGUI {
         try {
             String name = usernameField.getText();
             String pass = new String(passwordField.getPassword());
-            DBConnect db = new DBConnect();
             ResultSet rs = null;
 
             String sql = String.format("SELECT * FROM user WHERE UserName = '%S' and PassWord = '%S'", name, pass);
-            rs = db.getConnect(sql);
+            rs = DBquery.getInstance().getSelect(sql);
 
             if (rs.next()) {
                 userId = rs.getInt("iduser"); // Store the userId if login is successful 
                 this.name = rs.getString("UserName");
                 this.num = rs.getString("tel");
-                db.disconnect();
+                DBmanipulation.getInstance().disconnect();
                 return true;
             } else {
                 return false;
