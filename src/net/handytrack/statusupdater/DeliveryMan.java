@@ -3,6 +3,9 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+import net.handytrack.database.DBmanipulation;
+import net.handytrack.database.DBquery;
+
 import java.sql.*;
 import java.awt.event.*;
 import java.time.format.*;
@@ -19,8 +22,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JTextField searchtf;
     private JLabel lb1, lb2;
     private StatusChanger sc;
-    
-    private DBconnect db;
     private String selectSort, selectStatus, time, timereceive, timesort, timetransit, timecomplete;
 
     public DeliveryMan() {
@@ -71,7 +72,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 
 
 /////////////////////////////////// DateTime /////////////////////////////////////////////
-        String sql = "SELECT * FROM handytrack.deliveryman;";
+        String sql = "SELECT * FROM product;";
         setTable(sql);
         
         
@@ -120,8 +121,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
     ///////////////////////////// SQL ////////////////////////////////////
     public void setTable(String sql){
         try {
-            db = new DBconnect();
-            ResultSet rs = db.getConnect(sql);
+            ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()){
                 String id = rs.getString("ID");
                 String rname = rs.getString("NameR");
@@ -147,10 +147,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
         int selectedRow = table.getSelectedRow();
         String data1 = model.getValueAt(selectedRow, 0).toString();
         String data2 = model.getValueAt(selectedRow, 1).toString();
-        String sql = String.format("SELECT * FROM handytrack.deliveryman WHERE NameR = '%s' OR ID = '%s'", data1, data2);
+        String sql = String.format("SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'", data1, data2);
         try {
-            db = new DBconnect();
-            ResultSet rs = db.getConnect(sql);
+            ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()){
                 timereceive = rs.getString("ReceiveTime");
                 timesort = rs.getString("SortingTime");
@@ -184,17 +183,17 @@ public class DeliveryMan implements ActionListener, ItemListener {
             
             if (statussort.getSelectedIndex() == 0) {
                 model.setRowCount(0);
-                String searchh = String.format("SELECT * FROM handytrack.deliveryman WHERE NameR = '%s' OR ID = '%s'", kw, kw);
+                String searchh = String.format("SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'", kw, kw);
                 setTable(searchh);
             }
             else if (kw.equals("")) {
                 model.setRowCount(0);
-                String sql = "SELECT * FROM handytrack.deliveryman;";
+                String sql = "SELECT * FROM product;";
                 setTable(sql);
             }
             else {
                 model.setRowCount(0);
-                String searchh = String.format("SELECT * FROM handytrack.deliveryman WHERE (NameR = '%s' OR ID = '%s') AND Status = '%s'", kw, kw, selectSort);
+                String searchh = String.format("SELECT * FROM product WHERE (NameR = '%s' OR ID = '%s') AND Status = '%s'", kw, kw, selectSort);
                 setTable(searchh);
             }
         }
@@ -202,7 +201,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
             searchtf.setText("");
             statussort.setSelectedIndex(0);
             model.setRowCount(0);
-            String sql = "SELECT * FROM handytrack.deliveryman;";
+            String sql = "SELECT * FROM product;";
             setTable(sql);
             }
         else if(e.getSource().equals(sc.getDone())){
@@ -218,27 +217,26 @@ public class DeliveryMan implements ActionListener, ItemListener {
             else {
                 System.out.println(sc.getStatus());
             }
-                String sql = String.format("UPDATE handytrack.deliveryman SET Status = '%s' WHERE (ID = '%s' AND NameR = '%s')", sc.getStatus(), data1, data2);
-                db.getUpdate(sql);
+                String sql = String.format("UPDATE trackinfo SET Status = '%s' WHERE (ID = '%s' AND NameR = '%s')", sc.getStatus(), data1, data2);
+                DBmanipulation.getInstance().getUpdate(sql);
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 time = dtf.format(LocalDateTime.now());
                 
                 if (sc.getStatus().equals("Receive")){
-                    String statustime = String.format("UPDATE handytrack.deliveryman SET ReceiveTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
-                    db.getUpdate(statustime);
-                    sc.getRtime().setText(getSorttime(1));
+                    String statustime = String.format("UPDATE trackinfo SET ReceiveTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Sorting")){
-                    String statustime = String.format("UPDATE handytrack.deliveryman SET SortingTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
-                    db.getUpdate(statustime);
+                    String statustime = String.format("UPDATE trackinfo SET SortingTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("In Transit")){
-                    String statustime = String.format("UPDATE handytrack.deliveryman SET InTransitTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
-                    db.getUpdate(statustime);
+                    String statustime = String.format("UPDATE trackinfo SET InTransitTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 else if (sc.getStatus().equals("Complete")){
-                    String statustime = String.format("UPDATE handytrack.deliveryman SET CompleteTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
-                    db.getUpdate(statustime);
+                    String statustime = String.format("UPDATE trackinfo SET CompleteTime = '%s' WHERE (ID = '%s' AND NameR = '%s')", time, data1, data2);
+                    DBmanipulation.getInstance().getUpdate(statustime);
                 }
                 
         }
@@ -251,22 +249,22 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //            String kw = searchtf.getText();
             selectSort = (String) statussort.getSelectedItem();
             model.setRowCount(0);
-//            String searchh = String.format("SELECT * FROM handytrack.deliveryman WHERE (NameR = '%s' OR ID = '%s') AND Status = '%s'", kw, kw, selectSort);
+//            String searchh = String.format("SELECT * FROM product WHERE (NameR = '%s' OR ID = '%s') AND Status = '%s'", kw, kw, selectSort);
 //            setTable(searchh);
             if(selectSort.equals("-") & searchtf.getText().equals("")) {
-                String sortt = "SELECT * FROM handytrack.deliveryman;";
+                String sortt = "SELECT * FROM product;";
                 setTable(sortt);
             }
             else {
-                String sortt = String.format("SELECT * FROM handytrack.deliveryman WHERE Status = '%s'", selectSort);
+                String sortt = String.format("SELECT * FROM product WHERE Status = '%s'", selectSort);
                 setTable(sortt);
             }
 //            if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("")) {
-//                String sss = "SELECT * FROM handytrack.deliveryman";
+//                String sss = "SELECT * FROM product";
 //                setTable(sss);
 //            }
 //            else if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("") != true) {
-//                String sss = "SELECT * FROM handytrack.deliveryman WHERE NameR = '%s' OR ID = '%s'";
+//                String sss = "SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'";
 //                setTable(sss);
 //        }   
     }

@@ -1,5 +1,7 @@
 package net.handytrack.Login;
 
+import net.handytrack.database.DBquery;
+
 import java.sql.*;
 import java.awt.*;
 import javax.swing.*;
@@ -13,7 +15,6 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 
 public class LoginGUI {
-    private DBConnect db;
     private int userId;
     private JFrame fr;
     private JTextField usernameField;
@@ -330,11 +331,11 @@ public class LoginGUI {
         try {
             String name = usernameField.getText();
             String pass = new String(passwordField.getPassword());
-            DBConnect db = new DBConnect();
+
             ResultSet rs = null;
 
             String sql = String.format("SELECT * FROM user WHERE username = '%S' and password = '%S'", name, pass);
-            rs = db.getConnect(sql);
+            rs = DBquery.getInstance().getSelect(sql);
             if (rs.next()) {
                 userId = rs.getInt("iduser"); // Store the userId if login is successful
                 return true;

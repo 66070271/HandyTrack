@@ -23,8 +23,8 @@ public class DBmanipulation extends DBconnect {
 
     public void getUpdate(String s) {
         try {
-            stm = con.createStatement();
             con = DriverManager.getConnection(url);
+            stm = con.createStatement();
             stm.executeUpdate(s);
         } catch (SQLException e) {
             e.printStackTrace();

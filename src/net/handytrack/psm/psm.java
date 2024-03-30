@@ -809,7 +809,7 @@ public class psm extends javax.swing.JFrame {
             int zip = Integer.parseInt(txtzip.getText());
             Double cost = Double.parseDouble(txtcost.getText());
             try {
-                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Country) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country);
+                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country);
                 //String sqi = String.format("INSERT INTO product (TrackNum) VALUES('%s')", track);
                 //db.getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
