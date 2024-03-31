@@ -131,7 +131,7 @@ public class HANDYTRACKMAIN implements MouseListener {
 //         ตั้งค่าให้แสดง JPanel ที่มีส่วนของ Profile เมื่อโปรแกรมเริ่มต้นการทำงาน
         p.setVisible(true);
 //        a.setVisible(false);
-        s.setVisible(false);
+//        s.setVisible(false);
 //        t.setVisible(false);
 //        m.setVisible(false);
 

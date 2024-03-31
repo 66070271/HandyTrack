@@ -1,21 +1,21 @@
-//package net.handytrack.HANDYTRACKMAIN;
-//
-//import javax.swing.*;
-//import java.awt.*;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//
-//public class summarize extends JPanel implements ActionListener {
-//    private JPanel Bigpart;
-//    private JButton piechartButton;
-//    private JLabel forpiechart;
+package net.handytrack.HANDYTRACKMAIN;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class summarize extends JPanel  {
+    private JPanel Bigpart;
+    private JButton piechartButton;
+    private JLabel forpiechart;
 //    private PieChart pieChart;
-//
-//    public summarize() {
-//        Bigpart = new JPanel();
-//        forpiechart = new JLabel("Summary all items to PieChart", SwingConstants.LEFT);
-//        forpiechart.setFont(new Font("Arial", Font.PLAIN, 28));
-//        piechartButton = new JButton("Create");
+
+    public summarize() {
+        Bigpart = new JPanel();
+        forpiechart = new JLabel("Summary all items to PieChart", SwingConstants.LEFT);
+        forpiechart.setFont(new Font("Arial", Font.PLAIN, 28));
+        piechartButton = new JButton("Create");
 //        pieChart = new PieChart(new double[]{25, 30, 45}, new String[]{"A", "B", "C"},
 //                new Color[]{Color.RED, Color.GREEN, Color.BLUE});
 //
@@ -25,11 +25,11 @@
 //
 //        // เพิ่ม ActionListener ให้กับ piechartButton
 //        piechartButton.addActionListener(this);
-//
-//        this.setBackground(new Color(228, 147, 179));
-//        this.add(Bigpart);
-//    }
-//
+
+        this.setBackground(new Color(228, 147, 179));
+        this.add(Bigpart);
+    }
+
 //    @Override
 //    public void actionPerformed(ActionEvent e) {
 //        try {
@@ -45,4 +45,4 @@
 //            ex.printStackTrace();
 //        }
 //    }
-//}
+}
