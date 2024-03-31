@@ -44,7 +44,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 
         sc = new StatusChanger();
 
-        String[] columnNames = {"Track Num", "Receiver", "Address", "Contact", "Status", "Action"};
+        String[] columnNames = {"Track Number", "Receiver", "Address", "Contact", "Status", "Action"};
         model = new DefaultTableModel(columnNames, 0) {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
             public boolean isCellEditable(int row, int column) {
@@ -79,7 +79,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         pn2.add(sdefault);
 
 
-/////////////////////////////////// DateTime /////////////////////////////////////////////
+/////////////////////////////////// JTable Set /////////////////////////////////////////////
         String sql = "SELECT * FROM product;";
         setTable(sql);
 
@@ -92,9 +92,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        table.getColumnModel().getColumn(4).setPreferredWidth(40);
 //        table.getColumnModel().getColumn(5).setPreferredWidth(50);
 
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-//        time = dtf.format(LocalDateTime.now());
-//        System.out.println(time);
 
 //        TableColumn statusColumn = table.getColumnModel().getColumn(4); // Status column index is now 4
 //        statusColumn.setCellEditor(new DefaultCellEditor(status));
@@ -116,7 +113,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         fr.setVisible(true);
 
 /////////////////////////////// Set Font  ////////////////////////////////
-        done.setFont(new Font("Arial", Font.BOLD, 14));
+//        done.setFont(new Font("Arial", Font.BOLD, 14));
 
         search.addActionListener(this);
         sdefault.addActionListener(this);
