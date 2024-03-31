@@ -16,6 +16,8 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+import net.handytrack.database.DBquery;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -23,6 +25,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.sql.ResultSet;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +36,7 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
-
+import java.sql.*;
 
 /**
  *
@@ -170,14 +173,39 @@ public class MMS extends JFrame implements ActionListener {
         
         //DataTest//
         DefaultTableModel model = (DefaultTableModel)table.getModel();
-        model.addRow(new Object[]{"1234567890", "Fook", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","9876543210"});
-        model.addRow(new Object[]{"0987654321", "Mart", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
-        model.addRow(new Object[]{"1234567890", "Poom", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
-        model.addRow(new Object[]{"1234567890", "zeun", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
+        try{
+        ResultSet rs = DBquery.getInstance().getSelect("SELECT * FROM product");
+        while (rs.next()) {
+            String trackn = rs.getString("TrackNum");
+//                String id = rs.getString("ID");
+            String tadd = rs.getString("Type");
+            String rname = rs.getString("NameR");
+            String sname = rs.getString("NameS");
+            String radd = rs.getString("Road");
+            String dadd = rs.getString("District");
+            String padd = rs.getString("Province");
+            String zadd = rs.getString("Zip");
+            String pnum = rs.getString("contactNum");
+            int cost = rs.getInt("Cost");
+            String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
+            String[] row = {trackn, sname,rname, radd,zadd,dadd,padd,""+cost,tadd, pnum};
+            model.addRow(row);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        table.setModel(model);
+//        model.addRow(new Object[]{"1234567890", "Fook", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","9876543210"});
+//        model.addRow(new Object[]{"0987654321", "Mart", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
+//        model.addRow(new Object[]{"1234567890", "Poom", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
+//        model.addRow(new Object[]{"1234567890", "zeun", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
         //DataTest//
         
         //SortingData in Row//
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+
+
+
         table.setRowSorter(sorter);
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override

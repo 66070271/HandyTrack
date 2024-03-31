@@ -148,7 +148,7 @@ public class StatusChanger implements ActionListener {
         pn.add(deliverys);
         pn.add(completes);
         pn.setLayout(new GridLayout(0, 1));
-        pn2.setLayout(new GridLayout(4, 1));
+        pn2.setLayout(new GridLayout(5, 1));
         pn2.add(rtime);
         pn2.add(stime);
         pn2.add(ttime);
