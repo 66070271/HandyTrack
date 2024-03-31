@@ -296,7 +296,7 @@ public class psm extends javax.swing.JFrame {
         });
 
         prochoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
-                "Krabi", "Bangkok", "Kanchanaburi", "Kalasin", "Kamphaeng Phet",
+                "Bangkok" ,"Krabi" , "Kanchanaburi", "Kalasin", "Kamphaeng Phet",
                 "Khon Kaen", "Chanthaburi", "Chachoengsao", "Chonburi", "Chainat", "Chaiyaphum",
                 "Chumphon", "Chiang Rai", "Chiang Mai", "Trang", "Trat", "Tak", "Nakhon Nayok",
                 "Nakhon Pathom", "Nakhon Phanom", "Nakhon Ratchasima", "Nakhon Si Thammarat",
@@ -815,7 +815,9 @@ public class psm extends javax.swing.JFrame {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             String time = dtf.format(LocalDateTime.now());
             try {
-                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province,Date,Status) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s','%s','Receive');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country, time);
+                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province,Date,Status) " +
+                                "VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s','%s','Receive');"
+                        , track, sender, recive, weight, type, number, cost, sex, road, zip, district, country, time);
                 String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track, time);
                 DBmanipulation.getInstance().getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
