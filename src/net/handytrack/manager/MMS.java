@@ -60,12 +60,12 @@ public class MMS extends JFrame implements ActionListener {
                 DefaultTableModel model = (DefaultTableModel)table.getModel();
                 int selectedRow = table.getSelectedRow();
                 if(selectedRow != -1) {
-                    Object[] rowData = new Object[4];
+                    Object[] rowData = new Object[10];
                     //create JFrame
                     JFrame frame2 = new JFrame("Selected Row Data");
                     //create JFrame
                     frame2.setLayout(new GridLayout(model.getColumnCount(), 2));
-                    for(int i=0; i<4; i++) {
+                    for(int i=0; i<10; i++) {
                         rowData[i] = model.getValueAt(selectedRow, i).toString();
                         frame2.add(new JLabel(model.getColumnName(i) + ":"));
                         frame2.add(new JTextField(rowData[i].toString()));
@@ -77,6 +77,7 @@ public class MMS extends JFrame implements ActionListener {
                     frame2.pack();
                     frame2.setVisible(true);
                     frame2.setLocation(950, 200);
+                    frame2.setSize(400,300);
                     //create JFrame
                     
                     System.out.println("Selected row" + java.util.Arrays.toString(rowData));
