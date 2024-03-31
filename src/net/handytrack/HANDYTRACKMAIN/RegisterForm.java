@@ -66,7 +66,7 @@ public class RegisterForm {
         setConUsernameField(usernameField);
         setConPasswordField(passwordField);
         setConPasswordAgainField(passwordagainField);
-        setConJobPosition();
+        setConJobPosition(combo);
 
         // Style GUI
         styleTextField(firstNameField);
