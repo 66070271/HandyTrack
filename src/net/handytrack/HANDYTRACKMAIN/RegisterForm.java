@@ -66,6 +66,7 @@ public class RegisterForm {
         setConUsernameField(usernameField);
         setConPasswordField(passwordField);
         setConPasswordAgainField(passwordagainField);
+        setConJobPosition();
 
         // Style GUI
         styleTextField(firstNameField);
@@ -144,8 +145,9 @@ public class RegisterForm {
                     String email = emailField.getText();
                     String username = usernameField.getText();
                     String password = String.valueOf(passwordField.getPassword());
+                    String selectedPosition = (String) combo.getSelectedItem();
                     try {
-                        String sql = String.format("INSERT INTO login(name, surename, tel, email, username, password) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",firstName,lastName,phoneNumber,email,username,password);
+                        String sql = String.format("INSERT INTO login(name, surename, tel, email, username, password, jobposition) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",firstName,lastName,phoneNumber,email,username,password,selectedPosition);
                         DBmanipulation.getInstance().getUpdate(sql);
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -419,8 +421,14 @@ public class RegisterForm {
             }
         });
     }
-    private void setJobPosition(JComboBox cm){
-
+    private void setConJobPosition(JComboBox cm){
+        cm.addActionListener(e -> {
+            String selectedPosition = (String) cm.getSelectedItem();
+            if (selectedPosition == null || selectedPosition.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please select a job position.", "Error", JOptionPane.ERROR_MESSAGE);
+                cm.setSelectedIndex(-1);
+            }
+        });
     }
     public static void main(String[] args) {
         try {
@@ -498,17 +506,17 @@ public class RegisterForm {
     }
     private boolean isUsernameDuplicate(String username) {
         // Connect to the database and check if username exists
-        String sql1 = String.format("SELECT * FROM login WHERE username = '%d'", username);
-        ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
+        String sql = String.format("SELECT * FROM login WHERE username = '%s'", username);
+        ResultSet rs1 = DBquery.getInstance().getSelect(sql);
         try {
             if (rs1.next()) {
-//                if (username.equals(sql1) == )
-                return true;
+                if (username.equals(sql))
+                    return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-//            dbConnect.disconnect(); // Disconnect from the database
+            DBquery.getInstance().disconnect(); // Disconnect from the database
         }
         return false;
     }
