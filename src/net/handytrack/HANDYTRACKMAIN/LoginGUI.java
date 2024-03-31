@@ -1,7 +1,7 @@
 package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import net.handytrack.Login.RegisterForm;
+import net.handytrack.HANDYTRACKMAIN.RegisterForm;
 import net.handytrack.database.DBquery;
 
 import javax.swing.*;
@@ -223,8 +223,8 @@ public class LoginGUI {
         logo = new ImageIcon("resources/Picture/LOGO.png");
 
         // Scale image icons
-//        scalepro = ImageUtils.getScaledImageIcon(pro, prolabel.getPreferredSize().width, prolabel.getPreferredSize().height);
-//        scalelock = ImageUtils.getScaledImageIcon(lock, locklabel.getPreferredSize().width, locklabel.getPreferredSize().height);
+        scalepro = ImageUtils.getScaledImageIcon(pro, prolabel.getPreferredSize().width, prolabel.getPreferredSize().height);
+        scalelock = ImageUtils.getScaledImageIcon(lock, locklabel.getPreferredSize().width, locklabel.getPreferredSize().height);
         // Set icons to JLabels
         prolabel.setIcon(scalepro);
         locklabel.setIcon(scalelock);
@@ -263,11 +263,11 @@ public class LoginGUI {
         p11.setOpaque(true);
         p11.setBackground(new Color(210, 224, 251));
 
-        pwel.setPreferredSize(new Dimension(350, 100));
-        p1.setPreferredSize(new Dimension(50, 200));
-        p2.setPreferredSize(new Dimension(50, 200));
-        p3.setPreferredSize(new Dimension(250, 100));
-        p4.setPreferredSize(new Dimension(350, 100));
+        pwel.setPreferredSize(new Dimension(350,100));
+        p1.setPreferredSize(new Dimension(50,200));
+        p2.setPreferredSize(new Dimension(50,200));
+        p3.setPreferredSize(new Dimension(250,100));
+        p4.setPreferredSize(new Dimension(350,100));
         p5.setPreferredSize(new Dimension(350, 25));
         //p6.setPreferredSize(new Dimension(175, 50));
         //p7.setPreferredSize(new Dimension(175, 50));
@@ -279,36 +279,29 @@ public class LoginGUI {
         p11.add(signupButton);
         plogo.add(logolabel);
 
-        ppro.add(prolabel);
-        ppro.add(usernameField);
-        ppas.add(locklabel);
-        ppas.add(passwordField);
-        p5.setLayout(new GridLayout(1, 1));
-//        p5.add(p6);
-        p5.add(p7);
-        p8.setLayout(new GridLayout(2, 1));
-        p8.add(signinButton);
-        p8.add(p11);
+        ppro.add(prolabel);ppro.add(usernameField);
+        ppas.add(locklabel);ppas.add(passwordField);
+        p5.setLayout(new GridLayout(1,2));
+        p5.add(p6);p5.add(p7);
+        p8.setLayout(new GridLayout(2,1));
+        p8.add(signinButton);p8.add(p11);
 
-        pwel.setLayout(new GridLayout(2, 1));
+        pwel.setLayout(new GridLayout(2,1));
         pwel.add(welcomeLabel);
         pwel.add(plogo);
 
-        p3.setLayout(new GridLayout(2, 1));
+        p3.setLayout(new GridLayout(2,1));
         p3.add(ppro);
         p3.add(ppas);
         p4.setLayout(new BorderLayout());
-        p4.add(p5, BorderLayout.NORTH);
-        p4.add(p8, BorderLayout.CENTER);
-        p4.add(p9, BorderLayout.WEST);
-        p4.add(p10, BorderLayout.EAST);
+        p4.add(p5,BorderLayout.NORTH);p4.add(p8,BorderLayout.CENTER);p4.add(p9,BorderLayout.WEST);p4.add(p10,BorderLayout.EAST);
 
         fr.setLayout(new BorderLayout());
-        fr.add(pwel, BorderLayout.NORTH);
-        fr.add(p1, BorderLayout.WEST);
-        fr.add(p2, BorderLayout.EAST);
-        fr.add(p3, BorderLayout.CENTER);
-        fr.add(p4, BorderLayout.SOUTH);
+        fr.add(pwel,BorderLayout.NORTH);
+        fr.add(p1,BorderLayout.WEST);
+        fr.add(p2,BorderLayout.EAST);
+        fr.add(p3,BorderLayout.CENTER);
+        fr.add(p4,BorderLayout.SOUTH);
 
         /////////////////////////////////////////////////////////////////
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -355,8 +348,9 @@ public class LoginGUI {
         }
     }
 
+
     public int getuserId() {
         return userId;
     }
 
-}
+    }

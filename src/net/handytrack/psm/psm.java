@@ -192,7 +192,7 @@ public class psm extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 0, 51));
         jLabel24.setText("Please enter product Weight.");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(247, 217, 151));
