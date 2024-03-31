@@ -221,9 +221,9 @@ public class LoginGUI {
         logolabel.setPreferredSize(new Dimension(50, 50));
 
         // Load image icons
-        pro = new ImageIcon("C:\\Users\\Poompower\\Downloads\\user.png");
-        lock = new ImageIcon("C:\\Users\\Poompower\\Downloads\\lock.png");
-        logo = new ImageIcon("C:\\Users\\Poompower\\Downloads\\logo.png");
+        pro = new ImageIcon("resources/Picture/user.png");
+        lock = new ImageIcon("resources/Picture/lock.png");
+        logo = new ImageIcon("resources/Picture/LOGO.png");
 
         // Scale image icons
 //        scalepro = ImageUtils.getScaledImageIcon(pro, prolabel.getPreferredSize().width, prolabel.getPreferredSize().height);

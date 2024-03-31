@@ -64,11 +64,11 @@ public class HANDYTRACKMAIN implements MouseListener {
         pbtrac.add(t);
         pbman.add(m);
 
-        ImageIcon ipro = new ImageIcon("C:\\Users\\pleum\\Downloads\\Man-Arm-Raises-1-Alternate--Streamline-Flex.png");
-        ImageIcon iadd = new ImageIcon("C:\\Users\\pleum\\Downloads\\Add-2--Streamline-Stickies.png");
-        ImageIcon isum = new ImageIcon("C:\\Users\\pleum\\Downloads\\Sigma--Streamline-Plump.png");
-        ImageIcon iset = new ImageIcon("C:\\Users\\pleum\\Downloads\\Location-Info--Streamline-Stickies.png");
-        ImageIcon man = new ImageIcon("C:\\Users\\pleum\\Downloads\\Hierarchy-14--Streamline-Core.png");
+        ImageIcon ipro = new ImageIcon("resources/Picture/Profile.png");
+        ImageIcon iadd = new ImageIcon("resources/Picture/Add.png");
+        ImageIcon isum = new ImageIcon("resources/Picture/Summarize.png");
+        ImageIcon iset = new ImageIcon("resources/Picture/Setting.png");
+        ImageIcon man = new ImageIcon("resources/Picture/manipulate.png");
 
         fr.setLayout(new BorderLayout());
 
