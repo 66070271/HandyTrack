@@ -273,12 +273,12 @@ public class MMS extends JFrame implements ActionListener {
 
         jPanel2.setBackground(new Color(210, 224, 251));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/icons8-magnifying-glass-15.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("resources/image/icons8-magnifying-glass-15.png")); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(35, 35));
         jLabel1.setMinimumSize(new java.awt.Dimension(35, 35));
 
         AddData.setBackground(new Color(210, 224, 251));
-        AddData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/icons8-add-35.png"))); // NOI18N
+        AddData.setIcon(new javax.swing.ImageIcon("resources/image/icons8-magnifying-glass-35.png")); // NOI18N
         AddData.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
