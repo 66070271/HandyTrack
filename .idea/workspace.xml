@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
+      <change afterPath="$PROJECT_DIR$/src/net/handytrack/customer/CustomerGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/net/handytrack/customer/CustomerManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/net/handytrack/customer/customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circleclickListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/DB.db" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DB.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,14 +44,18 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2eQBug1I7OWKShm4zqqmxMp2yM6" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.CustomerGUI.executor": "Run",
+    "Application.CustomerManagement.executor": "Run",
+    "Application.DeliveryMan.executor": "Run",
     "Application.HANDYTRACKMAIN.executor": "Run",
     "Application.LoginGUI (1).executor": "Run",
     "Application.LoginGUI (2).executor": "Run",
@@ -60,26 +63,26 @@
     "Application.LoginGUI (4).executor": "Run",
     "Application.LoginGUI (5).executor": "Run",
     "Application.LoginGUI.executor": "Run",
-    "Application.RegisterForm (1).executor": "Run",
-    "Application.RegisterForm (2).executor": "Run",
-    "Application.RegisterForm.executor": "Run",
-    "Application.RegisterForm123 (1).executor": "Run",
-    "Application.RegisterForm123.executor": "Run",
+    "Application.MMS (1).executor": "Run",
+    "Application.MMS.executor": "Run",
     "Application.RegisterGUI.executor": "Run",
+    "Application.customer.executor": "Run",
     "Application.net.handytrack.Login.LoginGUI.executor": "Run",
+    "Application.psm (1).executor": "Run",
+    "Application.psm.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pleum/IdeaProjects/HandyTrack/resources/Picture",
+    "last_opened_file_path": "C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
@@ -89,16 +92,18 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\resources\Picture" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\noras\IdeaProjects\HandyTrack\src\net\handytrack\psm" />
+      <recent name="C:\Users\noras\IdeaProjects\HandyTrack\src\net\handytrack\manager" />
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HANDYTRACKMAIN">
-    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
+  <component name="RunManager" selected="Application.CustomerManagement">
+    <configuration name="CustomerGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.CustomerGUI" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.customer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -106,12 +111,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+    <configuration name="CustomerManagement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.CustomerManagement" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.customer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,12 +124,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+    <configuration name="DeliveryMan" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -132,12 +137,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+    <configuration name="MMS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.manager.MMS" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.psm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -145,12 +150,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+    <configuration name="customer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.customer" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.customer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -158,25 +163,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
+    <configuration name="psm (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.psm.psm" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegisterForm123" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm123" />
-      <module name="HandyTrack" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.psm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -186,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HANDYTRACKMAIN" />
-        <item itemvalue="Application.LoginGUI (3)" />
-        <item itemvalue="Application.LoginGUI" />
-        <item itemvalue="Application.RegisterForm" />
-        <item itemvalue="Application.LoginGUI (2)" />
+        <item itemvalue="Application.CustomerManagement" />
+        <item itemvalue="Application.DeliveryMan" />
+        <item itemvalue="Application.customer" />
+        <item itemvalue="Application.CustomerGUI" />
+        <item itemvalue="Application.psm (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -211,7 +203,7 @@
       <updated>1711827146159</updated>
       <workItem from="1711827147318" duration="6673000" />
       <workItem from="1711881258917" duration="14423000" />
-      <workItem from="1711896729547" duration="19689000" />
+      <workItem from="1711896729547" duration="67000" />
     </task>
     <task id="LOCAL-00001" summary="wasd">
       <option name="closed" value="true" />
@@ -263,37 +255,29 @@
     </task>
     <task id="LOCAL-00007" summary="wasd">
       <option name="closed" value="true" />
-      <created>1711896826768</created>
+      <created>1711897157211</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1711896826768</updated>
+      <updated>1711897157211</updated>
     </task>
     <task id="LOCAL-00008" summary="wasd">
       <option name="closed" value="true" />
-      <created>1711906271557</created>
+      <created>1711897398341</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1711906271557</updated>
+      <updated>1711897398341</updated>
     </task>
     <task id="LOCAL-00009" summary="wasd">
       <option name="closed" value="true" />
-      <created>1711906353028</created>
+      <created>1711913005548</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1711906353028</updated>
+      <updated>1711913005548</updated>
     </task>
-    <task id="LOCAL-00010" summary="wasd">
-      <option name="closed" value="true" />
-      <created>1711908544286</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1711908544286</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +295,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="z" />
     <MESSAGE value="wasd" />
     <option name="LAST_COMMIT_MESSAGE" value="wasd" />
   </component>
