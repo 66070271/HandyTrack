@@ -79,13 +79,28 @@ public class HANDYTRACKMAIN implements MouseListener {
         ltrac.setIcon(iset);
         lman.setIcon(man);
 
+        lpro.setFont(new Font("Aerial", Font.PLAIN, 20));
+        ladd.setFont(new Font("Aerial", Font.PLAIN, 20));
+        lsum.setFont(new Font("Aerial", Font.PLAIN, 20));
+        ltrac.setFont(new Font("Aerial", Font.PLAIN, 20));
+        lman.setFont(new Font("Aerial", Font.PLAIN, 20));
+        lpro.setForeground(new Color(0,0,16));
+        ladd.setForeground(new Color(0,0,16));
+        lsum.setForeground(new Color(0,0,16));
+        ltrac.setForeground(new Color(0,0,16));
+        lman.setForeground(new Color(00,0,16));
+
         part1.setLayout(new GridLayout(1, 5));
         ppro.add(lpro);
+        ppro.setBackground(new Color(249, 245, 246));
         padd.add(ladd);
+        padd.setBackground(new Color(255, 230, 230));
         psum.add(lsum);
+        psum.setBackground(new Color(225, 175, 209));
         ptrac.add(ltrac);
+        ptrac.setBackground(new Color(173, 136, 198));
         pman.add(lman);
-
+        pman.setBackground(new Color(116, 105, 182));
         part1.add(ppro);
         part1.add(padd);
         part1.add(psum);
@@ -104,6 +119,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         lpro.addMouseListener(this);
         lsum.addMouseListener(this);
         lman.addMouseListener(this);
+
         part2.setLayout(new BorderLayout());
         part2.setBackground(new Color(210, 224, 251));
 //        part2.setLayout(new OverlayLayout(part2));

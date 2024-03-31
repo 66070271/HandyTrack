@@ -67,6 +67,12 @@ public class profile extends JPanel implements ActionListener, Serializable {
         this.add(c);
         this.add(p4);
 
+        logo.setForeground(new Color(0,0,16));
+        email.setForeground(new Color(0,0,16));
+        allname.setForeground(new Color(0,0,16));
+        ltel.setForeground(new Color(0,0,16));
+        lname.setForeground(new Color(0,0,16));
+
     }
 
     public JLabel getLname() {
