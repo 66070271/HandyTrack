@@ -1,6 +1,7 @@
 package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import net.handytrack.Login.RegisterForm;
 import net.handytrack.database.DBquery;
 
 import javax.swing.*;
@@ -170,7 +171,7 @@ public class LoginGUI {
                 String input = JOptionPane.showInputDialog(fr, "Contact the relevant person to request a key \n\n Enter organization's key", "Before Register", JOptionPane.QUESTION_MESSAGE);
 
                 if ("organization_key".equals(input)) {
-                    RegisterGUI registerGUI = new RegisterGUI();
+                    RegisterForm registerGUI = new RegisterForm();
                 } else {
                     JOptionPane.showMessageDialog(fr, "Wrong Password!!!", "Invalid organization's key", JOptionPane.WARNING_MESSAGE);
                 }

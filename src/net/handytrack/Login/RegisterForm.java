@@ -1,5 +1,8 @@
 package net.handytrack.Login;
 
+import net.handytrack.database.DBmanipulation;
+import net.handytrack.database.DBquery;
+
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
@@ -434,9 +437,8 @@ public class RegisterForm {
 
     private boolean isUsernameDuplicate(String username) {
         // Connect to the database and check if username exists
-        DBConnect dbConnect = new DBConnect();
-        dbConnect.getConnect("SELECT * FROM users WHERE username='" + username + "'");
-        ResultSet resultSet = dbConnect.rs;
+
+        ResultSet resultSet = DBquery.getInstance().getSelect("SELECT * FROM login WHERE username='" + username + "'");
         try {
             if (resultSet.next()) {
                 // Username exists in the database
@@ -445,7 +447,7 @@ public class RegisterForm {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            dbConnect.disconnect(); // Disconnect from the database
+            DBmanipulation.getInstance().disconnect(); // Disconnect from the database
         }
         return false;
     }
