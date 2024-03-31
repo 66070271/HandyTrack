@@ -105,14 +105,14 @@ public class HANDYTRACKMAIN implements MouseListener {
         lpro.addMouseListener(this);
         lsum.addMouseListener(this);
         lman.addMouseListener(this);
-
+        part2.setLayout(new BorderLayout());
         part2.setBackground(new Color(210, 224, 251));
 //        part2.setLayout(new OverlayLayout(part2));
         part2.add(p);
-        part2.add(a);
-        part2.add(s);
-        part2.add(t);
-        part2.add(m);
+//        part2.add(a);
+//        part2.add(s);
+//        part2.add(t);
+//        part2.add(m);
 
 //         ตั้งค่าให้แสดง JPanel ที่มีส่วนของ Profile เมื่อโปรแกรมเริ่มต้นการทำงาน
         p.setVisible(true);
@@ -128,7 +128,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setJMenuBar(jm);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(800, 800);
-        fr.setVisible(false);
+        fr.setVisible(true);
     }
 
     @Override
@@ -196,11 +196,14 @@ public class HANDYTRACKMAIN implements MouseListener {
             if(rs.next()){
                 this.user = new User(rs.getString("name"),rs.getString("surename"),rs.getString("email"),rs.getString("tel"));
                 p.getLname().setText("Hi "+user.getName()+".");
-                p.getLname().setFont(new Font("Aerial", Font.PLAIN, 18));
-                p.getLname().setVerticalTextPosition((int)Component.CENTER_ALIGNMENT);
-                p.getLtel().setText(user.getTel());
+                p.getLname().setFont(new Font("Aerial", Font.PLAIN, 32));
+                p.getLtel().setText("Tel : "+user.getTel());
                 p.setKeyuser(this.keyuser);
-            }
+                p.getEmail().setText("Email : "+user.getEmail());
+                p.getAllname().setText("Name : "+user.getName()+" "+user.getSurename());
+                p.getAllname().setFont(new Font("Aerial", Font.PLAIN, 24));
+            }   p.getEmail().setFont(new Font("Aerial", Font.PLAIN, 24));
+                p.getLtel().setFont(new Font("Aerial", Font.PLAIN, 24));
         }catch (SQLException e){
             e.printStackTrace();
         }

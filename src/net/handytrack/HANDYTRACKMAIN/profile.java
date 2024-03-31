@@ -14,25 +14,32 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class profile extends JPanel implements ActionListener, Serializable {
 
     private circle c;
-    private JLabel lname, ltel;
+    private JLabel lname, ltel,email,allname,logo;
  //   private DBConnect db;
     private String p, name, pass, num;
-
+    private JPanel p1,p2,p3,p4;
     private int keyuser;
 
     public profile() {
          // ปรับ
-        this.setBackground(new Color(210, 224, 251));
-        lname = new JLabel("NAME : ");
+        this.setLayout(new GridLayout(3,1));
+        this.setBackground(Color.WHITE);
+        lname = new JLabel("Welcome Mr.Sutthipong",(int)Component.CENTER_ALIGNMENT);
 
-        ltel = new JLabel("TEL :");
+        ltel = new JLabel("TEL :",(int)Component.CENTER_ALIGNMENT);
         c = new circle();
         c.setSize(new Dimension(150, 150));
         name = "";
         pass = "";
         num = "";
-        this.setPreferredSize(new Dimension(200, 200));
-
+        p1 = new JPanel();
+        p2 = new JPanel();
+        p3 = new JPanel();
+        p4 = new JPanel();
+        email = new JLabel("",(int)Component.CENTER_ALIGNMENT);
+        allname = new JLabel("",(int)Component.CENTER_ALIGNMENT);
+        logo = new JLabel("HandyTrack",new ImageIcon("resources/Picture/smalllogo.png"),(int)Component.CENTER_ALIGNMENT);
+        logo.setFont(new Font("Aerial", Font.PLAIN, 28));
         c.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -40,10 +47,21 @@ public class profile extends JPanel implements ActionListener, Serializable {
             }
         });
 
-
-        this.add(lname);
-        this.add(ltel);
+        p1.setLayout(new GridLayout(2,1));
+        p2.add(logo);
+        p2.setBackground(Color.WHITE);
+        p1.setBackground(Color.WHITE);
+        p1.add(p2);
+        p1.add(lname);
+        p4.setLayout(new GridLayout(4,1));
+        p4.add(allname);
+        p4.add(ltel);
+        p4.add(email);
+        p3.setBackground(new Color(210,224,251));
+        p4.add(p3);
+        this.add(p1);
         this.add(c);
+        this.add(p4);
 
     }
     public JLabel getLname(){
@@ -51,6 +69,12 @@ public class profile extends JPanel implements ActionListener, Serializable {
     }
     public JLabel getLtel(){
         return ltel;
+    }
+    public JLabel getEmail(){
+        return email;
+    }
+    public JLabel getAllname(){
+        return allname;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -131,4 +155,6 @@ public class profile extends JPanel implements ActionListener, Serializable {
     public void setKeyuser(int i){
         this.keyuser = i;
     }
+
+
 }
