@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
+      <change afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/PieChart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_1_27_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_1_27_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/customer/CustomerManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/customer/CustomerManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/DB.db" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DB.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +65,7 @@
     "Application.LoginGUI.executor": "Run",
     "Application.MMS (1).executor": "Run",
     "Application.MMS.executor": "Run",
+    "Application.PieChart.executor": "Run",
     "Application.RegisterGUI.executor": "Run",
     "Application.customer.executor": "Run",
     "Application.net.handytrack.Login.LoginGUI.executor": "Run",
@@ -94,20 +98,7 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CustomerManagement">
-    <configuration name="CustomerGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.CustomerGUI" />
-      <module name="HandyTrack" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="net.handytrack.customer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.PieChart">
     <configuration name="CustomerManagement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.CustomerManagement" />
       <module name="HandyTrack" />
@@ -134,12 +125,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MMS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.manager.MMS" />
+    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.psm.*" />
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -147,12 +138,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="customer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.customer" />
+    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.customer.*" />
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -160,26 +151,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="psm (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.psm.psm" />
+    <configuration name="PieChart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.PieChart" />
       <module name="HandyTrack" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="net.handytrack.psm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PieChart" />
+        <item itemvalue="Application.LoginGUI" />
+        <item itemvalue="Application.HANDYTRACKMAIN" />
         <item itemvalue="Application.CustomerManagement" />
         <item itemvalue="Application.DeliveryMan" />
-        <item itemvalue="Application.customer" />
-        <item itemvalue="Application.CustomerGUI" />
-        <item itemvalue="Application.psm (1)" />
       </list>
     </recent_temporary>
   </component>
