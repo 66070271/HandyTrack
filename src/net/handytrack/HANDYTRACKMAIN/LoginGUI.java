@@ -325,7 +325,6 @@ public class LoginGUI {
             e.printStackTrace();
         }
         new LoginGUI();
-
     }
 
     public Boolean loginuser() {

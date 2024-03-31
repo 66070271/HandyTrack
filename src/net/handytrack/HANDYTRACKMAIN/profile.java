@@ -14,12 +14,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class profile extends JPanel implements ActionListener, Serializable {
+public class profile extends JPanel implements Serializable {
 
     private circle c;
     private JLabel lname, ltel, email, allname, logo;
-    //   private DBConnect db;
-    private String p, name, pass, num;
     private JPanel p1, p2, p3, p4;
     private int keyuser;
 
@@ -28,13 +26,9 @@ public class profile extends JPanel implements ActionListener, Serializable {
         this.setLayout(new GridLayout(3, 1));
         this.setBackground(Color.WHITE);
         lname = new JLabel("Welcome", (int) Component.CENTER_ALIGNMENT);
-
         ltel = new JLabel("TEL :", (int) Component.CENTER_ALIGNMENT);
         c = new circle();
         c.setSize(new Dimension(150, 150));
-        name = "";
-        pass = "";
-        num = "";
         p1 = new JPanel();
         p2 = new JPanel();
         p3 = new JPanel();
@@ -43,12 +37,6 @@ public class profile extends JPanel implements ActionListener, Serializable {
         allname = new JLabel("", (int) Component.CENTER_ALIGNMENT);
         logo = new JLabel("HandyTrack", new ImageIcon("resources/Picture/smalllogo.png"), (int) Component.CENTER_ALIGNMENT);
         logo.setFont(new Font("Aerial", Font.PLAIN, 28));
-        c.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                actionPerformed(new ActionEvent(c, ActionEvent.ACTION_PERFORMED, null));
-            }
-        });
 
         p1.setLayout(new GridLayout(2, 1));
         p2.add(logo);
@@ -91,41 +79,41 @@ public class profile extends JPanel implements ActionListener, Serializable {
         return allname;
     }
 
-    public void actionPerformed(ActionEvent e) {
-        // ทำเมื่อกดที่วงกลม
-
-        try {
-            if (e.getSource() == c) {
-                // เปิดไฟล์ภาพ
-                JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
-                fileChooser.addChoosableFileFilter(filter);
-                int returnValue = fileChooser.showOpenDialog(this);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    String path = selectedFile.getAbsolutePath();
-                    ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
-                    c.setIcon(image); // กำหนดภาพใหม่ในวงกลม
-                    c.repaint();
-                    p = path;
-                }
-            }
-            //การอัพเดดภาพลงบน sql
-            Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
-            PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
-            File lm = new File(p);
-            byte[] imageBytes = Files.readAllBytes(lm.toPath());
-            ps.setBytes(1, imageBytes);
-            ps.setInt(2, this.keyuser);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Data Inserted");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Can't Open File", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
+//    public void actionPerformed(ActionEvent e) {
+//        // ทำเมื่อกดที่วงกลม
+//
+//        try {
+//            if (e.getSource() == c) {
+//                // เปิดไฟล์ภาพ
+//                JFileChooser fileChooser = new JFileChooser();
+//                FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+//                fileChooser.addChoosableFileFilter(filter);
+//                int returnValue = fileChooser.showOpenDialog(this);
+//                if (returnValue == JFileChooser.APPROVE_OPTION) {
+//                    File selectedFile = fileChooser.getSelectedFile();
+//                    String path = selectedFile.getAbsolutePath();
+//                    ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
+//                    c.setIcon(image); //
+//                    c.repaint();
+//                    p = path;
+//                }
+//            }
+//            //การอัพเดดภาพลงบน sql
+////            Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
+////            PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
+////            File lm = new File(p);
+////            byte[] imageBytes = Files.readAllBytes(lm.toPath());
+////            ps.setBytes(1, imageBytes);
+////            ps.setInt(2, this.keyuser);
+////            ps.executeUpdate();
+////            JOptionPane.showMessageDialog(null, "Data Inserted");
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Can't Open File", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
+//        }
+//
+//    }
 
     public void mousePressed(MouseEvent e) {
     }

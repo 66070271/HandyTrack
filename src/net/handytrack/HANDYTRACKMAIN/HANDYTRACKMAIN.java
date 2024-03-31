@@ -51,7 +51,6 @@ public class HANDYTRACKMAIN implements MouseListener {
         lsum = new JLabel("Summarize", JLabel.CENTER);
         lman = new JLabel("Manage", JLabel.CENTER);
         p = new profile();
-
         a = new add();
         s = new summarize();
         t = new track();
@@ -122,19 +121,19 @@ public class HANDYTRACKMAIN implements MouseListener {
 
         part2.setLayout(new BorderLayout());
         part2.setBackground(new Color(210, 224, 251));
-//        part2.setLayout(new OverlayLayout(part2));
+        part2.setLayout(new OverlayLayout(part2));
         part2.add(p);
 //        part2.add(a);
-//        part2.add(s);
+        part2.add(s);
 //        part2.add(t);
 //        part2.add(m);
 
 //         ตั้งค่าให้แสดง JPanel ที่มีส่วนของ Profile เมื่อโปรแกรมเริ่มต้นการทำงาน
         p.setVisible(true);
-        a.setVisible(false);
+//        a.setVisible(false);
         s.setVisible(false);
-        t.setVisible(false);
-        m.setVisible(false);
+//        t.setVisible(false);
+//        m.setVisible(false);
 
         //set JFrame
         fr.setLocation(500, 150);

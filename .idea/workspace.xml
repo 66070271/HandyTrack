@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circleclickListener.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pleum/IdeaProjects/HandyTrack/resources/TimingFramework-0.55.jar",
+    "last_opened_file_path": "C:/Users/pleum/IdeaProjects/HandyTrack/resources/Picture",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,7 +92,7 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginGUI">
+  <component name="RunManager" selected="Application.HANDYTRACKMAIN">
     <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
       <module name="HandyTrack" />
@@ -103,7 +106,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginGUI (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
       <module name="HandyTrack" />
       <extension name="coverage">
@@ -116,7 +119,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginGUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
       <module name="HandyTrack" />
       <extension name="coverage">
@@ -183,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LoginGUI" />
         <item itemvalue="Application.HANDYTRACKMAIN" />
-        <item itemvalue="Application.LoginGUI (2)" />
+        <item itemvalue="Application.LoginGUI (3)" />
+        <item itemvalue="Application.LoginGUI" />
         <item itemvalue="Application.RegisterForm" />
-        <item itemvalue="Application.LoginGUI (1)" />
+        <item itemvalue="Application.LoginGUI (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +211,7 @@
       <updated>1711827146159</updated>
       <workItem from="1711827147318" duration="6673000" />
       <workItem from="1711881258917" duration="14423000" />
-      <workItem from="1711896729547" duration="10975000" />
+      <workItem from="1711896729547" duration="19689000" />
     </task>
     <task id="LOCAL-00001" summary="wasd">
       <option name="closed" value="true" />
@@ -282,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711906353028</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711908544286</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711908544286</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
