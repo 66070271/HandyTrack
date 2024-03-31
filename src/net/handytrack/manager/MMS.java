@@ -11,12 +11,11 @@ import net.handytrack.HandyCell.TableActionEvent;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
 import net.handytrack.database.DBquery;
+import net.handytrack.psm.psm;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -36,7 +35,6 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableRowSorter;
-import java.sql.*;
 
 /**
  *
@@ -45,6 +43,7 @@ import java.sql.*;
 public class MMS extends JFrame implements ActionListener {
 
     private JButton submitButton;
+    private psm psm;
     private JPanel p1;
     public MMS() {
         initComponents();
@@ -231,11 +230,12 @@ public class MMS extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ev) {
         if(ev.getSource().equals(AddData)) {
-            //use JFrame created by Auto
+            JFrame psm = new psm();
+            psm.setVisible(true);
         }
         //create button on jframe
         if(ev.getSource().equals(submitButton)) {
-            
+
         }
     }
     public void search(String text) {
@@ -306,8 +306,13 @@ public class MMS extends JFrame implements ActionListener {
         jLabel1.setMinimumSize(new java.awt.Dimension(35, 35));
 
         AddData.setBackground(new Color(210, 224, 251));
-        AddData.setIcon(new javax.swing.ImageIcon("resources/image/icons8-magnifying-glass-35.png")); // NOI18N
+        AddData.setIcon(new javax.swing.ImageIcon("resources/image/icons8-add-35.png")); // NOI18N
         AddData.setBorderPainted(false);
+        AddData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddDataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -352,9 +357,10 @@ public class MMS extends JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void AddDataActionPerformed(java.awt.event.ActionEvent evt) {
+        JFrame psm = new psm();
+
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
