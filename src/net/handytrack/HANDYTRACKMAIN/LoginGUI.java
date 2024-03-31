@@ -1,7 +1,7 @@
 package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import net.handytrack.Login.RegisterForm;
+import net.handytrack.HANDYTRACKMAIN.RegisterForm;
 import net.handytrack.database.DBquery;
 
 import javax.swing.*;
