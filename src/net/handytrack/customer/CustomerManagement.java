@@ -22,7 +22,6 @@ public class CustomerManagement implements ActionListener {
     private JFrame fr;
     private JTable table;
     private DefaultTableModel model;
-
     private JScrollPane scrollPane;
     private JPanel pn1, pn2, blank1, blank2;
     private JButton done, search, sdefault;
@@ -64,7 +63,7 @@ public class CustomerManagement implements ActionListener {
 
 
 /////////////////////////////////// JTable Set /////////////////////////////////////////////
-        String sql = "SELECT * FROM product;";
+        String sql = "SELECT * FROM customer;";
         setTable(sql);
 
 /////////////////////////////// ขนาด Column ของ JTable  ////////////////////////////////
@@ -129,17 +128,17 @@ public class CustomerManagement implements ActionListener {
             String kw = searchtf.getText();
             if (kw.equals("")) {
                 model.setRowCount(0);
-                String sql = "SELECT * FROM product;";
+                String sql = "SELECT * FROM customer;";
                 setTable(sql);
             } else {
                 model.setRowCount(0);
-                String searchh = String.format("SELECT * FROM product WHERE (NameS = '%s' OR contactNum = '%s')", kw, kw);
+                String searchh = String.format("SELECT * FROM customer WHERE (NameS = '%s' OR contactNum = '%s')", kw, kw);
                 setTable(searchh);
             }
         } else if (e.getSource().equals(sdefault)) {
             searchtf.setText("");
             model.setRowCount(0);
-            String sql = "SELECT * FROM product;";
+            String sql = "SELECT * FROM customer;";
             setTable(sql);
         }
     }
@@ -166,8 +165,6 @@ public class CustomerManagement implements ActionListener {
             button.addActionListener(e -> {
 //                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
-
-                String tracknm = model.getValueAt(selectedRow, 0).toString();
                 /// RIGHT HERE (Time in CurrentStats GUI)
                 new CustomerGUI();
             });
