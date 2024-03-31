@@ -29,6 +29,9 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.45.2.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.java.timingframework/timingframework-core -->
+
+
     </dependencies>
     <build>
         <sourceDirectory>src</sourceDirectory>
