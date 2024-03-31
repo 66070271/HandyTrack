@@ -90,7 +90,7 @@ public class KeyData extends javax.swing.JFrame {
         txtCost.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCost.setText("jLabel11");
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/HandyTrackLogo.png"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon("resources/image/HandyTrackLogo.png")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("ZipCode");

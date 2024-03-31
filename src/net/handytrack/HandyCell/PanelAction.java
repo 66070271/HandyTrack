@@ -54,21 +54,21 @@ public class PanelAction extends javax.swing.JPanel {
         cmdDelete = new ActionButton();
         cmdPrint = new ActionButton();
 
-        cmdSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/icons8-setting-35.png"))); // NOI18N
+        cmdSetting.setIcon(new javax.swing.ImageIcon("resources/image/icons8-setting-35.png")); // NOI18N
         cmdSetting.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cmdSettingActionPerformed(evt);
             }
         });
 
-        cmdDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/icons8-delete-35.png"))); // NOI18N
+        cmdDelete.setIcon(new javax.swing.ImageIcon("resources/image/icons8-delete-35.png")); // NOI18N
         cmdDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cmdDeleteActionPerformed(evt);
             }
         });
 
-        cmdPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/icons8-print-35.png"))); // NOI18N
+        cmdPrint.setIcon(new javax.swing.ImageIcon("resources/image/icons8-print-35.png")); // NOI18N
         cmdPrint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cmdPrintActionPerformed(evt);
