@@ -24,7 +24,7 @@ public class DBquery extends DBconnect {
 
     public ResultSet getSelect(String s) {
         try {
-            Class.forName("org.sqlite.JDBC");
+
             con = DriverManager.getConnection(url);
             stm = con.createStatement();
             rs = stm.executeQuery(s);

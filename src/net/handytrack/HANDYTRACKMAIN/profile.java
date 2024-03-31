@@ -2,6 +2,7 @@ package net.handytrack.HANDYTRACKMAIN;
 
 import net.handytrack.database.DBmanipulation;
 
+import java.nio.file.Files;
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
@@ -68,15 +69,16 @@ public class profile extends JPanel implements ActionListener, Serializable {
                     c.setIcon(image); // กำหนดภาพใหม่ในวงกลม
                     c.repaint();
                     p = path;
+                    System.out.println(this.p);
+                    System.out.println(this.keyuser);
                 }
             }
             //การอัพเดดภาพลงบน sql
             Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
             PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
-
-
-//            byte[] imageBytes = lm.readAllBytes();
-            ps.setBlob(1,new FileInputStream(p));
+            File lm = new File(p);
+            byte[] imageBytes = Files.readAllBytes(lm.toPath());
+            ps.setBytes(1,imageBytes);
             ps.setInt(2,this.keyuser);
             ps.executeUpdate();
 //                ps.executeQuery();
