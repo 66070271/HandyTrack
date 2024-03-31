@@ -7,17 +7,20 @@
  * @author ggezl
  */
 package net.handytrack.psm;
-
+import net.handytrack.database.DBquery;
+import net.handytrack.type.NormalTypeCreator;
+import net.handytrack.type.product.TypeC;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBconnect;
 import net.handytrack.database.DBmanipulation;
 
 import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import net.handytrack.manager.*;
+
+import net.handytrack.type.FreezeTypeCreator;
+import net.handytrack.type.TypeCreator;
 
 public class psm extends javax.swing.JFrame {
 
@@ -233,7 +236,7 @@ public class psm extends javax.swing.JFrame {
             }
         });
 
-        sexchoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        sexchoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Male", "Female"}));
 
         txtroad.setSelectedTextColor(new java.awt.Color(102, 102, 255));
         txtroad.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -273,8 +276,8 @@ public class psm extends javax.swing.JFrame {
             }
         });
 
-        prochoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
-                "Bangkok","Krabi", "Kanchanaburi", "Kalasin", "Kamphaeng Phet",
+        prochoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+                "Bangkok", "Krabi", "Kanchanaburi", "Kalasin", "Kamphaeng Phet",
                 "Khon Kaen", "Chanthaburi", "Chachoengsao", "Chonburi", "Chainat", "Chaiyaphum",
                 "Chumphon", "Chiang Rai", "Chiang Mai", "Trang", "Trat", "Tak", "Nakhon Nayok",
                 "Nakhon Pathom", "Nakhon Phanom", "Nakhon Ratchasima", "Nakhon Si Thammarat",
@@ -534,9 +537,9 @@ public class psm extends javax.swing.JFrame {
                         .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Big", "Fragile" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Big", "Fragile"}));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Freeze", "Normal" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Freeze", "Normal"}));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -742,7 +745,7 @@ public class psm extends javax.swing.JFrame {
             Calendar CAL = Calendar.getInstance();
             String serial = String.format("OOP-%02d%02d%02d%02d", CAL.get(Calendar.SECOND), CAL.get(Calendar.MINUTE), CAL.get(Calendar.DATE), CAL.get(Calendar.MILLISECOND));
 
-
+            String cost = String.valueOf(calculate());
             String track = serial;
             String sender = txtsend.getText();
             String sex = (String) sexchoice.getSelectedItem();
@@ -758,9 +761,9 @@ public class psm extends javax.swing.JFrame {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             String time = dtf.format(LocalDateTime.now());
             try {
-                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Option,sex,Road,Zip,District,Province,Date,Status)" +
-                                "VALUES('%s','%s','%s','%.2f','%s','%d','%s','%s','%s','%d','%s','%s','%s','Receive');"
-                        , track, sender, recive, weight, type, number, option, sex, road, zip, district, country, time);
+                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Option,sex,Road,Zip,District,Province,Date,Status,Cost)" +
+                                "VALUES('%s','%s','%s','%.2f','%s','%d','%s','%s','%s','%d','%s','%s','%s','Receive','%s');"
+                        , track, sender, recive, weight, type, number, option, sex, road, zip, district, country, time,cost);
                 String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track, time);
                 DBmanipulation.getInstance().getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
@@ -906,4 +909,27 @@ public class psm extends javax.swing.JFrame {
     private void subtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subtonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_subtonMouseClicked
+
+    public Double calculate() {
+        if(((String)jComboBox2.getSelectedItem()).equals("Freeze")){
+            TypeCreator tFreeze = new FreezeTypeCreator();
+            TypeC typeGen = tFreeze.generateType(Double.parseDouble(txtweight.getText()));
+            if(((String)jComboBox1.getSelectedItem()).equals("Big")){
+                tFreeze.add_bigSize(typeGen);
+            }else if(((String)jComboBox1.getSelectedItem()).equals("Fragile")){
+                tFreeze.add_fragile(typeGen);
+            }
+            return typeGen.calculate();
+        }else if(((String)jComboBox2.getSelectedItem()).equals("Normal")){
+            TypeCreator tNormal = new NormalTypeCreator();
+            TypeC typeGen = tNormal.generateType(Double.parseDouble(txtweight.getText()));
+            if(((String)jComboBox1.getSelectedItem()).equals("Big")){
+                tNormal.add_bigSize(typeGen);
+            }else if(((String)jComboBox1.getSelectedItem()).equals("Fragile")){
+                tNormal.add_fragile(typeGen);
+            }
+            return typeGen.calculate();
+        }
+        return 0.0;
+    }
 }

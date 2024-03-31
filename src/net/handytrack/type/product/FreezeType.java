@@ -1,6 +1,6 @@
 package net.handytrack.type.product;
 
-public class FreezeType implements Type {
+public class FreezeType implements TypeC {
     private static final double rate = 2.5 ;
     private double weight;
     private double extra_cost = 0;
@@ -19,7 +19,7 @@ public class FreezeType implements Type {
 
     @Override
     public double calculate() {
-        return (weight*rate) + Type.BaseCost + extra_cost;
+        return (weight*rate) + TypeC.BaseCost + extra_cost;
     }
 
     public double getExtra_cost() {

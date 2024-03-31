@@ -1,6 +1,6 @@
 package net.handytrack.type.product;
 
-public class NormalType implements Type{
+public class NormalType implements TypeC {
     private static final double rate = 1 ;
     private double weight;
     private double extra_cost = 0;
@@ -9,7 +9,7 @@ public class NormalType implements Type{
     }
     @Override
     public double calculate() {
-        return (weight*rate) + Type.BaseCost + extra_cost;
+        return (weight*rate) + TypeC.BaseCost + extra_cost;
     }
 
     public double getExtra_cost() {
