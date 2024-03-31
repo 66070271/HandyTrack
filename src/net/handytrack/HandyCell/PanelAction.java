@@ -50,9 +50,9 @@ public class PanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmdSetting = new HandyCell.ActionButton();
-        cmdDelete = new HandyCell.ActionButton();
-        cmdPrint = new HandyCell.ActionButton();
+        cmdSetting = new ActionButton();
+        cmdDelete = new ActionButton();
+        cmdPrint = new ActionButton();
 
         cmdSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/manager/manage/image/icons8-setting-35.png"))); // NOI18N
         cmdSetting.addActionListener(new ActionListener() {
@@ -114,8 +114,8 @@ public class PanelAction extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private HandyCell.ActionButton cmdDelete;
-    private HandyCell.ActionButton cmdPrint;
-    private HandyCell.ActionButton cmdSetting;
+    private ActionButton cmdDelete;
+    private ActionButton cmdPrint;
+    private ActionButton cmdSetting;
     // End of variables declaration//GEN-END:variables
 }

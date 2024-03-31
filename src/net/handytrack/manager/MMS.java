@@ -4,6 +4,7 @@
  */
 package net.handytrack.manager;
 
+import net.handytrack.HandyCell.ScrollPaneWin111;
 import net.handytrack.HandyCell.TableActionCellEditor;
 import net.handytrack.HandyCell.TableActionCellRender;
 import net.handytrack.HandyCell.TableActionEvent;
@@ -355,7 +356,7 @@ public class MMS extends JFrame implements ActionListener {
     private JLabel jLabel1;
     private JPanel jPanel1;
     private JPanel jPanel2;
-    private HandyCell.ScrollPaneWin111 scrollPaneWin1111;
+    private ScrollPaneWin111 scrollPaneWin1111;
     private javax.swing.JTable table;
     private JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
