@@ -159,33 +159,30 @@ public class DeliveryMan implements ActionListener, ItemListener {
     }
 
     /////////////////////////////// Get Time for Status Chagner GUI ////////////////////////////////////////////
-    public String getSorttime(int state) {
-        int selectedRow = table.getSelectedRow();
-        String data1 = model.getValueAt(selectedRow, 0).toString();
-
-        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", data1);
+    public String getSorttime(int state, String sqlin) {
+        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", sqlin);
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
             if (rs.next()) {
-                timereceive = rs.getString("Recieved");
-                timesort = rs.getString("Sorting");
-                timetransit = rs.getString("Transit");
-                timedelivery = rs.getString("Delivery");
-                timecomplete = rs.getString("Finish");
+                String timereceive = rs.getString("Recieved");
+                String timesort = rs.getString("Sorting");
+                String timetransit = rs.getString("Transit");
+                String timedelivery = rs.getString("Delivery");
+                String timecomplete = rs.getString("Finish");
+                if (state == 1) {
+                    return timereceive;
+                } else if (state == 2) {
+                    return timesort;
+                } else if (state == 3) {
+                    return timetransit;
+                } else if (state == 4) {
+                    return timedelivery;
+                } else if (state == 5) {
+                    return timecomplete;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        if (state == 1) {
-            return timereceive;
-        } else if (state == 2) {
-            return timesort;
-        } else if (state == 3) {
-            return timetransit;
-        } else if (state == 4) {
-            return timedelivery;
-        } else if (state == 5) {
-            return timecomplete;
         }
         return "Error";
     }
@@ -301,38 +298,63 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
                 String currentstats = model.getValueAt(selectedRow, 4).toString();
+                String tracknm = model.getValueAt(selectedRow, 0).toString();
+                /// RIGHT HERE (Time in CurrentStats GUI)
                 if (currentstats.equals("Receive")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(true);
                     sc.getInTransits().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
-
-//                    sc.getRtime().setText(getSorttime(1));
+                    sc.getRtime().setText(getSorttime(1, tracknm));
+                    sc.getStime().setText("");
+                    sc.getTtime().setText("");
+                    sc.getDtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Sorting")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(true);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
+                    sc.getRtime().setText(getSorttime(1, tracknm));
+                    sc.getStime().setText(getSorttime(2, tracknm));
+                    sc.getTtime().setText("");
+                    sc.getDtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("In Transit")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(true);
                     sc.getCompletes().setEnabled(false);
+                    sc.getRtime().setText(getSorttime(1, tracknm));
+                    sc.getStime().setText(getSorttime(2, tracknm));
+                    sc.getTtime().setText(getSorttime(3, tracknm));
+                    sc.getDtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Delivery")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(true);
+                    sc.getRtime().setText(getSorttime(1, tracknm));
+                    sc.getStime().setText(getSorttime(2, tracknm));
+                    sc.getTtime().setText(getSorttime(3, tracknm));
+                    sc.getDtime().setText(getSorttime(4, tracknm));
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Complete")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
+                    sc.getRtime().setText(getSorttime(1, tracknm));
+                    sc.getStime().setText(getSorttime(2, tracknm));
+                    sc.getTtime().setText(getSorttime(3, tracknm));
+                    sc.getDtime().setText(getSorttime(4, tracknm));
+                    sc.getCtime().setText(getSorttime(5, tracknm));
                 }
                 sc.getFr().setVisible(true);
             });
