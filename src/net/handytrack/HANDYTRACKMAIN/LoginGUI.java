@@ -223,8 +223,8 @@ public class LoginGUI {
         logo = new ImageIcon("resources/Picture/LOGO.png");
 
         // Scale image icons
-//        scalepro = ImageUtils.getScaledImageIcon(pro, prolabel.getPreferredSize().width, prolabel.getPreferredSize().height);
-//        scalelock = ImageUtils.getScaledImageIcon(lock, locklabel.getPreferredSize().width, locklabel.getPreferredSize().height);
+        scalepro = ImageUtils.getScaledImageIcon(pro, prolabel.getPreferredSize().width, prolabel.getPreferredSize().height);
+        scalelock = ImageUtils.getScaledImageIcon(lock, locklabel.getPreferredSize().width, locklabel.getPreferredSize().height);
         // Set icons to JLabels
         prolabel.setIcon(scalepro);
         locklabel.setIcon(scalelock);
@@ -348,8 +348,9 @@ public class LoginGUI {
         }
     }
 
+
     public int getuserId() {
         return userId;
     }
 
-}
+    }
