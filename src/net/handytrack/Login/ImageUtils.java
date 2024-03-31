@@ -1,7 +1,7 @@
 package net.handytrack.Login;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class ImageUtils {
     public static ImageIcon getScaledImageIcon(ImageIcon icon, int width, int height) {

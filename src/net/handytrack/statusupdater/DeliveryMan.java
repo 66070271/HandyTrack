@@ -1,15 +1,22 @@
 package net.handytrack.statusupdater;
-import javax.swing.*;
-import javax.swing.table.*;
-import java.awt.*;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 
-import java.sql.*;
-import java.awt.event.*;
-import java.time.format.*;
-import java.time.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DeliveryMan implements ActionListener, ItemListener {
     private JFrame fr;
@@ -34,9 +41,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
         statussort.addItem("Delivery");
         statussort.addItem("Complete");
         statussort.setSelectedIndex(0);
-        
+
         sc = new StatusChanger();
-        
+
         String[] columnNames = {"Track Num", "Receiver", "Address", "Contact", "Status", "Action"};
         model = new DefaultTableModel(columnNames, 0) {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
@@ -45,38 +52,38 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 return column == 5;
             }
         };
-        
+
         table = new JTable(model);
         scrollPane = new JScrollPane(table);
         pn1 = new JPanel();
         pn2 = new JPanel();
-        
+
         blank1 = new JPanel();
         blank2 = new JPanel();
         fr.add(blank1, BorderLayout.EAST);
         fr.add(blank2, BorderLayout.WEST);
-        
-        done = new JButton("Done!");        
-        
+
+        done = new JButton("Done!");
+
         search = new JButton("Seach");
         sdefault = new JButton("Set Default");
         searchtf = new JTextField(20);
         lb1 = new JLabel("Sorted by Name or ID : ");
         lb2 = new JLabel("Sorted by Status : ");
-         fr.add(pn2, BorderLayout.NORTH);
-         pn2.add(lb2);
-         pn2.add(statussort);
-         pn2.add(lb1);
-         pn2.add(searchtf);
-         pn2.add(search);
-         pn2.add(sdefault);
+        fr.add(pn2, BorderLayout.NORTH);
+        pn2.add(lb2);
+        pn2.add(statussort);
+        pn2.add(lb1);
+        pn2.add(searchtf);
+        pn2.add(search);
+        pn2.add(sdefault);
 
 
 /////////////////////////////////// DateTime /////////////////////////////////////////////
         String sql = "SELECT * FROM product;";
         setTable(sql);
-        
-        
+
+
 /////////////////////////////// ขนาด Column ของ JTable  ////////////////////////////////
 //        table.getColumnModel().getColumn(0).setPreferredWidth(10);
 //        table.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -91,7 +98,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 
 //        TableColumn statusColumn = table.getColumnModel().getColumn(4); // Status column index is now 4
 //        statusColumn.setCellEditor(new DefaultCellEditor(status));
-            
+
         // Custom TableCellRenderer for button in column 5
         TableColumn deleteColumn = table.getColumnModel().getColumn(5); // Action column index is 5
         deleteColumn.setCellRenderer(new ButtonRenderer());
@@ -107,23 +114,31 @@ public class DeliveryMan implements ActionListener, ItemListener {
         fr.setSize(1200, 600);
 //        fr.setSize(1920, 1080);
         fr.setVisible(true);
-        
+
 /////////////////////////////// Set Font  ////////////////////////////////
         done.setFont(new Font("Arial", Font.BOLD, 14));
-        
+
         search.addActionListener(this);
         sdefault.addActionListener(this);
         statussort.addItemListener(this);
         sc.getDone().addActionListener(this);
-        
+
     }
-    
-    
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        new DeliveryMan();
+    }
+
     ///////////////////////////// SQL ////////////////////////////////////
-    public void setTable(String sql){
+    public void setTable(String sql) {
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
-            while (rs.next()){
+            while (rs.next()) {
                 String trackn = rs.getString("TrackNum");
 //                String id = rs.getString("ID");
                 String rname = rs.getString("NameR");
@@ -133,17 +148,16 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String zadd = rs.getString("Zip");
                 String pnum = rs.getString("contactNum");
                 String gstatus = rs.getString("Status");
-                String address = (radd +  ", " + dadd +  ", " + padd + ", " + zadd);
+                String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
                 String[] row = {trackn, rname, address, pnum, gstatus, "Change"};
                 model.addRow(row);
-                }
-            } 
-            catch (Exception e) {
-                    e.printStackTrace();
-         }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         table.setModel(model);
     }
-    
+
     /////////////////////////////// Get Time for Status Chagner GUI ////////////////////////////////////////////
     public String getSorttime(int state) {
         int selectedRow = table.getSelectedRow();
@@ -152,105 +166,91 @@ public class DeliveryMan implements ActionListener, ItemListener {
         String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", data1);
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
-            if (rs.next()){
+            if (rs.next()) {
                 timereceive = rs.getString("Recieved");
                 timesort = rs.getString("Sorting");
                 timetransit = rs.getString("Transit");
                 timedelivery = rs.getString("Delivery");
                 timecomplete = rs.getString("Finish");
-                }
-            } 
-            catch (Exception e) {
-                    e.printStackTrace();
-         }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (state == 1) {
             return timereceive;
-        }
-        else if (state == 2) {
+        } else if (state == 2) {
             return timesort;
-        }
-        else if (state == 3) {
+        } else if (state == 3) {
             return timetransit;
-        }
-        else if (state == 4) {
+        } else if (state == 4) {
             return timedelivery;
-        }
-        else if (state == 5) {
+        } else if (state == 5) {
             return timecomplete;
-        } 
+        }
         return "Error";
     }
-    
+
     ///////////////////////////// EVENT (sort function) ////////////////////////////////////
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(search)){
+        if (e.getSource().equals(search)) {
             String kw = searchtf.getText();
-            
+
             if (statussort.getSelectedIndex() == 0) {
                 model.setRowCount(0);
                 String searchh = String.format("SELECT * FROM product WHERE NameR = '%s' OR TrackNum = '%s'", kw, kw);
                 setTable(searchh);
-            }
-            else if (kw.equals("")) {
+            } else if (kw.equals("")) {
                 model.setRowCount(0);
                 String sql = "SELECT * FROM product;";
                 setTable(sql);
-            }
-            else {
+            } else {
                 model.setRowCount(0);
                 String searchh = String.format("SELECT * FROM product WHERE (NameR = '%s' OR TrackNum = '%s') AND Status = '%s'", kw, kw, selectSort);
                 setTable(searchh);
             }
-        }
-        else if(e.getSource().equals(sdefault)){
+        } else if (e.getSource().equals(sdefault)) {
             searchtf.setText("");
             statussort.setSelectedIndex(0);
             model.setRowCount(0);
             String sql = "SELECT * FROM product;";
             setTable(sql);
-            }
-        else if(e.getSource().equals(sc.getDone())){
-            sc.getFr().dispose(); 
-            
+        } else if (e.getSource().equals(sc.getDone())) {
+            sc.getFr().dispose();
+
             int selectedRow = table.getSelectedRow();
             String data1 = model.getValueAt(selectedRow, 0).toString();
-            
+
             if (!sc.getStatus().equals("null")) {
-                table.setValueAt(sc.getStatus() , selectedRow, 4);
-            }
-            else {
+                table.setValueAt(sc.getStatus(), selectedRow, 4);
+            } else {
                 System.out.println(sc.getStatus());
             }
-                String sql = String.format("UPDATE product SET Status = '%s' WHERE TrackNum = '%s'", sc.getStatus(), data1);
-                DBmanipulation.getInstance().getUpdate(sql);
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                time = dtf.format(LocalDateTime.now());
-                
-                if (sc.getStatus().equals("Receive")){
-                    String statustime = String.format("UPDATE trackinfo SET Recieved = '%s' WHERE TrackNum = '%s'", time, data1);
-                    DBmanipulation.getInstance().getUpdate(statustime);
-                }
-                else if (sc.getStatus().equals("Sorting")){
-                    String statustime = String.format("UPDATE trackinfo SET Sorting = '%s' WHERE TrackNum = '%s'", time, data1);
-                    DBmanipulation.getInstance().getUpdate(statustime);
-                }
-                else if (sc.getStatus().equals("In Transit")){
-                    String statustime = String.format("UPDATE trackinfo SET Transit = '%s' WHERE TrackNum = '%s'", time, data1);
-                    DBmanipulation.getInstance().getUpdate(statustime);
-                }
-                else if (sc.getStatus().equals("Delivery")){
-                    String statustime = String.format("UPDATE trackinfo SET Delivery = '%s' WHERE TrackNum = '%s'", time, data1);
-                    DBmanipulation.getInstance().getUpdate(statustime);
-                }
-                else if (sc.getStatus().equals("Complete")){
-                    String statustime = String.format("UPDATE trackinfo SET Finish = '%s' WHERE TrackNum = '%s'", time, data1);
-                    DBmanipulation.getInstance().getUpdate(statustime);
-                }
-                
+            String sql = String.format("UPDATE product SET Status = '%s' WHERE TrackNum = '%s'", sc.getStatus(), data1);
+            DBmanipulation.getInstance().getUpdate(sql);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            time = dtf.format(LocalDateTime.now());
+
+            if (sc.getStatus().equals("Receive")) {
+                String statustime = String.format("UPDATE trackinfo SET Recieved = '%s' WHERE TrackNum = '%s'", time, data1);
+                DBmanipulation.getInstance().getUpdate(statustime);
+            } else if (sc.getStatus().equals("Sorting")) {
+                String statustime = String.format("UPDATE trackinfo SET Sorting = '%s' WHERE TrackNum = '%s'", time, data1);
+                DBmanipulation.getInstance().getUpdate(statustime);
+            } else if (sc.getStatus().equals("In Transit")) {
+                String statustime = String.format("UPDATE trackinfo SET Transit = '%s' WHERE TrackNum = '%s'", time, data1);
+                DBmanipulation.getInstance().getUpdate(statustime);
+            } else if (sc.getStatus().equals("Delivery")) {
+                String statustime = String.format("UPDATE trackinfo SET Delivery = '%s' WHERE TrackNum = '%s'", time, data1);
+                DBmanipulation.getInstance().getUpdate(statustime);
+            } else if (sc.getStatus().equals("Complete")) {
+                String statustime = String.format("UPDATE trackinfo SET Finish = '%s' WHERE TrackNum = '%s'", time, data1);
+                DBmanipulation.getInstance().getUpdate(statustime);
+            }
+
         }
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -260,11 +260,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
             model.setRowCount(0);
 //            String searchh = String.format("SELECT * FROM product WHERE (NameR = '%s' OR ID = '%s') AND Status = '%s'", kw, kw, selectSort);
 //            setTable(searchh);
-            if(selectSort.equals("-") & searchtf.getText().equals("")) {
+            if (selectSort.equals("-") & searchtf.getText().equals("")) {
                 String sortt = "SELECT * FROM product;";
                 setTable(sortt);
-            }
-            else {
+            } else {
                 String sortt = String.format("SELECT * FROM product WHERE Status = '%s'", selectSort);
                 setTable(sortt);
             }
@@ -275,21 +274,11 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //            else if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("") != true) {
 //                String sss = "SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'";
 //                setTable(sss);
-//        }   
+//        }
+        }
     }
-    }
-    
-    public static void main(String[] args) {
-            try {
-                UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
-            }  catch(Exception ex ) {
-                System.err.println( "Failed to initialize LaF" );
-    } 
-            new DeliveryMan();
-    }
-            
-           
- //////////////////// FOR JUST DELETE BUTTON ON 5TH COLUMN ////////////////
+
+    //////////////////// FOR JUST DELETE BUTTON ON 5TH COLUMN ////////////////
     class ButtonRenderer extends JButton implements TableCellRenderer {
         public ButtonRenderer() {
             setOpaque(true);
@@ -320,29 +309,25 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getDeliverys().setEnabled(false);
 
 //                    sc.getRtime().setText(getSorttime(1));
-                } 
-                else if (currentstats.equals("Sorting")) {
+                } else if (currentstats.equals("Sorting")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(true);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
-                }
-                else if (currentstats.equals("In Transit")) {
+                } else if (currentstats.equals("In Transit")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(true);
                     sc.getCompletes().setEnabled(false);
-                }
-                else if (currentstats.equals("Delivery")) {
+                } else if (currentstats.equals("Delivery")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(true);
-                }
-                else if (currentstats.equals("Complete")) {
+                } else if (currentstats.equals("Complete")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
                     sc.getInTransits().setEnabled(false);

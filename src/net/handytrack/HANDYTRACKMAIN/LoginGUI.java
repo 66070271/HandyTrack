@@ -1,18 +1,14 @@
 package net.handytrack.HANDYTRACKMAIN;
 
-import java.sql.*;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.geom.Point2D;
-import java.util.Locale;
-import javax.swing.border.Border;
-import javax.swing.border.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import net.handytrack.Login.*;
-import net.handytrack.database.DBmanipulation;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBquery;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.ResultSet;
+
 public class LoginGUI {
 
     //private DBConnect db;
@@ -36,7 +32,7 @@ public class LoginGUI {
         prolabel = new JLabel();
         locklabel = new JLabel();
         logolabel = new JLabel();
-        welcomeLabel = new JLabel("Welcome to HANDY TRACK",(int)Component.CENTER_ALIGNMENT);
+        welcomeLabel = new JLabel("Welcome to HANDY TRACK", (int) Component.CENTER_ALIGNMENT);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
         welcomeLabel.setOpaque(true);
         welcomeLabel.setBackground(new Color(210, 224, 251));
@@ -157,10 +153,10 @@ public class LoginGUI {
                         hdm.getFrame().setVisible(true);
                         fr.dispose();
                     } else {
-                    JOptionPane.showMessageDialog(null, "Invalid username or password");
+                        JOptionPane.showMessageDialog(null, "Invalid username or password");
+                    }
                 }
             }
-                }
         });
 
         signupButton = new JButton("Sign-up");
@@ -331,22 +327,22 @@ public class LoginGUI {
 
     }
 
-    public Boolean loginuser(){
+    public Boolean loginuser() {
         String name = usernameField.getText();
         String pass = new String(passwordField.getPassword());
 
         String sql = String.format("SELECT * FROM login WHERE username = '%s' and password = '%s'", name, pass);
         ResultSet rs = DBquery.getInstance().getSelect(sql);
         try {
-            if(rs.next()) {
+            if (rs.next()) {
                 userId = rs.getInt("iduser"); // Store the userId if login is successful
-                String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'",userId);
+                String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'", userId);
                 ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
-                if (rs1.getString("password").equals(pass)){
+                if (rs1.getString("password").equals(pass)) {
                     hdm.setKeyuser(this.userId);
                     hdm.fetchUser();
                     return true;
-                }else{
+                } else {
                     return false;
                 }
             } else {

@@ -1,16 +1,15 @@
 package net.handytrack.HANDYTRACKMAIN;
 
-import java.util.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.border.*;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
-import net.handytrack.database.DBmanipulation;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBquery;
 
-import java.io.*;
-import java.sql.*;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class HANDYTRACKMAIN implements MouseListener {
 
@@ -131,6 +130,15 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setVisible(true);
     }
 
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        new HANDYTRACKMAIN();
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         try {
@@ -189,44 +197,38 @@ public class HANDYTRACKMAIN implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    public void fetchUser(){
-        String sql = String.format("SELECT * FROM login WHERE iduser = '%d'",this.keyuser );
+
+    public void fetchUser() {
+        String sql = String.format("SELECT * FROM login WHERE iduser = '%d'", this.keyuser);
         ResultSet rs = DBquery.getInstance().getSelect(sql);
-        try{
-            if(rs.next()){
-                this.user = new User(rs.getString("name"),rs.getString("surename"),rs.getString("email"),rs.getString("tel"));
-                p.getLname().setText("Hi "+user.getName()+".");
+        try {
+            if (rs.next()) {
+                this.user = new User(rs.getString("name"), rs.getString("surename"), rs.getString("email"), rs.getString("tel"));
+                p.getLname().setText("Hi " + user.getName() + ".");
                 p.getLname().setFont(new Font("Aerial", Font.PLAIN, 32));
-                p.getLtel().setText("Tel : "+user.getTel());
+                p.getLtel().setText("Tel : " + user.getTel());
                 p.setKeyuser(this.keyuser);
-                p.getEmail().setText("Email : "+user.getEmail());
-                p.getAllname().setText("Name : "+user.getName()+" "+user.getSurename());
+                p.getEmail().setText("Email : " + user.getEmail());
+                p.getAllname().setText("Name : " + user.getName() + " " + user.getSurename());
                 p.getAllname().setFont(new Font("Aerial", Font.PLAIN, 24));
-            }   p.getEmail().setFont(new Font("Aerial", Font.PLAIN, 24));
-                p.getLtel().setFont(new Font("Aerial", Font.PLAIN, 24));
-        }catch (SQLException e){
+            }
+            p.getEmail().setFont(new Font("Aerial", Font.PLAIN, 24));
+            p.getLtel().setFont(new Font("Aerial", Font.PLAIN, 24));
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-
-    public void setname(String s,String a){
+    public void setname(String s, String a) {
         p.setName(s);
         p.setName(a);
     }
 
-    public JFrame getFrame(){
+    public JFrame getFrame() {
         return this.fr;
     }
-    public void setKeyuser(int key){
+
+    public void setKeyuser(int key) {
         this.keyuser = key;
-    }
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        new HANDYTRACKMAIN();
     }
 }

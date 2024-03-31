@@ -11,10 +11,10 @@ package net.handytrack.psm;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBconnect;
 import net.handytrack.database.DBmanipulation;
-import java.time.format.*;
-import java.time.*;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class psm extends javax.swing.JFrame {
@@ -73,6 +73,7 @@ public class psm extends javax.swing.JFrame {
     private javax.swing.JPanel warnName;
     // End of variables declaration//GEN-END:variables
     private DBconnect db;
+
     /**
      * Creates new form psm
      */
@@ -814,8 +815,8 @@ public class psm extends javax.swing.JFrame {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             String time = dtf.format(LocalDateTime.now());
             try {
-                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province,Date,Status) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s','%s','Receive');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country,time);
-                String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track,time);
+                String sql = String.format("INSERT INTO product (TrackNum,NameS,NameR,Weight,Type,contactNum,Cost,sex,Road,Zip,District,Province,Date,Status) VALUES('%s','%s','%s','%.2f','%s','%d','%.2f','%s','%s','%d','%s','%s','%s','Receive');", track, sender, recive, weight, type, number, cost, sex, road, zip, district, country, time);
+                String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track, time);
                 DBmanipulation.getInstance().getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
             } catch (NumberFormatException e) {

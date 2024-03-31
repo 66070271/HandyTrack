@@ -1,20 +1,21 @@
 package net.handytrack.Login;
-import java.sql.*;
-import java.awt.*;
+
 import javax.swing.*;
-import java.awt.event.*;
-import java.util.Locale;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class RegisterForm {
     private JFrame fr;
     private JTextField firstNameField, lastNameField, phoneNumberField, emailField, usernameField;
     private JPasswordField passwordField, passwordagainField;
     private JButton registerButton;
-    
-    
-    public RegisterForm(){
-       // Initialize components
+
+
+    public RegisterForm() {
+        // Initialize components
         fr = new JFrame("Register Form");
         firstNameField = new JTextField("First Name");
         lastNameField = new JTextField("Last Name");
@@ -34,7 +35,7 @@ public class RegisterForm {
         setConUsernameField(usernameField);
         setConPasswordField(passwordField);
         setConPasswordAgainField(passwordagainField);
-        
+
         // Style GUI
         JPanel registerPanel = new JPanel();
         registerPanel.setSize(400, 300);
@@ -54,7 +55,7 @@ public class RegisterForm {
         fr.setSize(400, 300);
         fr.setResizable(false);
         fr.setVisible(true);
-        
+
         // Register button action listener
         registerButton.addActionListener(new ActionListener() {
             @Override
@@ -68,24 +69,36 @@ public class RegisterForm {
                     //check error
                     checkEmptyFields();
                     checkInvalidFields();
-                    
-                    
+
+
                 }
-                
-                
-                
+
+
             }
         });
     }
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        new RegisterForm();
+
+    }
+
     private void setConFirstNameField(JTextField tf) {
         firstNameField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(firstNameField.getText().equals("First Name") || firstNameField.getText().equals("***Please fill the First Name***")){
+                if (firstNameField.getText().equals("First Name") || firstNameField.getText().equals("***Please fill the First Name***")) {
                     firstNameField.setCaretPosition(0);
                 }
             }
-            public void focusLost(){}
+
+            public void focusLost() {
+            }
 
             @Override
             public void focusLost(FocusEvent e) {
@@ -98,15 +111,19 @@ public class RegisterForm {
         firstNameField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(firstNameField.getText().equals("First Name") || lastNameField.getText().equals("***Please fill the First Name***")){
+                if (firstNameField.getText().equals("First Name") || lastNameField.getText().equals("***Please fill the First Name***")) {
                     firstNameField.setText("");
                     firstNameField.setForeground(Color.BLACK);
                 }
             }
-            public void keyReleased(){}
-            public void keyPressed(){}
+
+            public void keyReleased() {
+            }
+
+            public void keyPressed() {
+            }
         });
-        
+
         firstNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,15 +131,18 @@ public class RegisterForm {
             }
         });
     }
+
     private void setConLastNameField(JTextField tf) {
         lastNameField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(lastNameField.getText().equals("Last Name") || lastNameField.getText().equals("***Please fill the Last Name***")){
+                if (lastNameField.getText().equals("Last Name") || lastNameField.getText().equals("***Please fill the Last Name***")) {
                     lastNameField.setCaretPosition(0);
                 }
             }
-            public void focusLost(){}
+
+            public void focusLost() {
+            }
 
             @Override
             public void focusLost(FocusEvent e) {
@@ -135,13 +155,17 @@ public class RegisterForm {
         lastNameField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(lastNameField.getText().equals("Last Name") || lastNameField.getText().equals("***Please fill the Last Name***")){
+                if (lastNameField.getText().equals("Last Name") || lastNameField.getText().equals("***Please fill the Last Name***")) {
                     lastNameField.setText("");
                     lastNameField.setForeground(Color.BLACK);
                 }
             }
-            public void keyReleased(){}
-            public void keyPressed(){}
+
+            public void keyReleased() {
+            }
+
+            public void keyPressed() {
+            }
         });
         lastNameField.addActionListener(new ActionListener() {
             @Override
@@ -150,15 +174,18 @@ public class RegisterForm {
             }
         });
     }
+
     private void setConPhoneNumberField(JTextField tf) {
         phoneNumberField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(phoneNumberField.getText().equals("Phone Number") || phoneNumberField.getText().equals("***Please fill the Phone Number***") || phoneNumberField.getText().equals("***Invalid Phone Number***")){
+                if (phoneNumberField.getText().equals("Phone Number") || phoneNumberField.getText().equals("***Please fill the Phone Number***") || phoneNumberField.getText().equals("***Invalid Phone Number***")) {
                     phoneNumberField.setCaretPosition(0);
                 }
             }
-            public void focusLost(){}
+
+            public void focusLost() {
+            }
 
             @Override
             public void focusLost(FocusEvent e) {
@@ -171,13 +198,17 @@ public class RegisterForm {
         phoneNumberField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(phoneNumberField.getText().equals("Phone Number") || phoneNumberField.getText().equals("***Please fill the Phone Number***") || phoneNumberField.getText().equals("***Invalid Phone Number***")){
+                if (phoneNumberField.getText().equals("Phone Number") || phoneNumberField.getText().equals("***Please fill the Phone Number***") || phoneNumberField.getText().equals("***Invalid Phone Number***")) {
                     phoneNumberField.setText("");
                     phoneNumberField.setForeground(Color.BLACK);
                 }
             }
-            public void keyReleased(){}
-            public void keyPressed(){}
+
+            public void keyReleased() {
+            }
+
+            public void keyPressed() {
+            }
         });
         phoneNumberField.addActionListener(new ActionListener() {
             @Override
@@ -186,15 +217,18 @@ public class RegisterForm {
             }
         });
     }
+
     private void setConEmailField(JTextField tf) {
         emailField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(emailField.getText().equals("Email") || emailField.getText().equals("***Please fill the Email***")){
+                if (emailField.getText().equals("Email") || emailField.getText().equals("***Please fill the Email***")) {
                     emailField.setCaretPosition(0);
                 }
             }
-            public void focusLost(){}
+
+            public void focusLost() {
+            }
 
             @Override
             public void focusLost(FocusEvent e) {
@@ -207,13 +241,17 @@ public class RegisterForm {
         emailField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(emailField.getText().equals("Email") || emailField.getText().equals("***Please fill the Email***")){
+                if (emailField.getText().equals("Email") || emailField.getText().equals("***Please fill the Email***")) {
                     emailField.setText("");
                     emailField.setForeground(Color.BLACK);
                 }
             }
-            public void keyReleased(){}
-            public void keyPressed(){}
+
+            public void keyReleased() {
+            }
+
+            public void keyPressed() {
+            }
         });
         emailField.addActionListener(new ActionListener() {
             @Override
@@ -222,15 +260,18 @@ public class RegisterForm {
             }
         });
     }
+
     private void setConUsernameField(JTextField tf) {
         usernameField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(usernameField.getText().equals("Username") || usernameField.getText().equals("***Please fill the Username***")){
+                if (usernameField.getText().equals("Username") || usernameField.getText().equals("***Please fill the Username***")) {
                     usernameField.setCaretPosition(0);
                 }
             }
-            public void focusLost(){}
+
+            public void focusLost() {
+            }
 
             @Override
             public void focusLost(FocusEvent e) {
@@ -243,13 +284,17 @@ public class RegisterForm {
         usernameField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(usernameField.getText().equals("Username") || usernameField.getText().equals("***Please fill the Username***")){
+                if (usernameField.getText().equals("Username") || usernameField.getText().equals("***Please fill the Username***")) {
                     usernameField.setText("");
                     usernameField.setForeground(Color.BLACK);
                 }
             }
-            public void keyReleased(){}
-            public void keyPressed(){}
+
+            public void keyReleased() {
+            }
+
+            public void keyPressed() {
+            }
         });
         usernameField.addActionListener(new ActionListener() {
             @Override
@@ -258,8 +303,10 @@ public class RegisterForm {
             }
         });
     }
+
     private void setConPasswordField(JTextField tf) {
-        passwordField.setEchoChar((char) 0);passwordField.setText("Password");
+        passwordField.setEchoChar((char) 0);
+        passwordField.setText("Password");
         passwordField.setEchoChar((char) 0);
         passwordField.addFocusListener(new FocusAdapter() {
             @Override
@@ -296,8 +343,10 @@ public class RegisterForm {
             }
         });
     }
+
     private void setConPasswordAgainField(JTextField tf) {
-        passwordagainField.setEchoChar((char) 0);passwordagainField.setText("Enter Password Again");
+        passwordagainField.setEchoChar((char) 0);
+        passwordagainField.setText("Enter Password Again");
         passwordagainField.setEchoChar((char) 0);
         passwordagainField.addFocusListener(new FocusAdapter() {
             @Override
@@ -330,52 +379,59 @@ public class RegisterForm {
         passwordagainField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registerButton.doClick(); 
+                registerButton.doClick();
             }
         });
     }
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        new RegisterForm();
 
-    }
-    
     //check empty all field
     private boolean isEmptyFirstNameField(JTextField tf) {
         return tf.getText().equals("First Name");
     }
+
     private boolean isEmptyLasttNameField(JTextField tf) {
         return tf.getText().equals("Last Name");
-    }private boolean isEmptyPhoneField(JTextField tf) {
+    }
+
+    private boolean isEmptyPhoneField(JTextField tf) {
         return tf.getText().equals("Phone Number");
-    }private boolean isEmptyEmailField(JTextField tf) {
+    }
+
+    private boolean isEmptyEmailField(JTextField tf) {
         return tf.getText().equals("Email");
-    }private boolean isEmptyUsernameField(JTextField tf) {
+    }
+
+    private boolean isEmptyUsernameField(JTextField tf) {
         return tf.getText().equals("Username");
-    }private boolean isEmptyPasswordField(JTextField tf) {
+    }
+
+    private boolean isEmptyPasswordField(JTextField tf) {
         return tf.getText().equals("Password");
-    }private boolean isEmptyPasswordAgainField(JTextField tf) {
+    }
+
+    private boolean isEmptyPasswordAgainField(JTextField tf) {
         return tf.getText().equals("Enter Password Again");
     }
+
     //check invalid
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("^0\\d{9}$");
     }
+
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);
     }
+
     private boolean isValidPasswordField(JPasswordField passwordField) {
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
         return String.valueOf(passwordField.getPassword()).matches(passwordRegex);
     }
+
     private boolean passwordFieldMatches(JPasswordField passwordField1, JPasswordField passwordField2) {
         return String.valueOf(passwordField1.getPassword()).equals(String.valueOf(passwordField2.getPassword()));
     }
+
     private boolean isUsernameDuplicate(String username) {
         // Connect to the database and check if username exists
         DBConnect dbConnect = new DBConnect();
@@ -393,22 +449,24 @@ public class RegisterForm {
         }
         return false;
     }
+
     private boolean isValidRegistration() {
         // Check if all fields are filled correctly
         return !isEmptyFirstNameField(firstNameField) &&
-               !isEmptyLasttNameField(lastNameField) &&
-               !isEmptyPhoneField(phoneNumberField) &&
-               !isEmptyEmailField(emailField) &&
-               !isEmptyUsernameField(usernameField) &&
-               !isEmptyPasswordField(passwordField) &&
-               !isEmptyPasswordAgainField(passwordagainField)&&
-               isValidPhoneNumber(phoneNumberField.getText()) &&
-               isValidEmail(emailField.getText()) &&
-               isValidPasswordField(passwordField) &&
-               isValidPasswordField(passwordagainField) &&
-               passwordFieldMatches(passwordField, passwordagainField) &&
-               !isUsernameDuplicate(usernameField.getText());  // Check if username is not duplicate
+                !isEmptyLasttNameField(lastNameField) &&
+                !isEmptyPhoneField(phoneNumberField) &&
+                !isEmptyEmailField(emailField) &&
+                !isEmptyUsernameField(usernameField) &&
+                !isEmptyPasswordField(passwordField) &&
+                !isEmptyPasswordAgainField(passwordagainField) &&
+                isValidPhoneNumber(phoneNumberField.getText()) &&
+                isValidEmail(emailField.getText()) &&
+                isValidPasswordField(passwordField) &&
+                isValidPasswordField(passwordagainField) &&
+                passwordFieldMatches(passwordField, passwordagainField) &&
+                !isUsernameDuplicate(usernameField.getText());  // Check if username is not duplicate
     }
+
     private void checkEmptyFields() {
         if (isEmptyFirstNameField(firstNameField)) {
             firstNameField.setText("***Please fill the First Name***");
@@ -421,12 +479,11 @@ public class RegisterForm {
         if (isEmptyPhoneField(phoneNumberField)) {
             phoneNumberField.setText("***Please fill the Phone Number***");
             phoneNumberField.setForeground(Color.red);
-        }
-        else{
+        } else {
             if (!isValidPhoneNumber(phoneNumberField.getText())) {
                 phoneNumberField.setText("***Invalid Phone Number***");
                 phoneNumberField.setForeground(Color.red);
-        }
+            }
         }
         if (isEmptyEmailField(emailField)) {
             emailField.setText("***Please fill the Email***");
@@ -447,8 +504,9 @@ public class RegisterForm {
             passwordagainField.setForeground(Color.red);
         }
     }
+
     private void checkInvalidFields() {
-        
+
         if (!isValidEmail(emailField.getText())) {
             emailField.setText("***Invalid Email***");
             emailField.setForeground(Color.red);
@@ -468,5 +526,5 @@ public class RegisterForm {
             usernameField.setForeground(Color.red);
         }
     }
-    
+
 }
