@@ -157,27 +157,94 @@ public class DeliveryMan implements ActionListener, ItemListener {
     }
 
     /////////////////////////////// Get Time for Status Chagner GUI ////////////////////////////////////////////
-//    public String getSorttime(int state, String sqlin) {
-//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", sqlin);
+    public String getSorttime(int state, String s) {
+        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+        try {
+            ResultSet rs = DBquery.getInstance().getSelect(sql);
+            if (rs.next()) {
+                String timereceive = rs.getString("Recieved");
+                String timesort = rs.getString("Sorting");
+                String timetransit = rs.getString("Transit");
+                String timedelivery = rs.getString("Delivery");
+                String timecomplete = rs.getString("Finish");
+                if (state == 1) {
+                    return timereceive;
+                } else if (state == 2) {
+                    return timesort;
+                } else if (state == 3) {
+                    return timetransit;
+                } else if (state == 4) {
+                    return timedelivery;
+                } else if (state == 5) {
+                    return timecomplete;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Error";
+    }
+
+//    //////////////////////////// Im INsane //////////////////////////////////
+//    public String Rtimes(String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
 //        try {
 //            ResultSet rs = DBquery.getInstance().getSelect(sql);
 //            if (rs.next()) {
 //                String timereceive = rs.getString("Recieved");
-//                String timesort = rs.getString("Sorting");
-//                String timetransit = rs.getString("Transit");
-//                String timedelivery = rs.getString("Delivery");
-//                String timecomplete = rs.getString("Finish");
-//                if (state == 1) {
-//                    return timereceive;
-//                } else if (state == 2) {
-//                    return timesort;
-//                } else if (state == 3) {
-//                    return timetransit;
-//                } else if (state == 4) {
-//                    return timedelivery;
-//                } else if (state == 5) {
-//                    return timecomplete;
-//                }
+//                return timereceive;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "Error";
+//    }
+//    public String Stimes(String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+//        try {
+//            ResultSet rs = DBquery.getInstance().getSelect(sql);
+//            if (rs.next()) {
+//                String timereceive = rs.getString("Sorting");
+//                return timereceive;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "Error";
+//    }
+//    public String Ttimes(String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+//        try {
+//            ResultSet rs = DBquery.getInstance().getSelect(sql);
+//            if (rs.next()) {
+//                String timereceive = rs.getString("In Transit");
+//                return timereceive;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "Error";
+//    }
+//    public String Dtimes(String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+//        try {
+//            ResultSet rs = DBquery.getInstance().getSelect(sql);
+//            if (rs.next()) {
+//                String timereceive = rs.getString("Delivery");
+//                return timereceive;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "Error";
+//    }
+//    public String Ctimes(String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+//        try {
+//            ResultSet rs = DBquery.getInstance().getSelect(sql);
+//            if (rs.next()) {
+//                String timereceive = rs.getString("Complete");
+//                return timereceive;
 //            }
 //        } catch (Exception e) {
 //            e.printStackTrace();
@@ -303,6 +370,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //                String dtime = getSorttime(4, tracknm);
 //                String ctime = getSorttime(5, tracknm);
 
+
                 /// RIGHT HERE (Time in CurrentStats GUI)
                 if (currentstats.equals("Receive")) {
                     sc.getReceives().setEnabled(false);
@@ -311,10 +379,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getCompletes().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
 //                    sc.getRtime().setText(rtime);
-//                    sc.getStime().setText("");
-//                    sc.getTtime().setText("");
-//                    sc.getDtime().setText("");
-//                    sc.getCtime().setText("");
+                    sc.getStime().setText("");
+                    sc.getTtime().setText("");
+                    sc.getDtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Sorting")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
@@ -323,9 +391,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getCompletes().setEnabled(false);
 //                    sc.getRtime().setText(rtime);
 //                    sc.getStime().setText(stime);
-//                    sc.getTtime().setText("");
-//                    sc.getDtime().setText("");
-//                    sc.getCtime().setText("");
+                    sc.getTtime().setText("");
+                    sc.getDtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("In Transit")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
@@ -335,8 +403,8 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //                    sc.getRtime().setText(rtime);
 //                    sc.getStime().setText(stime);
 //                    sc.getTtime().setText(ttime);
-//                    sc.getDtime().setText("");
-//                    sc.getCtime().setText("");
+                    sc.getDtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Delivery")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
@@ -347,7 +415,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //                    sc.getStime().setText(stime);
 //                    sc.getTtime().setText(ttime);
 //                    sc.getDtime().setText(dtime);
-//                    sc.getCtime().setText("");
+                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Complete")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
