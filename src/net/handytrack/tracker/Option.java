@@ -6,7 +6,7 @@
 /**
  * @author marttpq
  */
-package net.handytrack;
+package net.handytrack.tracker;
 
 import javax.swing.*;
 import java.awt.*;

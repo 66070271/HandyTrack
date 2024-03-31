@@ -21,9 +21,10 @@ public class profile extends JPanel implements ActionListener, Serializable {
     private int keyuser;
 
     public profile() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // ปรับ
+         // ปรับ
         this.setBackground(new Color(210, 224, 251));
         lname = new JLabel("NAME : ");
+
         ltel = new JLabel("TEL :");
         c = new circle();
         c.setSize(new Dimension(150, 150));
@@ -38,10 +39,11 @@ public class profile extends JPanel implements ActionListener, Serializable {
                 actionPerformed(new ActionEvent(c, ActionEvent.ACTION_PERFORMED, null));
             }
         });
-        this.add(c);
-        this.add(Box.createVerticalStrut(10));
+
+
         this.add(lname);
         this.add(ltel);
+        this.add(c);
 
     }
     public JLabel getLname(){

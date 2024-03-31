@@ -6,7 +6,7 @@
 /**
  * @author marttpq
  */
-package net.handytrack;
+package net.handytrack.tracker;
 
 import net.handytrack.database.DBquery;
 import net.handytrack.infoInterface.Parcel;

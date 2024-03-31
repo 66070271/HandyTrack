@@ -6,7 +6,7 @@
 /**
  * @author marttpq
  */
-package net.handytrack;
+package net.handytrack.tracker;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 

@@ -12,7 +12,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import net.handytrack.Login.*;
 import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
-
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
 public class LoginGUI {
 
     //private DBConnect db;
@@ -36,7 +36,7 @@ public class LoginGUI {
         prolabel = new JLabel();
         locklabel = new JLabel();
         logolabel = new JLabel();
-        welcomeLabel = new JLabel("Welcome to HANDY TRACK");
+        welcomeLabel = new JLabel("Welcome to HANDY TRACK",(int)Component.CENTER_ALIGNMENT);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
         welcomeLabel.setOpaque(true);
         welcomeLabel.setBackground(new Color(210, 224, 251));
@@ -323,7 +323,7 @@ public class LoginGUI {
 
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }

@@ -195,7 +195,9 @@ public class HANDYTRACKMAIN implements MouseListener {
         try{
             if(rs.next()){
                 this.user = new User(rs.getString("name"),rs.getString("surename"),rs.getString("email"),rs.getString("tel"));
-                p.getLname().setText(user.getName());
+                p.getLname().setText("Hi "+user.getName()+".");
+                p.getLname().setFont(new Font("Aerial", Font.PLAIN, 18));
+                p.getLname().setVerticalTextPosition((int)Component.CENTER_ALIGNMENT);
                 p.getLtel().setText(user.getTel());
                 p.setKeyuser(this.keyuser);
             }
