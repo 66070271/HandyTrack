@@ -14,7 +14,7 @@ public class RegisterForm {
     private JTextField firstNameField, lastNameField, phoneNumberField, emailField, usernameField;
     private JPasswordField passwordField, passwordagainField;
     private JButton registerButton, backToLogin;
-    private JPanel registerPanel, btnPanel, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12;
+    private JPanel registerPanel, btnPanel, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13;
 
 
     public RegisterForm(){
@@ -42,11 +42,15 @@ public class RegisterForm {
         p10 = new JPanel();
         p11 = new JPanel();
         p12 = new JPanel();
+        p13 = new JPanel();
+        String[] items = {"Deliver Man", "Officer"};
+        JComboBox<String> combo;
+        combo = new JComboBox<>(items);
 
         p2.setPreferredSize(new Dimension(400, 40));
-        p3.setPreferredSize(new Dimension(50, 520));
-        p4.setPreferredSize(new Dimension(50, 520));
-        p5.setPreferredSize(new Dimension(400, 40));
+        p3.setPreferredSize(new Dimension(50, 560));
+        p4.setPreferredSize(new Dimension(50, 560));
+        p5.setPreferredSize(new Dimension(400, 80));
         registerPanel.setPreferredSize(new Dimension(300, 520));
 
         // Set text field properties and listeners
@@ -79,12 +83,13 @@ public class RegisterForm {
         stylePanelRegisPanel(p10);
         stylePanelRegisPanel(p11);
         stylePanelRegisPanel(p12);
+        stylePanelRegisPanel(p13);
         styleButton(backToLogin);
         backToLogin.setBackground(new Color(210, 224, 251));
         styleButton(registerButton);
 
         registerPanel.setSize(400, 300);
-        registerPanel.setLayout(new GridLayout(13, 1));
+        registerPanel.setLayout(new GridLayout(15, 1));
         registerPanel.add(firstNameField);
         registerPanel.add(p6);
         registerPanel.add(lastNameField);
@@ -98,6 +103,8 @@ public class RegisterForm {
         registerPanel.add(passwordField);
         registerPanel.add(p12);
         registerPanel.add(passwordagainField);
+        registerPanel.add(p13);
+        registerPanel.add(combo);
 
         p5.add(backToLogin);p5.add(registerButton);
         p1.setLayout(new BorderLayout());
@@ -108,7 +115,7 @@ public class RegisterForm {
         fr.add(p1);
         fr.setLocation(900, 200);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fr.setSize(400, 600);
+        fr.setSize(400, 680);
         fr.setResizable(false);
         fr.setVisible(true);
         //back to login action listener
