@@ -18,11 +18,11 @@ import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class CustomerManagement implements ActionListener, ItemListener {
+public class CustomerManagement implements ActionListener {
     private JFrame fr;
     private JTable table;
     private DefaultTableModel model;
-    private JComboBox statussort;
+
     private JScrollPane scrollPane;
     private JPanel pn1, pn2, blank1, blank2;
     private JButton done, search, sdefault;
@@ -33,14 +33,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
 
     public CustomerManagement() {
         fr = new JFrame("Delivery Status Updater");
-        statussort = new JComboBox();
-        statussort.addItem("-");
-        statussort.addItem("Receive");
-        statussort.addItem("Sorting");
-        statussort.addItem("In Transit");
-        statussort.addItem("Delivery");
-        statussort.addItem("Complete");
-        statussort.setSelectedIndex(0);
+
 
 
 
@@ -49,7 +42,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
             public boolean isCellEditable(int row, int column) {
                 // Make columns 4 and 5 editable
-                return column == 3;
+                return column == 2;
             }
         };
 
@@ -72,7 +65,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
         lb2 = new JLabel("Sorted by Status : ");
         fr.add(pn2, BorderLayout.NORTH);
         pn2.add(lb2);
-        pn2.add(statussort);
+
         pn2.add(lb1);
         pn2.add(searchtf);
         pn2.add(search);
@@ -117,7 +110,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
 
         search.addActionListener(this);
         sdefault.addActionListener(this);
-        statussort.addItemListener(this);
+
 
 
     }
@@ -146,7 +139,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
                 String pnum = rs.getString("contactNum");
                 String gstatus = rs.getString("Status");
                 String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
-                String[] row = { rname,  pnum,  "Change"};
+                String[] row = { rname,  pnum,  "Edit"};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -189,12 +182,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(search)) {
             String kw = searchtf.getText();
-
-            if (statussort.getSelectedIndex() == 0) {
-                model.setRowCount(0);
-                String searchh = String.format("SELECT * FROM product WHERE NameR = '%s' OR TrackNum = '%s'", kw, kw);
-                setTable(searchh);
-            } else if (kw.equals("")) {
+            if (kw.equals("")) {
                 model.setRowCount(0);
                 String sql = "SELECT * FROM product;";
                 setTable(sql);
@@ -205,7 +193,7 @@ public class CustomerManagement implements ActionListener, ItemListener {
             }
         } else if (e.getSource().equals(sdefault)) {
             searchtf.setText("");
-            statussort.setSelectedIndex(0);
+
             model.setRowCount(0);
             String sql = "SELECT * FROM product;";
             setTable(sql);
@@ -214,32 +202,9 @@ public class CustomerManagement implements ActionListener, ItemListener {
         }
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        if (e.getStateChange() == ItemEvent.SELECTED) {
-//            String selectSort = (String) statussort.getSelectedItem();
-//            String kw = searchtf.getText();
-            selectSort = (String) statussort.getSelectedItem();
-            model.setRowCount(0);
-//            String searchh = String.format("SELECT * FROM product WHERE (NameR = '%s' OR ID = '%s') AND Status = '%s'", kw, kw, selectSort);
-//            setTable(searchh);
-            if (selectSort.equals("-") & searchtf.getText().equals("")) {
-                String sortt = "SELECT * FROM product;";
-                setTable(sortt);
-            } else {
-                String sortt = String.format("SELECT * FROM product WHERE Status = '%s'", selectSort);
-                setTable(sortt);
-            }
-//            if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("")) {
-//                String sss = "SELECT * FROM product";
-//                setTable(sss);
-//            }
-//            else if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("") != true) {
-//                String sss = "SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'";
-//                setTable(sss);
-//        }
-        }
-    }
+
+
+
 
     //////////////////// FOR JUST DELETE BUTTON ON 5TH COLUMN ////////////////
     class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -263,11 +228,10 @@ public class CustomerManagement implements ActionListener, ItemListener {
             button.addActionListener(e -> {
 //                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
-                String currentstats = model.getValueAt(selectedRow, 4).toString();
+
                 String tracknm = model.getValueAt(selectedRow, 0).toString();
                 /// RIGHT HERE (Time in CurrentStats GUI)
-
-
+                new CustomerGUI();
             });
         }
 
