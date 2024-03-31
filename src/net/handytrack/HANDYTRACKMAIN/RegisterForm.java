@@ -15,6 +15,7 @@ public class RegisterForm {
     private JPasswordField passwordField, passwordagainField;
     private JButton registerButton, backToLogin;
     private JPanel registerPanel, btnPanel, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13;
+    private JLabel job;
 
 
     public RegisterForm(){
@@ -43,6 +44,10 @@ public class RegisterForm {
         p11 = new JPanel();
         p12 = new JPanel();
         p13 = new JPanel();
+        job = new JLabel("Job Position");
+        job.setFont(new Font("Arial", Font.BOLD, 16));
+        p13.setLayout(new BorderLayout());
+            p13.add(job,BorderLayout.WEST);
         String[] items = {"Deliver Man", "Officer"};
         JComboBox<String> combo;
         combo = new JComboBox<>(items);
@@ -413,6 +418,9 @@ public class RegisterForm {
                 registerButton.doClick();
             }
         });
+    }
+    private void setJobPosition(JComboBox cm){
+
     }
     public static void main(String[] args) {
         try {
