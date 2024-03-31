@@ -269,7 +269,7 @@ public class LoginGUI {
         p3.setPreferredSize(new Dimension(250, 100));
         p4.setPreferredSize(new Dimension(350, 100));
         p5.setPreferredSize(new Dimension(350, 25));
-        //p6.setPreferredSize(new Dimension(175, 50));
+        p6.setPreferredSize(new Dimension(175, 50));
         //p7.setPreferredSize(new Dimension(175, 50));
         p8.setPreferredSize(new Dimension(120, 75));
         p9.setPreferredSize(new Dimension(115, 75));
@@ -284,7 +284,7 @@ public class LoginGUI {
         ppas.add(locklabel);
         ppas.add(passwordField);
         p5.setLayout(new GridLayout(1, 1));
-//        p5.add(p6);
+        p5.add(p6);
         p5.add(p7);
         p8.setLayout(new GridLayout(2, 1));
         p8.add(signinButton);

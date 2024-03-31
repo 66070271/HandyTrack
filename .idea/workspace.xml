@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/DB.db" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DB.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/Login/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/Login/RegisterForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +58,8 @@
     "Application.LoginGUI (5).executor": "Run",
     "Application.LoginGUI.executor": "Run",
     "Application.RegisterForm (1).executor": "Run",
+    "Application.RegisterForm (2).executor": "Run",
+    "Application.RegisterForm.executor": "Run",
     "Application.RegisterForm123 (1).executor": "Run",
     "Application.RegisterForm123.executor": "Run",
     "Application.RegisterGUI.executor": "Run",
@@ -92,7 +89,20 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginGUI (1)">
+  <component name="RunManager" selected="Application.LoginGUI">
+    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoginGUI (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
       <module name="HandyTrack" />
@@ -119,19 +129,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
-      <module name="HandyTrack" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
       <module name="HandyTrack" />
@@ -147,19 +144,6 @@
     </configuration>
     <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
-      <module name="HandyTrack" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegisterForm (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -199,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LoginGUI (1)" />
-        <item itemvalue="Application.LoginGUI (3)" />
+        <item itemvalue="Application.LoginGUI" />
+        <item itemvalue="Application.HANDYTRACKMAIN" />
         <item itemvalue="Application.LoginGUI (2)" />
-        <item itemvalue="Application.RegisterForm (1)" />
-        <item itemvalue="Application.LoginGUI (3)" />
+        <item itemvalue="Application.RegisterForm" />
+        <item itemvalue="Application.LoginGUI (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +208,7 @@
       <updated>1711827146159</updated>
       <workItem from="1711827147318" duration="6673000" />
       <workItem from="1711881258917" duration="14423000" />
-      <workItem from="1711896729547" duration="8862000" />
+      <workItem from="1711896729547" duration="10975000" />
     </task>
     <task id="LOCAL-00001" summary="wasd">
       <option name="closed" value="true" />
@@ -282,7 +266,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711896826768</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711906271557</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711906271557</updated>
+    </task>
+    <task id="LOCAL-00009" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711906353028</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711906353028</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

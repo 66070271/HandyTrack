@@ -27,7 +27,7 @@ public class profile extends JPanel implements ActionListener, Serializable {
         // ปรับ
         this.setLayout(new GridLayout(3, 1));
         this.setBackground(Color.WHITE);
-        lname = new JLabel("Welcome Mr.Sutthipong", (int) Component.CENTER_ALIGNMENT);
+        lname = new JLabel("Welcome", (int) Component.CENTER_ALIGNMENT);
 
         ltel = new JLabel("TEL :", (int) Component.CENTER_ALIGNMENT);
         c = new circle();
@@ -98,7 +98,6 @@ public class profile extends JPanel implements ActionListener, Serializable {
             if (e.getSource() == c) {
                 // เปิดไฟล์ภาพ
                 JFileChooser fileChooser = new JFileChooser();
-//                fileChooser.setCurrentDirectory(new File(System.getProperty("File Explorer")));
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
                 fileChooser.addChoosableFileFilter(filter);
                 int returnValue = fileChooser.showOpenDialog(this);
@@ -109,8 +108,6 @@ public class profile extends JPanel implements ActionListener, Serializable {
                     c.setIcon(image); // กำหนดภาพใหม่ในวงกลม
                     c.repaint();
                     p = path;
-                    System.out.println(this.p);
-                    System.out.println(this.keyuser);
                 }
             }
             //การอัพเดดภาพลงบน sql
@@ -121,7 +118,6 @@ public class profile extends JPanel implements ActionListener, Serializable {
             ps.setBytes(1, imageBytes);
             ps.setInt(2, this.keyuser);
             ps.executeUpdate();
-//                ps.executeQuery();
             JOptionPane.showMessageDialog(null, "Data Inserted");
 
         } catch (Exception ex) {
@@ -130,26 +126,6 @@ public class profile extends JPanel implements ActionListener, Serializable {
         }
 
     }
-//
-//    public void setName(String s) {
-//        lname.setText("NAME: " + s);
-//    }
-//
-//    public void setTel(String s) {
-//        ltel.setText("TEL: " + s);
-//    }
-//
-//    public void setNum(String s) {
-//        num = s;
-//    }
-//
-//    public void setPass(String s) {
-//        pass = s;
-//    }
-//
-//    public void setPicture(String s) {
-//        p = s;
-//    }
 
     public void mousePressed(MouseEvent e) {
     }
@@ -171,5 +147,5 @@ public class profile extends JPanel implements ActionListener, Serializable {
         this.keyuser = i;
     }
 
-
+    public void setLname(String s){lname.setText(s);}
 }
