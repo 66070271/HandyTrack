@@ -8,7 +8,7 @@ public class circle extends JPanel {
     private ImageIcon icon;
 
     public circle() {
-        this.setBackground(Color.WHITE);
+        this.setBackground(new Color(160, 233, 255));
     }
 
     public void paintComponent(Graphics g) {

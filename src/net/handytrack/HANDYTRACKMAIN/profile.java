@@ -51,16 +51,19 @@ public class profile extends JPanel implements ActionListener, Serializable {
         });
 
         p1.setLayout(new GridLayout(2, 1));
+
         p2.add(logo);
         p2.setBackground(Color.WHITE);
-        p1.setBackground(Color.WHITE);
+        p1.setBackground(new Color(137, 207, 243));
+        p4.setBackground(new Color(205, 245, 253));
+        p3.setBackground(new Color(210, 224, 251));
         p1.add(p2);
         p1.add(lname);
         p4.setLayout(new GridLayout(4, 1));
         p4.add(allname);
         p4.add(ltel);
         p4.add(email);
-        p3.setBackground(new Color(210, 224, 251));
+
         p4.add(p3);
         this.add(p1);
         this.add(c);
