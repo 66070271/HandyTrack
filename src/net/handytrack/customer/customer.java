@@ -2,7 +2,7 @@ package net.handytrack.customer;
 import net.handytrack.database.DBquery;
 
 import java.sql.*;
-public class customer {
+public class customer{
     private String name;
     private String tel;
     private ResultSet rs;
@@ -13,11 +13,13 @@ public class customer {
             if(rs.next()){
                 this.tel = rs.getString("tel");
                 this.name = rs.getString("name");
-
             }
         }catch(SQLException e){
-
+            e.printStackTrace();
         }
+    }
+    public String getTel(){
+        return this.tel;
     }
 
     public static void main(String[] args) {
