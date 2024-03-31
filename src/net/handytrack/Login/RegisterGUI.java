@@ -59,7 +59,7 @@ public class RegisterGUI {
                 }
             }
             public void focusLost(){}
-
+//
             @Override
             public void focusLost(FocusEvent e) {
                 if (lastNameField.getText().isEmpty() || lastNameField.getText().equals("***Please fill the Last Name***")) {
