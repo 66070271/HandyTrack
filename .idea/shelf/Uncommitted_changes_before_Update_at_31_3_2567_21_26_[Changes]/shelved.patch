@@ -1,0 +1,66 @@
+Index: src/net/handytrack/database/DBmanipulation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package net.handytrack.database;\r\n\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class DBmanipulation extends DBconnect {\r\n    private static DBmanipulation instance;\r\n\r\n    private DBmanipulation() {\r\n        super();\r\n    }\r\n\r\n    private DBmanipulation(String url) {\r\n        super(url);\r\n    }\r\n\r\n    public static DBmanipulation getInstance() {\r\n        if (instance == null) {\r\n            instance = new DBmanipulation();\r\n        }\r\n        return instance;\r\n    }\r\n\r\n    public void getUpdate(String s) {\r\n        try {\r\n            con = DriverManager.getConnection(url);\r\n            stm = con.createStatement();\r\n            stm.executeUpdate(s);\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/database/DBmanipulation.java b/src/net/handytrack/database/DBmanipulation.java
+--- a/src/net/handytrack/database/DBmanipulation.java	(revision 08cc879bf874439868289d5615b42624359b156a)
++++ b/src/net/handytrack/database/DBmanipulation.java	(date 1711895179032)
+@@ -31,5 +31,4 @@
+         }
+     }
+ 
+-
+ }
+Index: src/net/handytrack/HANDYTRACKMAIN/circle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package net.handytrack.HANDYTRACKMAIN;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\n\r\npublic class circle extends JPanel {\r\n\r\n    private ImageIcon icon;\r\n\r\n    public circle() {\r\n        this.setBackground(Color.WHITE);\r\n    }\r\n\r\n    public void paintComponent(Graphics g) {\r\n        super.paintComponent(g);\r\n        int diameter = Math.min(getWidth(), getHeight());\r\n        int x = (getWidth() - diameter) / 2;\r\n        int y = (getHeight() - diameter) / 2;\r\n        if (icon != null) {\r\n            g.drawImage(icon.getImage(), x, y, diameter, diameter, null);\r\n        } else {\r\n            g.setColor(new Color(128, 128, 128));\r\n            g.fillOval(x, y, diameter, diameter);\r\n        }\r\n    }\r\n\r\n    @Override\r\n\r\n    public Dimension getPreferredSize() {\r\n        return new Dimension(150, 150); // กำหนดขนาดของ JLabel วงกลม\r\n    }\r\n\r\n    public void setIcon(ImageIcon icon) {\r\n        this.icon = icon;\r\n        repaint(); // เรียกวิธี paintComponent เพื่อวาดภาพใหม่\r\n    }\r\n};\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/HANDYTRACKMAIN/circle.java b/src/net/handytrack/HANDYTRACKMAIN/circle.java
+--- a/src/net/handytrack/HANDYTRACKMAIN/circle.java	(revision 08cc879bf874439868289d5615b42624359b156a)
++++ b/src/net/handytrack/HANDYTRACKMAIN/circle.java	(date 1711890213086)
+@@ -8,7 +8,7 @@
+     private ImageIcon icon;
+ 
+     public circle() {
+-        this.setBackground(Color.WHITE);
++        this.setBackground(new Color(204, 219, 253));
+     }
+ 
+     public void paintComponent(Graphics g) {
+Index: src/net/handytrack/HANDYTRACKMAIN/profile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package net.handytrack.HANDYTRACKMAIN;\r\n\r\nimport javax.swing.*;\r\nimport javax.swing.filechooser.FileNameExtensionFilter;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.awt.event.MouseAdapter;\r\nimport java.awt.event.MouseEvent;\r\nimport java.io.File;\r\nimport java.io.Serializable;\r\nimport java.nio.file.Files;\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.PreparedStatement;\r\n\r\npublic class profile extends JPanel implements ActionListener, Serializable {\r\n\r\n    private circle c;\r\n    private JLabel lname, ltel, email, allname, logo;\r\n    //   private DBConnect db;\r\n    private String p, name, pass, num;\r\n    private JPanel p1, p2, p3, p4;\r\n    private int keyuser;\r\n\r\n    public profile() {\r\n        // ปรับ\r\n        this.setLayout(new GridLayout(3, 1));\r\n        this.setBackground(Color.WHITE);\r\n        lname = new JLabel(\"Welcome Mr.Sutthipong\", (int) Component.CENTER_ALIGNMENT);\r\n\r\n        ltel = new JLabel(\"TEL :\", (int) Component.CENTER_ALIGNMENT);\r\n        c = new circle();\r\n        c.setSize(new Dimension(150, 150));\r\n        name = \"\";\r\n        pass = \"\";\r\n        num = \"\";\r\n        p1 = new JPanel();\r\n        p2 = new JPanel();\r\n        p3 = new JPanel();\r\n        p4 = new JPanel();\r\n        email = new JLabel(\"\", (int) Component.CENTER_ALIGNMENT);\r\n        allname = new JLabel(\"\", (int) Component.CENTER_ALIGNMENT);\r\n        logo = new JLabel(\"HandyTrack\", new ImageIcon(\"resources/Picture/smalllogo.png\"), (int) Component.CENTER_ALIGNMENT);\r\n        logo.setFont(new Font(\"Aerial\", Font.PLAIN, 28));\r\n        c.addMouseListener(new MouseAdapter() {\r\n            @Override\r\n            public void mouseClicked(MouseEvent e) {\r\n                actionPerformed(new ActionEvent(c, ActionEvent.ACTION_PERFORMED, null));\r\n            }\r\n        });\r\n\r\n        p1.setLayout(new GridLayout(2, 1));\r\n        p2.add(logo);\r\n        p2.setBackground(Color.WHITE);\r\n        p1.setBackground(Color.WHITE);\r\n        p1.add(p2);\r\n        p1.add(lname);\r\n        p4.setLayout(new GridLayout(4, 1));\r\n        p4.add(allname);\r\n        p4.add(ltel);\r\n        p4.add(email);\r\n        p3.setBackground(new Color(210, 224, 251));\r\n        p4.add(p3);\r\n        this.add(p1);\r\n        this.add(c);\r\n        this.add(p4);\r\n\r\n    }\r\n\r\n    public JLabel getLname() {\r\n        return lname;\r\n    }\r\n\r\n    public JLabel getLtel() {\r\n        return ltel;\r\n    }\r\n\r\n    public JLabel getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public JLabel getAllname() {\r\n        return allname;\r\n    }\r\n\r\n    public void actionPerformed(ActionEvent e) {\r\n        // ทำเมื่อกดที่วงกลม\r\n\r\n        try {\r\n            if (e.getSource() == c) {\r\n                // เปิดไฟล์ภาพ\r\n                JFileChooser fileChooser = new JFileChooser();\r\n//                fileChooser.setCurrentDirectory(new File(System.getProperty(\"File Explorer\")));\r\n                FileNameExtensionFilter filter = new FileNameExtensionFilter(\"*.IMAGE\", \"jpg\", \"gif\", \"png\");\r\n                fileChooser.addChoosableFileFilter(filter);\r\n                int returnValue = fileChooser.showOpenDialog(this);\r\n                if (returnValue == JFileChooser.APPROVE_OPTION) {\r\n                    File selectedFile = fileChooser.getSelectedFile();\r\n                    String path = selectedFile.getAbsolutePath();\r\n                    ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());\r\n                    c.setIcon(image); // กำหนดภาพใหม่ในวงกลม\r\n                    c.repaint();\r\n                    p = path;\r\n                    System.out.println(this.p);\r\n                    System.out.println(this.keyuser);\r\n                }\r\n            }\r\n            //การอัพเดดภาพลงบน sql\r\n            Connection dom = DriverManager.getConnection(\"jdbc:sqlite:resources/DB.db\");\r\n            PreparedStatement ps = dom.prepareStatement(\"UPDATE login SET profile = ? WHERE iduser = ?\");\r\n            File lm = new File(p);\r\n            byte[] imageBytes = Files.readAllBytes(lm.toPath());\r\n            ps.setBytes(1, imageBytes);\r\n            ps.setInt(2, this.keyuser);\r\n            ps.executeUpdate();\r\n//                ps.executeQuery();\r\n            JOptionPane.showMessageDialog(null, \"Data Inserted\");\r\n\r\n        } catch (Exception ex) {\r\n            ex.printStackTrace();\r\n            JOptionPane.showMessageDialog(this, \"Can't Open File\", \"ข้อผิดพลาด\", JOptionPane.ERROR_MESSAGE);\r\n        }\r\n\r\n    }\r\n//\r\n//    public void setName(String s) {\r\n//        lname.setText(\"NAME: \" + s);\r\n//    }\r\n//\r\n//    public void setTel(String s) {\r\n//        ltel.setText(\"TEL: \" + s);\r\n//    }\r\n//\r\n//    public void setNum(String s) {\r\n//        num = s;\r\n//    }\r\n//\r\n//    public void setPass(String s) {\r\n//        pass = s;\r\n//    }\r\n//\r\n//    public void setPicture(String s) {\r\n//        p = s;\r\n//    }\r\n\r\n    public void mousePressed(MouseEvent e) {\r\n    }\r\n\r\n    public void mouseReleased(MouseEvent e) {\r\n    }\r\n\r\n    public void mouseEntered(MouseEvent e) {\r\n    }\r\n\r\n    public void mouseExited(MouseEvent e) {\r\n    }\r\n\r\n    public void settel(String s) {\r\n        ltel.setText(s);\r\n    }\r\n\r\n    public void setKeyuser(int i) {\r\n        this.keyuser = i;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/HANDYTRACKMAIN/profile.java b/src/net/handytrack/HANDYTRACKMAIN/profile.java
+--- a/src/net/handytrack/HANDYTRACKMAIN/profile.java	(revision 08cc879bf874439868289d5615b42624359b156a)
++++ b/src/net/handytrack/HANDYTRACKMAIN/profile.java	(date 1711892374141)
+@@ -52,16 +52,17 @@
+ 
+         p1.setLayout(new GridLayout(2, 1));
+         p2.add(logo);
+-        p2.setBackground(Color.WHITE);
+-        p1.setBackground(Color.WHITE);
++        p2.setBackground(new Color(171, 196, 255));
++        p1.setBackground(new Color(193, 211, 254));
+         p1.add(p2);
+         p1.add(lname);
+         p4.setLayout(new GridLayout(4, 1));
+         p4.add(allname);
+         p4.add(ltel);
+         p4.add(email);
+-        p3.setBackground(new Color(210, 224, 251));
++        p3.setBackground(new Color(215, 227, 252));
+         p4.add(p3);
++        p4.setBackground(new Color(215,227,252));
+         this.add(p1);
+         this.add(c);
+         this.add(p4);

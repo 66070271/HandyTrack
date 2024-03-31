@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
+      <change beforePath="$PROJECT_DIR$/HandyTrack.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HandyTrack.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/database/DBmanipulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/database/DBmanipulation.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CapybaraCapybara&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="8bb20f0f-6121-4dfa-ad71-39c9bbff5f7d" />
+        <option name="url" value="https://github.com/66070271/HandyTrack.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2eQBug1I7OWKShm4zqqmxMp2yM6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HANDYTRACKMAIN.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginGUI (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginGUI (2).executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginGUI (3).executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginGUI (4).executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginGUI (5).executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginGUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RegisterGUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.net.handytrack.Login.LoginGUI.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pleum/IdeaProjects/HandyTrack/resources/TimingFramework-0.55.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\resources\Picture" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LoginGUI">
+    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginGUI (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginGUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginGUI (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LoginGUI" />
+        <item itemvalue="Application.LoginGUI (3)" />
+        <item itemvalue="Application.HANDYTRACKMAIN" />
+        <item itemvalue="Application.LoginGUI (1)" />
+        <item itemvalue="Application.LoginGUI (4)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="" />
+      <created>1711827146159</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711827146159</updated>
+      <workItem from="1711827147318" duration="6673000" />
+      <workItem from="1711881258917" duration="14423000" />
+      <workItem from="1711896729547" duration="67000" />
+    </task>
+    <task id="LOCAL-00001" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711885425182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711885425182</updated>
+    </task>
+    <task id="LOCAL-00002" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711887119497</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711887119497</updated>
+    </task>
+    <task id="LOCAL-00003" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711887180884</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711887180884</updated>
+    </task>
+    <task id="LOCAL-00004" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711887343340</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711887343340</updated>
+    </task>
+    <task id="LOCAL-00005" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711887435562</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711887435562</updated>
+    </task>
+    <task id="LOCAL-00006" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711887509749</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711887509749</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="wasd" />
+    <option name="LAST_COMMIT_MESSAGE" value="wasd" />
+  </component>
+</project>
