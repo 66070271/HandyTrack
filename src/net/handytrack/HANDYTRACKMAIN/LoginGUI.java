@@ -156,11 +156,11 @@ public class LoginGUI {
                         JOptionPane.showMessageDialog(null, "Login successful!");
                         hdm.getFrame().setVisible(true);
                         fr.dispose();
-                    }
-                } else {
+                    } else {
                     JOptionPane.showMessageDialog(null, "Invalid username or password");
                 }
             }
+                }
         });
 
         signupButton = new JButton("Sign-up");
@@ -286,8 +286,8 @@ public class LoginGUI {
         ppro.add(usernameField);
         ppas.add(locklabel);
         ppas.add(passwordField);
-        p5.setLayout(new GridLayout(1, 2));
-        p5.add(p6);
+        p5.setLayout(new GridLayout(1, 1));
+//        p5.add(p6);
         p5.add(p7);
         p8.setLayout(new GridLayout(2, 1));
         p8.add(signinButton);
