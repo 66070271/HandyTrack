@@ -79,42 +79,6 @@ public class profile extends JPanel implements Serializable {
         return allname;
     }
 
-//    public void actionPerformed(ActionEvent e) {
-//        // ทำเมื่อกดที่วงกลม
-//
-//        try {
-//            if (e.getSource() == c) {
-//                // เปิดไฟล์ภาพ
-//                JFileChooser fileChooser = new JFileChooser();
-//                FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
-//                fileChooser.addChoosableFileFilter(filter);
-//                int returnValue = fileChooser.showOpenDialog(this);
-//                if (returnValue == JFileChooser.APPROVE_OPTION) {
-//                    File selectedFile = fileChooser.getSelectedFile();
-//                    String path = selectedFile.getAbsolutePath();
-//                    ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());
-//                    c.setIcon(image); //
-//                    c.repaint();
-//                    p = path;
-//                }
-//            }
-//            //การอัพเดดภาพลงบน sql
-////            Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
-////            PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
-////            File lm = new File(p);
-////            byte[] imageBytes = Files.readAllBytes(lm.toPath());
-////            ps.setBytes(1, imageBytes);
-////            ps.setInt(2, this.keyuser);
-////            ps.executeUpdate();
-////            JOptionPane.showMessageDialog(null, "Data Inserted");
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            JOptionPane.showMessageDialog(this, "Can't Open File", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//    }
-
     public void mousePressed(MouseEvent e) {
     }
 
