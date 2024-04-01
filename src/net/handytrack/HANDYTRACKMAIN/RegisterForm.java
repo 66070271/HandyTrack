@@ -129,7 +129,7 @@ public class RegisterForm {
             @Override
             public void actionPerformed(ActionEvent e){
                 if (e.getSource()==backToLogin){
-                    new LoginGUI();
+                    new LoginEdit();
                     fr.dispose();
                 }
             }

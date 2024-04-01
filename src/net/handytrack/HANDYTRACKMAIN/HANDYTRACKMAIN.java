@@ -24,7 +24,7 @@ public class HANDYTRACKMAIN implements MouseListener {
     private track t;
     private manage m;
 
-    private LoginGUI g;
+    private LoginEdit g;
     private User user;
     private int keyuser;
 

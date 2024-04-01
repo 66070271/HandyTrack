@@ -32,8 +32,8 @@ public class ParcelInfo implements Person, Parcel {
 
     public ParcelInfo(String num) {
         String sql = String.format("SELECT * FROM product WHERE TrackNum = '%s'", num);
-        DBquery db = new DBquery();
-        this.rs = sqlManage(db,sql);
+        DBconnect db = new DBquery();
+        this.rs = querry(db,sql);
         try {
             if (this.rs.next()) {
                 this.Type = this.rs.getString("Type");
@@ -50,10 +50,18 @@ public class ParcelInfo implements Person, Parcel {
             Status = "Sorry, your package couldn't be found.";
         }
     }
-    public ResultSet sqlManage(DBquery db,String sql){
-        return db.getInstanceOQ().getSelect(sql);
+    public ResultSet querry(DBconnect db,String sql){
+        return db.getSelect(sql);
     }
-    public void sqlManage(DBmanipulation db,String sql){db.getInstanceOM().getUpdate(sql);}
+    public void update(DBconnect db,String sql){
+        db.getSelect(sql);
+    }
+    public ResultSet querry(DBquery db,String sql){
+        return db.getSelect(sql);
+    }
+    public void update(DBmanipulation db,String sql){
+        db.getUpdate(sql);
+    }
 
 
 
