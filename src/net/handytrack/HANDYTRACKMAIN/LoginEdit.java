@@ -18,8 +18,8 @@ public class LoginEdit {
     private JPasswordField passwordField;
     private JButton signinButton, signupButton, forgotPasswordButton;
     private JLabel welcomeLabel, prolabel, locklabel, logolabel;
-    private JPanel pwel, ppro, ppas, plogo, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30;
-    private ImageIcon pro, scalepro, lock, scalelock, logo, scalelogo;
+    private JPanel pwel, ppro, ppas, plogo, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
+    private ImageIcon pro, scalepro, lock, scalelock, logo;
     private HANDYTRACKMAIN hdm;
 
     public LoginEdit(){
@@ -60,25 +60,7 @@ public class LoginEdit {
         p9 = new JPanel();
         p10 = new JPanel();
         p11 = new JPanel();
-        p12 = new JPanel();
-        p13 = new JPanel();
-        p14 = new JPanel();
-        p15 = new JPanel();
-        p16 = new JPanel();
-        p17 = new JPanel();
-        p18 = new JPanel();
-        p19 = new JPanel();
-        p20 = new JPanel();
-        p21 = new JPanel();
-        p22 = new JPanel();
-        p23 = new JPanel();
-        p24 = new JPanel();
-        p25 = new JPanel();
-        p26 = new JPanel();
-        p27 = new JPanel();
-        p28 = new JPanel();
-        p29 = new JPanel();
-        p30 = new JPanel();
+
 
         // Set preferred sizes for JLabels
         prolabel.setPreferredSize(new Dimension(25, 25));
@@ -354,12 +336,8 @@ public class LoginEdit {
         p.setOpaque(true);
         p.setBackground(new Color(210, 224, 251));
     }
-
-
     public int getuserId() {
         return userId;
     }
 
 }
-
-
