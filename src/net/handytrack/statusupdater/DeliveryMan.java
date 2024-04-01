@@ -112,9 +112,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         fr.add(pn1, BorderLayout.SOUTH);
 
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        fr.pack();
-        fr.setSize(1200, 600);
-//        fr.setSize(1920, 1080);
+        fr.setSize(1400, 750);
         fr.setVisible(true);
 
 /////////////////////////////// Set Font  ////////////////////////////////
@@ -267,14 +265,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String sortt = String.format("SELECT * FROM product WHERE Status = '%s'", selectSort);
                 setTable(sortt);
             }
-//            if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("")) {
-//                String sss = "SELECT * FROM product";
-//                setTable(sss);
-//            }
-//            else if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("") != true) {
-//                String sss = "SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'";
-//                setTable(sss);
-//        }
         }
     }
 
