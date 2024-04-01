@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 public class EmployeeManagement implements ActionListener {
-//    private String name;
-//    private String tel;
 //    private ResultSet rs;
     private DefaultTableModel model;
     private JScrollPane scrollPane;
