@@ -159,6 +159,7 @@ public class HANDYTRACKMAIN implements MouseListener {
             }
             if (e.getSource().equals(lsum)) {
                 s.setVisible(true);
+                p.setVisible(false);
             }
             if (e.getSource().equals(ltrac)) {
                 new RealTrack();
