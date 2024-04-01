@@ -26,7 +26,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JComboBox statussort;
     private JScrollPane scrollPane;
     private JPanel pn1, pn2, blank1, blank2;
-    private JButton done, search, sdefault;
+    private JButton search, sdefault;
     private JTextField searchtf;
     private JLabel lb1, lb2;
     private StatusChanger sc;
@@ -62,8 +62,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
         blank2 = new JPanel();
         fr.add(blank1, BorderLayout.EAST);
         fr.add(blank2, BorderLayout.WEST);
-
-        done = new JButton("Done!");
 
         search = new JButton("Search");
         sdefault = new JButton("Set Default");
@@ -101,7 +99,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
 
         fr.add(scrollPane, BorderLayout.CENTER);
 
-        pn1.add(done);
         fr.add(pn1, BorderLayout.SOUTH);
         pn1.setBackground(new Color(210, 224, 251));
         pn2.setBackground(new Color(210, 224, 251));
@@ -209,8 +206,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String statustime = String.format("UPDATE trackinfo SET Finish = '%s' WHERE TrackNum = '%s'", time, data1);
                 DBmanipulation.getInstance().getUpdate(statustime);
             }
-        } else if (e.getSource().equals(done)) {
-            fr.dispose();
         }
     }
 
