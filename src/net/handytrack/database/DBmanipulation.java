@@ -1,6 +1,7 @@
 package net.handytrack.database;
 
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBmanipulation extends DBconnect {
@@ -31,4 +32,16 @@ public class DBmanipulation extends DBconnect {
         }
     }
 
+    public DBmanipulation getInstanceOM() {
+        return DBmanipulation.getInstance();
+    }
+
+   public ResultSet getSelect(String s){
+       return null;
+   }
+
+    @Override
+    public DBquery getInstanceOQ() {
+        return null;
+    }
 }
