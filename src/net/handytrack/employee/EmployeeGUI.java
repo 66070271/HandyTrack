@@ -2,18 +2,25 @@ package net.handytrack.employee;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
 import net.handytrack.customer.customer;
 import net.handytrack.database.DBmanipulation;
+import net.handytrack.database.DBquery;
 import net.handytrack.tracker.RealTrack;
 import java.awt.event.*;
+import java.sql.ResultSet;
+
 public class EmployeeGUI implements ActionListener{
     private JFrame fr;
     private JLabel lname,lcontact;
     private JTextField tname,tcontact;
     private JPanel p1,p2,p3;
     private JButton done;
+    private DefaultTableModel model;
     private net.handytrack.customer.customer customer;
+    private JTable table;
     public EmployeeGUI(){
         fr = new JFrame();
         lname = new JLabel("Name : ");
