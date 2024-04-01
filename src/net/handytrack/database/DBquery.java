@@ -42,11 +42,4 @@ public class DBquery extends DBconnect {
 
     }
 
-    @Override
-    public DBquery getInstanceOQ() {
-        return DBquery.getInstance();
-    }
-    public DBmanipulation getInstanceOM(){
-        return null;
-    }
 }

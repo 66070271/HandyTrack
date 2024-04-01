@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Option implements MouseListener,ActionListener{
+public class Option implements ActionListener{
     private JFrame fr;
     private JPanel p1, p2, p3, p4;
     private JLabel his, phone;
@@ -32,8 +32,8 @@ public class Option implements MouseListener,ActionListener{
 
 
     public Option(){
-        String header[] = {"History"};
-        fr = new JFrame("Option");
+
+        fr = new JFrame("Search by phone number.");
         p1 = new JPanel();
         p2 = new JPanel();
         p3 = new JPanel();
@@ -62,6 +62,7 @@ public class Option implements MouseListener,ActionListener{
         ja.setEditable(false);
 
         search.addActionListener(this);
+        exit.addActionListener(this);
         p3.add(ttel);
         p3.add(search);
         fr.add(p3,BorderLayout.NORTH);
@@ -69,6 +70,8 @@ public class Option implements MouseListener,ActionListener{
         fr.add(p2, BorderLayout.SOUTH);
         fr.setVisible(true);
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        fr.setLocation(700,200);
+        fr.setResizable(false);
 
     }
 
@@ -85,37 +88,8 @@ public class Option implements MouseListener,ActionListener{
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
+        }else if(e.getSource().equals(exit)){
+            fr.dispose();
         }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        if(e.getSource().equals(his)){
-
-        }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    public static void main(String[] args) {
-        new Option();
     }
 }

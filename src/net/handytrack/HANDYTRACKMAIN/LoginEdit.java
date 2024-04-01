@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class LoginEdit {
     private int userId;
     private String name;
@@ -14,7 +16,7 @@ public class LoginEdit {
     private JFrame fr;
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JButton signinButton, signupButton, forgotPasswordButton;
+    private JButton signinButton, signupButton, forgotPasswordButton, guestModeButton;
     private JLabel welcomeLabel, prolabel, locklabel, logolabel;
     private JPanel pwel, ppro, ppas, plogo, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
     private ImageIcon pro, scalepro, lock, scalelock, logo;
@@ -28,6 +30,10 @@ public class LoginEdit {
         locklabel = new JLabel();
         logolabel = new JLabel();
         welcomeLabel = new JLabel("Welcome to HANDY TRACK", (int) Component.CENTER_ALIGNMENT);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        welcomeLabel.setOpaque(true);
+        welcomeLabel.setForeground(Color.ORANGE);
+        welcomeLabel.setBackground(new Color(210, 224, 251));
 
         usernameField = new JTextField("Username");
 
@@ -36,6 +42,8 @@ public class LoginEdit {
 
 
         forgotPasswordButton = new JButton("forgot Password?");
+
+        guestModeButton = new JButton("Guest Mode");
 
 
         signinButton = new JButton("Sign-in");
@@ -58,7 +66,6 @@ public class LoginEdit {
         p9 = new JPanel();
         p10 = new JPanel();
         p11 = new JPanel();
-
 
         // Set preferred sizes for JLabels
         prolabel.setPreferredSize(new Dimension(25, 25));
@@ -88,6 +95,7 @@ public class LoginEdit {
         setConPasswordField(passwordField);
         setConSigninButton(signinButton);
         setConSignupButton(signupButton);
+
         setConForgotButton(forgotPasswordButton);
         stylePanel(pwel);
         stylePanel(plogo);
@@ -109,12 +117,12 @@ public class LoginEdit {
         p4.setPreferredSize(new Dimension(350, 100));
         p5.setPreferredSize(new Dimension(350, 25));
         p6.setPreferredSize(new Dimension(175, 50));
-        //p7.setPreferredSize(new Dimension(175, 50));
-        p8.setPreferredSize(new Dimension(120, 75));
-        p9.setPreferredSize(new Dimension(115, 75));
-        p10.setPreferredSize(new Dimension(115, 75));
+        p8.setPreferredSize(new Dimension(350, 75));
+
+        p9.add(guestModeButton);p9.add(signinButton);
+        p10.add(signupButton);
         p7.add(forgotPasswordButton);
-        p11.add(signupButton);
+
         plogo.add(logolabel);
 
         ppro.add(prolabel);
@@ -125,8 +133,8 @@ public class LoginEdit {
         p5.add(p6);
         p5.add(p7);
         p8.setLayout(new GridLayout(2, 1));
-        p8.add(signinButton);
-        p8.add(p11);
+        p8.add(p9);
+        p8.add(p10);
 
         pwel.setLayout(new GridLayout(2, 1));
         pwel.add(welcomeLabel);
@@ -138,8 +146,7 @@ public class LoginEdit {
         p4.setLayout(new BorderLayout());
         p4.add(p5, BorderLayout.NORTH);
         p4.add(p8, BorderLayout.CENTER);
-        p4.add(p9, BorderLayout.WEST);
-        p4.add(p10, BorderLayout.EAST);
+
 
         fr.setLayout(new BorderLayout());
         fr.add(pwel, BorderLayout.NORTH);
@@ -274,7 +281,13 @@ public class LoginEdit {
                 String input = JOptionPane.showInputDialog(fr, "Contact the relevant person to request a key \n\n Enter organization's key", "Forgot Password", JOptionPane.QUESTION_MESSAGE);
                 if ("organization_key".equals(input)) {
                     String username = JOptionPane.showInputDialog(fr, "Please fill your Username", null, JOptionPane.QUESTION_MESSAGE);
-
+                    ResultSet rs = DBquery.getInstance().getSelect(String.format("SELECT * FROM login WHERE username = '%s'",username));
+                try {
+                        JOptionPane.showMessageDialog(fr, "Your Password is:" + rs.getString("password"), "Invalid organization's key", JOptionPane.INFORMATION_MESSAGE);
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(fr, "Invalid Username", null, JOptionPane.ERROR_MESSAGE);
+                }
 
                 } else {
                     JOptionPane.showMessageDialog(fr, "Wrong Password!!!", "Invalid organization's key", JOptionPane.WARNING_MESSAGE);
@@ -294,9 +307,9 @@ public class LoginEdit {
         });
     }
     private void setConSigninButton(JButton bn){
-        bn.setFont(new Font("Arial", Font.BOLD, 16));
-        bn.setForeground(Color.BLUE);
-        bn.setBackground(new Color(247, 195, 21));
+        bn.setFont(new Font("Arial", Font.BOLD, 14));
+        bn.setForeground(Color.ORANGE);
+        bn.setBackground(Color.BLACK);
         bn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

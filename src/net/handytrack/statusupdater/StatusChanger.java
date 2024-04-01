@@ -60,6 +60,7 @@ public class StatusChanger implements ActionListener {
 
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fr.setSize(270, 200);
+        fr.setLocation(800, 400);
         fr.setVisible(false);
 
         done.addActionListener(this);

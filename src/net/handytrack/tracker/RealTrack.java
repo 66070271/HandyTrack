@@ -46,7 +46,7 @@ public class RealTrack implements ActionListener, FocusListener, KeyListener {
         plogo = new JPanel();
         logo = new JLabel();
         finishPic = new JLabel();
-        option = new JButton("Option");
+        option = new JButton("Search");
         p3.add(option);
         logo.setIcon(new ImageIcon("resources/Picture/image_1.png"));
         plogo.add(logo);
