@@ -8,7 +8,7 @@
  */
 package net.handytrack.tracker;
 
-import net.handytrack.customer.customer;
+//import net.handytrack.customer.customer;
 import net.handytrack.database.DBquery;
 
 import javax.swing.*;

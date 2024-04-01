@@ -151,6 +151,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         try {
             if (e.getSource().equals(lpro)) {
                 p.setVisible(true);
+                s.setVisible(false);
             }
             if (e.getSource().equals(ladd)) {
                 psm p = new psm();
