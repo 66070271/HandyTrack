@@ -50,7 +50,10 @@ public class BarChart extends JPanel {
         int maxValue = frequencyMap.values().stream().mapToInt(Integer::intValue).max().orElse(0);
         int maxHeight = getHeight() - 50; // การสร้างระยะห้างระหว่างช่อง
 
-        int x = 50; // แกน x;
+        int numBars = frequencyMap.size();
+        int totalWidth = numBars * (barWidth + 15); // คำนวณความยาวรวมของแท่งทั้งหมด
+
+        int x = (getWidth() - totalWidth) / 2; // ตำแหน่ง x เริ่มต้น
         int colorIndex = 0;
         for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
             String type = entry.getKey();
@@ -76,7 +79,7 @@ public class BarChart extends JPanel {
             g.drawString(Integer.toString(i), 5, y);
         }
 
-        // Draw X-axis label
+        // วาดแกน X
         g.drawString("", getWidth() / 2 - 20, getHeight() - 5);
     }
 

@@ -158,7 +158,7 @@ public class HANDYTRACKMAIN implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         try {
             if (e.getSource().equals(lpro)) {
-                resizeFrame(false);
+//                resizeFrame(false);
                 p.setVisible(true);
                 a.setVisible(false);
                 s.setVisible(false);
@@ -166,7 +166,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(ladd)) {
-                resizeFrame(false);
+//                resizeFrame(false);
                 a.setVisible(true);
                 p.setVisible(false);
                 s.setVisible(false);
@@ -174,7 +174,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(lsum)) {
-                resizeFrame(true);
+//                resizeFrame(false);
                 p.setVisible(false);
                 a.setVisible(false);
                 s.setVisible(true);
@@ -182,7 +182,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(ltrac)) {
-                resizeFrame(false);
+//                resizeFrame(false);
                 p.setVisible(false);
                 a.setVisible(false);
                 s.setVisible(false);
@@ -190,7 +190,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(lman)) {
-                resizeFrame(false);
+//                resizeFrame(false);
                 p.setVisible(false);
                 a.setVisible(false);
                 s.setVisible(false);
@@ -252,11 +252,11 @@ public class HANDYTRACKMAIN implements MouseListener {
         this.keyuser = key;
     }
 
-    private void resizeFrame(boolean resize) {
-        if (resize) {
-            fr.pack(); // Resize frame
-        } else {
-            fr.setSize(800, 800); // Revert to original size
-        }
-    }
+//    private void resizeFrame(boolean resize) {
+//        if (resize) {
+//            fr.pack(); // Resize frame
+//        } else {
+//            fr.setSize(800, 800); // Revert to original size
+//        }
+//    }
 }
