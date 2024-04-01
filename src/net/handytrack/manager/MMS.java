@@ -46,10 +46,19 @@ public class MMS extends JFrame implements ActionListener {
     private JButton submitButton;
     private psm psm;
     private JPanel p1;
+    private ArrayList<String> textFieldDataList;
+    private JLabel ID, SenderName,ReciverName, Road,ZipCode,District,Province,Cost,Type,Weight,Option,Tel;
+    private JTextField txtID, txtSenderName,txtReciverName,txtRoad,txtZipCode, txtDistrict, txtProvince, txtCost, txtType, txtWeight, txtOption, txtTel;
+    private JFrame frame2;
     public MMS() {
         initComponents();
         submitButton = new JButton("submit");
         p1 = new JPanel();
+        ID = new JLabel("ID:"); SenderName = new JLabel("SenderName:"); ReciverName = new JLabel("ReciverName:"); Road = new JLabel("Road:"); ZipCode = new JLabel("ZipCode:"); District = new JLabel("District:"); Province = new JLabel("Province:");
+        Cost = new JLabel("Cost:"); Type = new JLabel("Type:"); Weight = new JLabel("Weight:"); Option = new JLabel("Option:"); Tel = new JLabel("Tel:");
+        frame2 = new JFrame("Config Data");
+        txtID = new JTextField(); txtSenderName = new JTextField(); txtReciverName = new JTextField(); txtRoad = new JTextField(); txtZipCode = new JTextField(); txtDistrict = new JTextField();
+        txtProvince = new JTextField(); txtCost = new JTextField(); txtType = new JTextField(); txtWeight = new JTextField(); txtOption = new JTextField(); txtTel = new JTextField();
         //Border roundedBorder = BorderFactory.createLineBorder(Color.white, 2, true);
         //txtSearch.setBorder(roundedBorder);
         
@@ -63,23 +72,29 @@ public class MMS extends JFrame implements ActionListener {
                 if(selectedRow != -1) {
                     Object[] rowData = new Object[12];
                     //create JFrame
-                    JFrame frame2 = new JFrame("Config Data");
+//                    JFrame frame2 = new JFrame("Config Data");
                     //setLayout JFrame
-                    frame2.setLayout(new GridLayout(model.getColumnCount(), 2));
-                    for(int i=0; i<12; i++) {
+                    frame2.setLayout(new GridLayout(13, 2));
+                    frame2.add(ID); frame2.add(txtID); frame2.add(SenderName); frame2.add(txtSenderName); frame2.add(ReciverName); frame2.add(txtReciverName); frame2.add(Road); frame2.add(txtRoad);
+                    frame2.add(ZipCode); frame2.add(txtZipCode); frame2.add(District); frame2.add(txtDistrict); frame2.add(Province); frame2.add(txtProvince); frame2.add(Cost); frame2.add(txtCost);
+                    frame2.add(Type); frame2.add(txtType); frame2.add(Weight); frame2.add(txtWeight); frame2.add(Option); frame2.add(txtOption); frame2.add(Tel); frame2.add(txtTel);
 
-                        rowData[i] = model.getValueAt(selectedRow, i).toString();
-                        frame2.add(new JLabel(model.getColumnName(i) + ":"));
-                        //frame2.add(new JTextField(rowData[i].toString()));
 
-                        //ไม่ให้TextFieldตัวแรกแก้ไขได้
-                        JTextField textField = new JTextField(rowData[i].toString());
-                        if (i == 0) {
-                            textField.setEditable(false); // กำหนดให้ไม่สามารถแก้ไขได้
-                        }
-                        frame2.add(textField);
-                        /////////////////////////////////////////////////////////
-                    }
+                    txtID.setText(model.getValueAt(selectedRow, 0).toString());
+                    txtSenderName.setText(model.getValueAt(selectedRow, 1).toString());
+                    txtReciverName.setText(model.getValueAt(selectedRow, 2).toString());
+                    txtRoad.setText(model.getValueAt(selectedRow, 3).toString());
+                    txtZipCode.setText(model.getValueAt(selectedRow, 4).toString());
+                    txtDistrict.setText(model.getValueAt(selectedRow, 5).toString());
+                    txtProvince.setText(model.getValueAt(selectedRow, 6).toString());
+                    txtCost.setText(model.getValueAt(selectedRow, 7).toString());
+                    txtType.setText(model.getValueAt(selectedRow, 8).toString());
+                    txtWeight.setText(model.getValueAt(selectedRow, 9).toString());
+                    txtOption.setText(model.getValueAt(selectedRow, 10).toString());
+                    txtTel.setText(model.getValueAt(selectedRow, 11).toString());
+
+//                        /////////////////////////////////////////////////////////
+
                     //create JFrame
                     frame2.add(p1);
                     frame2.add(submitButton);
@@ -90,7 +105,7 @@ public class MMS extends JFrame implements ActionListener {
                     /////////////////////////////////////
 
                     //ดึงข้อมูลออกมาจาก Config Data
-                    ArrayList<String> textFieldDataList = new ArrayList<>();
+                    textFieldDataList = new ArrayList<>();
                     Component[] components = frame2.getContentPane().getComponents();
                     for (Component component : components) {
                         if (component instanceof JTextField) {
@@ -103,28 +118,7 @@ public class MMS extends JFrame implements ActionListener {
                     }
                     /////////////////////////////////////////////////////////////////////
 
-                    //ดึงข้อมูลจากjtextfieldของconfig Data
-                    String TrackNum = textFieldDataList.get(0);
-                    String NameS = textFieldDataList.get(1);
-                    String NameR = textFieldDataList.get(2);
-                    String Road = textFieldDataList.get(3);
-                    String ZipCode = textFieldDataList.get(4);
-                    String District = textFieldDataList.get(5);
-                    String Province = textFieldDataList.get(6);
-                    String Cost = textFieldDataList.get(7);
-                    String Type = textFieldDataList.get(8);
-                    String Weight = textFieldDataList.get(9);
-                    String Option = textFieldDataList.get(10);
-                    String Tel = textFieldDataList.get(11);
 
-                    String sql = String.format("UPDATE product SET " + "NameS = '%s', NameR ='%s',Road = '%s', Zip = '%s', District = '%s', Province = '%s', Cost = '%s', Type ='%s', Weight = '%s', Option = '%s', contactNum ='%s' WHERE TrackNum = '%s'"
-                    ,NameS,NameR,Road, ZipCode, District, Province, Cost, Type, Weight, Option, Tel,TrackNum);
-                    DBmanipulation.getInstance().getUpdate(sql);
-                    String sql2 = "SELECT * FROM product";
-                    DefaultTableModel model2 = (DefaultTableModel)table.getModel();
-                    table.setModel(model2);
-                    //System.out.println(dataFromTextField10);
-                    //System.out.println("Selected row" + java.util.Arrays.toString(rowData));
 
                 } else {
                     System.out.println("No Row Selected");
@@ -252,11 +246,7 @@ public class MMS extends JFrame implements ActionListener {
         e.printStackTrace();
     }
         table.setModel(model);
-//        model.addRow(new Object[]{"1234567890", "Fook", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","9876543210"});
-//        model.addRow(new Object[]{"0987654321", "Mart", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
-//        model.addRow(new Object[]{"1234567890", "Poom", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
-//        model.addRow(new Object[]{"1234567890", "zeun", "Mon", "Radkrabang", "12345", "Chalong Krung", "Bangkok", "100", "Freeze","0123456789"});
-        //DataTest//
+
         
         //SortingData in Row//
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
@@ -291,7 +281,53 @@ public class MMS extends JFrame implements ActionListener {
         }
         //create button on jframe
         if(ev.getSource().equals(submitButton)) {
+            String TrackNum = txtID.getText();
+            String NameS = txtSenderName.getText();
+            String NameR = txtReciverName.getText();
+            String Road = txtRoad.getText();
+            String ZipCode = txtZipCode.getText();
+            String District = txtDistrict.getText();
+            String Province = txtProvince.getText();
+            String Cost = txtCost.getText();
+            String Type = txtType.getText();
+            String Weight = txtWeight.getText();
+            String Option = txtOption.getText();
+            String Tel = txtTel.getText();
 
+            String sql = String.format("UPDATE product SET " + "NameS = '%s', NameR ='%s',Road = '%s', Zip = '%s', District = '%s', Province = '%s', Cost = '%s', Type ='%s', Weight = '%s', Option = '%s', contactNum ='%s' WHERE TrackNum = '%s'"
+                    ,NameS,NameR,Road, ZipCode, District, Province, Cost, Type, Weight, Option, Tel,TrackNum);
+            String sql2 = "SELECT * FROM product";
+            DefaultTableModel model = (DefaultTableModel)table.getModel();
+            DBmanipulation.getInstance().getUpdate(sql);
+            UpdateDataFromSQL();
+
+        }
+    }
+    public void UpdateDataFromSQL() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        try{
+            ResultSet rs = DBquery.getInstance().getSelect("SELECT * FROM product");
+            while (rs.next()) {
+                String trackn = rs.getString("TrackNum");
+//                String id = rs.getString("ID");
+                String tadd = rs.getString("Type");
+                String rname = rs.getString("NameR");
+                String sname = rs.getString("NameS");
+                String radd = rs.getString("Road");
+                String dadd = rs.getString("District");
+                String padd = rs.getString("Province");
+                String zadd = rs.getString("Zip");
+                String pnum = rs.getString("contactNum");
+                int cost = rs.getInt("Cost");
+                String wadd = rs.getString("Weight");
+                String oadd = rs.getString("Option");
+                String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
+                String[] row = {trackn, sname,rname, radd,zadd,dadd,padd,""+cost,tadd,wadd,oadd, pnum};
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     public void search(String text) {
