@@ -4,27 +4,28 @@
  */
 package net.handytrack.manager;
 
+import com.sun.net.httpserver.HttpsConfigurator;
 import net.handytrack.HandyCell.ScrollPaneWin111;
 import net.handytrack.HandyCell.TableActionCellEditor;
 import net.handytrack.HandyCell.TableActionCellRender;
 import net.handytrack.HandyCell.TableActionEvent;
-import java.awt.Color;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 import net.handytrack.psm.psm;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,16 +61,24 @@ public class MMS extends JFrame implements ActionListener {
                 DefaultTableModel model = (DefaultTableModel)table.getModel();
                 int selectedRow = table.getSelectedRow();
                 if(selectedRow != -1) {
-                    Object[] rowData = new Object[4];
+                    Object[] rowData = new Object[12];
                     //create JFrame
-                    JFrame frame2 = new JFrame("Selected Row Data");
-                    //create JFrame
+                    JFrame frame2 = new JFrame("Config Data");
+                    //setLayout JFrame
                     frame2.setLayout(new GridLayout(model.getColumnCount(), 2));
-                    for(int i=0; i<4; i++) {
+                    for(int i=0; i<12; i++) {
+
                         rowData[i] = model.getValueAt(selectedRow, i).toString();
                         frame2.add(new JLabel(model.getColumnName(i) + ":"));
-                        frame2.add(new JTextField(rowData[i].toString()));
-                        
+                        //frame2.add(new JTextField(rowData[i].toString()));
+
+                        //ไม่ให้TextFieldตัวแรกแก้ไขได้
+                        JTextField textField = new JTextField(rowData[i].toString());
+                        if (i == 0) {
+                            textField.setEditable(false); // กำหนดให้ไม่สามารถแก้ไขได้
+                        }
+                        frame2.add(textField);
+                        /////////////////////////////////////////////////////////
                     }
                     //create JFrame
                     frame2.add(p1);
@@ -77,13 +86,51 @@ public class MMS extends JFrame implements ActionListener {
                     frame2.pack();
                     frame2.setVisible(true);
                     frame2.setLocation(950, 200);
-                    //create JFrame
-                    
-                    System.out.println("Selected row" + java.util.Arrays.toString(rowData));
+                    frame2.setSize(400,300);
+                    /////////////////////////////////////
+
+                    //ดึงข้อมูลออกมาจาก Config Data
+                    ArrayList<String> textFieldDataList = new ArrayList<>();
+                    Component[] components = frame2.getContentPane().getComponents();
+                    for (Component component : components) {
+                        if (component instanceof JTextField) {
+
+                            JTextField textField = (JTextField) component;
+                            String text = textField.getText();
+
+                            textFieldDataList.add(text);
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////
+
+                    //ดึงข้อมูลจากjtextfieldของconfig Data
+                    String TrackNum = textFieldDataList.get(0);
+                    String NameS = textFieldDataList.get(1);
+                    String NameR = textFieldDataList.get(2);
+                    String Road = textFieldDataList.get(3);
+                    String ZipCode = textFieldDataList.get(4);
+                    String District = textFieldDataList.get(5);
+                    String Province = textFieldDataList.get(6);
+                    String Cost = textFieldDataList.get(7);
+                    String Type = textFieldDataList.get(8);
+                    String Weight = textFieldDataList.get(9);
+                    String Option = textFieldDataList.get(10);
+                    String Tel = textFieldDataList.get(11);
+
+                    String sql = String.format("UPDATE product SET " + "NameS = '%s', NameR ='%s',Road = '%s', Zip = '%s', District = '%s', Province = '%s', Cost = '%s', Type ='%s', Weight = '%s', Option = '%s', contactNum ='%s' WHERE TrackNum = '%s'"
+                    ,NameS,NameR,Road, ZipCode, District, Province, Cost, Type, Weight, Option, Tel,TrackNum);
+                    DBmanipulation.getInstance().getUpdate(sql);
+                    String sql2 = "SELECT * FROM product";
+                    DefaultTableModel model2 = (DefaultTableModel)table.getModel();
+                    table.setModel(model2);
+                    //System.out.println(dataFromTextField10);
+                    //System.out.println("Selected row" + java.util.Arrays.toString(rowData));
+
                 } else {
                     System.out.println("No Row Selected");
                 }
             }
+
 
             @Override
             public void onDelete(int row) {
@@ -91,6 +138,15 @@ public class MMS extends JFrame implements ActionListener {
                     table.getCellEditor().stopCellEditing();
                 }
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
+                //model.removeRow(row);
+                Object[] rowData = new Object[1];
+                rowData[0] = model.getValueAt(row, 0);
+
+                //เอาDataของjtableตัวแรกมา
+                String rowDataString = rowData[0].toString();
+                System.out.println(rowDataString);
+                String sql = String.format("DELETE FROM product WHERE TrackNum = '%s' ", rowDataString);
+                DBmanipulation.getInstance().getUpdate(sql);
                 model.removeRow(row);
             }
 
@@ -163,14 +219,14 @@ public class MMS extends JFrame implements ActionListener {
         
         
         
-        table.getColumnModel().getColumn(10).setCellRenderer(new TableActionCellRender());
-        table.getColumnModel().getColumn(10).setCellEditor(new TableActionCellEditor(event));
+        table.getColumnModel().getColumn(12).setCellRenderer(new TableActionCellRender());
+        table.getColumnModel().getColumn(12).setCellEditor(new TableActionCellEditor(event));
         
         //addListener addDataButton//
         AddData.addActionListener(this);
         submitButton.addActionListener(this);
         
-        //DataTest//
+        //Data in JTable//
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         try{
         ResultSet rs = DBquery.getInstance().getSelect("SELECT * FROM product");
@@ -186,8 +242,10 @@ public class MMS extends JFrame implements ActionListener {
             String zadd = rs.getString("Zip");
             String pnum = rs.getString("contactNum");
             int cost = rs.getInt("Cost");
+            String wadd = rs.getString("Weight");
+            String oadd = rs.getString("Option");
             String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
-            String[] row = {trackn, sname,rname, radd,zadd,dadd,padd,""+cost,tadd, pnum};
+            String[] row = {trackn, sname,rname, radd,zadd,dadd,padd,""+cost,tadd,wadd,oadd, pnum};
             model.addRow(row);
         }
     } catch (Exception e) {
@@ -202,8 +260,6 @@ public class MMS extends JFrame implements ActionListener {
         
         //SortingData in Row//
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-
-
 
         table.setRowSorter(sorter);
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
@@ -280,11 +336,11 @@ public class MMS extends JFrame implements ActionListener {
 
             },
             new String [] {
-                "ID", "Sender Name", "Reciver Name", "Road", "Zip Code", "District", "Province", "Cost", "Type", "Tel.", "Config"
+                "ID", "Sender Name", "Reciver Name", "Road", "Zip Code", "District", "Province", "Cost", "Type","Weight","Option", "Tel.", "Config"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false, false,true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -391,7 +447,8 @@ public class MMS extends JFrame implements ActionListener {
     private JPanel jPanel1;
     private JPanel jPanel2;
     private ScrollPaneWin111 scrollPaneWin1111;
-    private javax.swing.JTable table;
+    public javax.swing.JTable table;
     private JTextField txtSearch;
+    private Component component[];
     // End of variables declaration//GEN-END:variables
 }
