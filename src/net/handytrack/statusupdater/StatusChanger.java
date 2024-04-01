@@ -28,10 +28,10 @@ public class StatusChanger implements ActionListener {
         pn2 = new JPanel();
         pn3 = new JPanel();
         rtime = new JLabel("");
-        stime = new JLabel("");
-        ttime = new JLabel("");
-        dtime = new JLabel("");
-        ctime = new JLabel("");
+//        stime = new JLabel("");
+//        ttime = new JLabel("");
+//        dtime = new JLabel("");
+//        ctime = new JLabel("");
 
         group.add(receives);
         group.add(sortings);
@@ -45,16 +45,18 @@ public class StatusChanger implements ActionListener {
         pn.add(deliverys);
         pn.add(completes);
         pn.setLayout(new GridLayout(0, 1));
-        pn2.setLayout(new GridLayout(5, 1));
+//        pn2.setLayout(new GridLayout(1, 1));
         pn2.add(rtime);
-        pn2.add(stime);
-        pn2.add(ttime);
-        pn2.add(dtime);
-        pn2.add(ctime);
-
-        pn3.setLayout(new GridLayout(1, 2));
-        pn3.add(pn);
-        pn3.add(pn2);
+//        pn2.add(stime);
+//        pn2.add(ttime);
+//        pn2.add(dtime);
+//        pn2.add(ctime);
+        pn3.setLayout(new BorderLayout());
+        pn3.add(pn, BorderLayout.WEST);
+        pn3.add(pn2, BorderLayout.CENTER);
+//        pn3.setLayout(new GridLayout(1, 2));
+//        pn3.add(pn);
+//        pn3.add(pn2);
         fr.add(pn3, BorderLayout.CENTER);
         fr.add(done, BorderLayout.SOUTH);
 
@@ -126,19 +128,19 @@ public class StatusChanger implements ActionListener {
         return rtime;
     }
 
-    public JLabel getStime() {
-        return stime;
-    }
-
-    public JLabel getTtime() {
-        return ttime;
-    }
-
-    public JLabel getDtime() {
-        return dtime;
-    }
-
-    public JLabel getCtime() {
-        return ctime;
-    }
+//    public JLabel getStime() {
+//        return stime;
+//    }
+//
+//    public JLabel getTtime() {
+//        return ttime;
+//    }
+//
+//    public JLabel getDtime() {
+//        return dtime;
+//    }
+//
+//    public JLabel getCtime() {
+//        return ctime;
+//    }
 }
