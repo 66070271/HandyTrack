@@ -1,0 +1,59 @@
+Index: src/net/handytrack/HANDYTRACKMAIN/profile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package net.handytrack.HANDYTRACKMAIN;\r\n\r\nimport net.handytrack.database.DBmanipulation;\r\n\r\nimport java.util.*;\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.*;\r\nimport java.io.*;\r\nimport java.sql.*;\r\nimport javax.swing.filechooser.FileNameExtensionFilter;\r\n\r\npublic class profile extends JPanel implements ActionListener, Serializable {\r\n\r\n    private circle c;\r\n    private JLabel lname, ltel;\r\n //   private DBConnect db;\r\n    private String p, name, pass, num;\r\n\r\n    private int keyuser;\r\n\r\n    public profile() {\r\n        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // ปรับ\r\n        this.setBackground(new Color(210, 224, 251));\r\n        lname = new JLabel(\"NAME : \");\r\n        ltel = new JLabel(\"TEL :\");\r\n        c = new circle();\r\n        c.setSize(new Dimension(150, 150));\r\n        name = \"\";\r\n        pass = \"\";\r\n        num = \"\";\r\n        this.setPreferredSize(new Dimension(200, 200));\r\n\r\n        c.addMouseListener(new MouseAdapter() {\r\n            @Override\r\n            public void mouseClicked(MouseEvent e) {\r\n                actionPerformed(new ActionEvent(c, ActionEvent.ACTION_PERFORMED, null));\r\n            }\r\n        });\r\n        this.add(c);\r\n        this.add(Box.createVerticalStrut(10));\r\n        this.add(lname);\r\n        this.add(ltel);\r\n\r\n    }\r\n    public JLabel getLname(){\r\n        return lname;\r\n    }\r\n    public JLabel getLtel(){\r\n        return ltel;\r\n    }\r\n\r\n    public void actionPerformed(ActionEvent e) {\r\n        // ทำเมื่อกดที่วงกลม\r\n\r\n        try {\r\n            if (e.getSource() == c) {\r\n                // เปิดไฟล์ภาพ\r\n                JFileChooser fileChooser = new JFileChooser();\r\n//                fileChooser.setCurrentDirectory(new File(System.getProperty(\"File Explorer\")));\r\n                FileNameExtensionFilter filter = new FileNameExtensionFilter(\"*.IMAGE\", \"jpg\", \"gif\", \"png\");\r\n                fileChooser.addChoosableFileFilter(filter);\r\n                int returnValue = fileChooser.showOpenDialog(this);\r\n                if (returnValue == JFileChooser.APPROVE_OPTION) {\r\n                    File selectedFile = fileChooser.getSelectedFile();\r\n                    String path = selectedFile.getAbsolutePath();\r\n                    ImageIcon image = new ImageIcon(selectedFile.getAbsolutePath());\r\n                    c.setIcon(image); // กำหนดภาพใหม่ในวงกลม\r\n                    c.repaint();\r\n                    p = path;\r\n                }\r\n            }\r\n            //การอัพเดดภาพลงบน sql\r\n            Connection dom = DriverManager.getConnection(\"jdbc:sqlite:resources/DB.db\");\r\n            PreparedStatement ps = dom.prepareStatement(\"UPDATE login SET profile = ? WHERE iduser = ?\");\r\n\r\n\r\n//            byte[] imageBytes = lm.readAllBytes();\r\n            ps.setBlob(1,new FileInputStream(p));\r\n            ps.setInt(2,this.keyuser);\r\n            ps.executeUpdate();\r\n//                ps.executeQuery();\r\n            JOptionPane.showMessageDialog(null, \"Data Inserted\");\r\n\r\n        } catch (Exception ex) {\r\n            ex.printStackTrace();\r\n            JOptionPane.showMessageDialog(this, \"Can't Open File\", \"ข้อผิดพลาด\", JOptionPane.ERROR_MESSAGE);\r\n        }\r\n\r\n    }\r\n//\r\n//    public void setName(String s) {\r\n//        lname.setText(\"NAME: \" + s);\r\n//    }\r\n//\r\n//    public void setTel(String s) {\r\n//        ltel.setText(\"TEL: \" + s);\r\n//    }\r\n//\r\n//    public void setNum(String s) {\r\n//        num = s;\r\n//    }\r\n//\r\n//    public void setPass(String s) {\r\n//        pass = s;\r\n//    }\r\n//\r\n//    public void setPicture(String s) {\r\n//        p = s;\r\n//    }\r\n\r\n    public void mousePressed(MouseEvent e) {\r\n    }\r\n\r\n    public void mouseReleased(MouseEvent e) {\r\n    }\r\n\r\n    public void mouseEntered(MouseEvent e) {\r\n    }\r\n\r\n    public void mouseExited(MouseEvent e) {\r\n    }\r\n\r\n    public void settel(String s) {\r\n        ltel.setText(s);\r\n    }\r\n    public void setKeyuser(int i){\r\n        this.keyuser = i;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/HANDYTRACKMAIN/profile.java b/src/net/handytrack/HANDYTRACKMAIN/profile.java
+--- a/src/net/handytrack/HANDYTRACKMAIN/profile.java	(revision 360149fac322d709d7632862563ef7ec473014fe)
++++ b/src/net/handytrack/HANDYTRACKMAIN/profile.java	(date 1711881174090)
+@@ -57,7 +57,6 @@
+             if (e.getSource() == c) {
+                 // เปิดไฟล์ภาพ
+                 JFileChooser fileChooser = new JFileChooser();
+-//                fileChooser.setCurrentDirectory(new File(System.getProperty("File Explorer")));
+                 FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+                 fileChooser.addChoosableFileFilter(filter);
+                 int returnValue = fileChooser.showOpenDialog(this);
+@@ -68,23 +67,25 @@
+                     c.setIcon(image); // กำหนดภาพใหม่ในวงกลม
+                     c.repaint();
+                     p = path;
+-                }
+-            }
+-            //การอัพเดดภาพลงบน sql
+-            Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
+-            PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
+-
+-
+-//            byte[] imageBytes = lm.readAllBytes();
+-            ps.setBlob(1,new FileInputStream(p));
+-            ps.setInt(2,this.keyuser);
+-            ps.executeUpdate();
+-//                ps.executeQuery();
+-            JOptionPane.showMessageDialog(null, "Data Inserted");
+-
++
++                    // convert the file to a byte array
++                    byte[] imageBytes = new byte[(int) selectedFile.length()];
++                    try (FileInputStream fis = new FileInputStream(selectedFile)) {
++                        fis.read(imageBytes);
++                    }
++
++                    // update the database with the byte array
++                    Connection dom = DriverManager.getConnection("jdbc:sqlite:resources/DB.db");
++                    PreparedStatement ps = dom.prepareStatement("UPDATE login SET profile = ? WHERE iduser = ?");
++                    ps.setBytes(1, imageBytes);
++                    ps.setInt(2, this.keyuser);
++                    ps.executeUpdate();
++                    JOptionPane.showMessageDialog(null, "Data Inserted");
++                }
++            }
+         } catch (Exception ex) {
+             ex.printStackTrace();
+-            JOptionPane.showMessageDialog(this, "Can't Open File", "ข้อผิดพลาด", JOptionPane.ERROR_MESSAGE);
++            JOptionPane.showMessageDialog(this, "Can't Open File", "Error", JOptionPane.ERROR_MESSAGE);
+         }
+ 
+     }
