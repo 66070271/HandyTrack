@@ -131,7 +131,7 @@ public class HANDYTRACKMAIN implements MouseListener {
 //         ตั้งค่าให้แสดง JPanel ที่มีส่วนของ Profile เมื่อโปรแกรมเริ่มต้นการทำงาน
         p.setVisible(true);
 //        a.setVisible(false);
-//        s.setVisible(false);
+        s.setVisible(false);
 //        t.setVisible(false);
 //        m.setVisible(false);
 
@@ -158,6 +158,7 @@ public class HANDYTRACKMAIN implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         try {
             if (e.getSource().equals(lpro)) {
+                resizeFrame(false);
                 p.setVisible(true);
                 a.setVisible(false);
                 s.setVisible(false);
@@ -165,6 +166,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(ladd)) {
+                resizeFrame(false);
                 a.setVisible(true);
                 p.setVisible(false);
                 s.setVisible(false);
@@ -172,6 +174,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(lsum)) {
+                resizeFrame(true);
                 p.setVisible(false);
                 a.setVisible(false);
                 s.setVisible(true);
@@ -179,6 +182,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(ltrac)) {
+                resizeFrame(false);
                 p.setVisible(false);
                 a.setVisible(false);
                 s.setVisible(false);
@@ -186,6 +190,7 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(lman)) {
+                resizeFrame(false);
                 p.setVisible(false);
                 a.setVisible(false);
                 s.setVisible(false);
@@ -245,5 +250,13 @@ public class HANDYTRACKMAIN implements MouseListener {
 
     public void setKeyuser(int key) {
         this.keyuser = key;
+    }
+
+    private void resizeFrame(boolean resize) {
+        if (resize) {
+            fr.pack(); // Resize frame
+        } else {
+            fr.setSize(800, 800); // Revert to original size
+        }
     }
 }

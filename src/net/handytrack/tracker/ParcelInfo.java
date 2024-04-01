@@ -8,6 +8,8 @@
  */
 package net.handytrack.tracker;
 
+import net.handytrack.database.DBconnect;
+import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 import net.handytrack.infoInterface.Parcel;
 import net.handytrack.infoInterface.Person;
@@ -18,7 +20,7 @@ import java.sql.SQLException;
 public class ParcelInfo implements Person, Parcel {
     private String TrackNum;
     private String Date;
-    private int Cost;
+    private Double Cost;
     private String NameS;
     private String NameR;
     private String Address;
@@ -30,14 +32,15 @@ public class ParcelInfo implements Person, Parcel {
 
     public ParcelInfo(String num) {
         String sql = String.format("SELECT * FROM product WHERE TrackNum = '%s'", num);
-        this.rs = DBquery.getInstance().getSelect(sql);
+        DBquery db = new DBquery();
+        this.rs = sqlManage(db,sql);
         try {
             if (this.rs.next()) {
                 this.Type = this.rs.getString("Type");
                 this.NameS = this.rs.getString("NameS");
                 this.NameR = this.rs.getString("NameR");
                 this.Date = this.rs.getString("Date");
-                this.Cost = Integer.parseInt(this.rs.getString("Cost"));
+                this.Cost = Double.parseDouble(this.rs.getString("Cost"));
                 this.Address = this.rs.getString("Address");
                 this.Weight = Double.valueOf(this.rs.getString("Weight"));
                 this.Contact = this.rs.getInt("contactNum");
@@ -47,6 +50,12 @@ public class ParcelInfo implements Person, Parcel {
             Status = "Sorry, your package couldn't be found.";
         }
     }
+    public ResultSet sqlManage(DBquery db,String sql){
+        return db.getInstanceOQ().getSelect(sql);
+    }
+    public void sqlManage(DBmanipulation db,String sql){db.getInstanceOM().getUpdate(sql);}
+
+
 
     @Override
     public String getNameS() {
@@ -64,7 +73,7 @@ public class ParcelInfo implements Person, Parcel {
     }
 
     @Override
-    public int getCost() {
+    public Double getCost() {
         return this.Cost;
     }
 

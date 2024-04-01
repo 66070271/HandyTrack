@@ -507,18 +507,21 @@ public class RegisterForm {
     private boolean isUsernameDuplicate(String username) {
         // Connect to the database and check if username exists
         String sql = String.format("SELECT * FROM login WHERE username = '%s'", username);
-        ResultSet rs1 = DBquery.getInstance().getSelect(sql);
+        ResultSet rs = DBquery.getInstance().getSelect(sql);
+        Boolean b = null;
         try {
-            if (rs1.next()) {
-                if (username.equals(sql))
-                    return true;
+            if (rs.next()) {
+                if (username.equals(rs.getString("username"))){
+                     b = true;
+                }
+
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+             b = false;
         } finally {
             DBquery.getInstance().disconnect(); // Disconnect from the database
         }
-        return false;
+        return b;
     }
     private boolean isValidRegistration() {
         // Check if all fields are filled correctly
@@ -533,8 +536,8 @@ public class RegisterForm {
                isValidEmail(emailField.getText()) &&
                isValidPasswordField(passwordField) &&
                isValidPasswordField(passwordagainField) &&
-               passwordFieldMatches(passwordField, passwordagainField); //&&
-//               !isUsernameDuplicate(usernameField.getText());  // Check if username is not duplicate
+               passwordFieldMatches(passwordField, passwordagainField) &&
+               !isUsernameDuplicate(usernameField.getText());  // Check if username is not duplicate
     }
     private void checkEmptyAndInvalidFields() {
         if (isEmptyFirstNameField(firstNameField)) {
