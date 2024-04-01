@@ -21,7 +21,7 @@ public class circle extends JPanel {
         int x = (getWidth() - diameter) / 2;
         int y = (getHeight() - diameter) / 2;
 
-        // สร้าง clipping region ที่เป็นรูปร่างวงกลม
+        // สร้างเป็นรูปร่างวงกลม
         Shape oldClip = g.getClip();
         Ellipse2D.Double circle = new Ellipse2D.Double(x, y, diameter, diameter);
         g.setClip(circle);
@@ -38,10 +38,10 @@ public class circle extends JPanel {
             int imgX = x + (diameter - scaledWidth) / 2;
             int imgY = y + (diameter - scaledHeight) / 2;
 
-            // Draw the scaled image
+            // วาดภาพทับวงกลม
             g.drawImage(image, imgX, imgY, scaledWidth, scaledHeight, this);
         }
-        // เรียกคืน clipping region เดิม
+        // เรียกคืน เดิม
         g.setClip(oldClip);
     }
 
