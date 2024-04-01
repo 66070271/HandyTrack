@@ -22,8 +22,7 @@ public abstract class DBconnect {
         this.url = url;
     }
     public abstract ResultSet getSelect(String s);
-    public abstract DBquery getInstanceOQ();
-    public abstract DBmanipulation getInstanceOM();
+
     public abstract void getUpdate(String s);
 
     public void disconnect() {
