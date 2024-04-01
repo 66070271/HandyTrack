@@ -36,7 +36,7 @@ public class employee implements ActionListener {
         table = new JTable();
         space1 = new JPanel();
         space2 = new JPanel();
-
+        egui = new EmployeeGUI();
         String[] col = {"Username", "Name", "Surname", "Telephone", "Email", "Job position", "Setting"};
         model = new DefaultTableModel(col, 0) {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
@@ -112,11 +112,11 @@ public class employee implements ActionListener {
             model.setRowCount(0);
             String sql = "SELECT * FROM login;";
             setTable(sql);
-        } else if (e.getSource().equals(egui.getDone())) {
-            System.out.println(egui.getTname());
-            System.out.println(egui.getTsurname());
-            System.out.println(egui.getTcontact());
-            System.out.println(egui.getTemail());
+        }else if(e.getSource().equals(egui.getDone())) {
+            System.out.println(egui.getTname().getText());
+            System.out.println(egui.getTsurname().getText());
+            System.out.println(egui.getTcontact().getText());
+            System.out.println(egui.getTemail().getText());
         }
     }
     public String getTel() {
@@ -154,7 +154,7 @@ public class employee implements ActionListener {
 //                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
                 /// RIGHT HERE (Time in CurrentStats GUI)
-                new EmployeeGUI();
+                egui.getFrame().setVisible(true);
             });
         }
 

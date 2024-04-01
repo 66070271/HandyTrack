@@ -51,7 +51,7 @@ public class EmployeeGUI implements ActionListener{
         fr.add(p5);
         fr.add(p3);
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fr.setVisible(true);
+        fr.setVisible(false);
         fr.pack();
 
     }
@@ -94,4 +94,5 @@ public class EmployeeGUI implements ActionListener{
     public JButton getDone() {
         return done;
     }
+    public JFrame  getFrame(){return fr;}
 }
