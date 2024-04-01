@@ -4,11 +4,13 @@
  */
 package net.handytrack.manager;
 
+import com.sun.net.httpserver.HttpsConfigurator;
 import net.handytrack.HandyCell.ScrollPaneWin111;
 import net.handytrack.HandyCell.TableActionCellEditor;
 import net.handytrack.HandyCell.TableActionCellRender;
 import net.handytrack.HandyCell.TableActionEvent;
-import java.awt.Color;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.UIManager;
@@ -17,14 +19,12 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
 import net.handytrack.database.DBquery;
 import net.handytrack.psm.psm;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -62,14 +62,22 @@ public class MMS extends JFrame implements ActionListener {
                 if(selectedRow != -1) {
                     Object[] rowData = new Object[10];
                     //create JFrame
-                    JFrame frame2 = new JFrame("Selected Row Data");
-                    //create JFrame
+                    JFrame frame2 = new JFrame("Config Data");
+                    //setLayout JFrame
                     frame2.setLayout(new GridLayout(model.getColumnCount(), 2));
                     for(int i=0; i<10; i++) {
+
                         rowData[i] = model.getValueAt(selectedRow, i).toString();
                         frame2.add(new JLabel(model.getColumnName(i) + ":"));
-                        frame2.add(new JTextField(rowData[i].toString()));
-                        
+                        //frame2.add(new JTextField(rowData[i].toString()));
+
+                        //ไม่ให้TextFieldตัวแรกแก้ไขได้
+                        JTextField textField = new JTextField(rowData[i].toString());
+                        if (i == 0) {
+                            textField.setEditable(false); // กำหนดให้ไม่สามารถแก้ไขได้
+                        }
+                        frame2.add(textField);
+                        /////////////////////////////////////////////////////////
                     }
                     //create JFrame
                     frame2.add(p1);
@@ -78,9 +86,37 @@ public class MMS extends JFrame implements ActionListener {
                     frame2.setVisible(true);
                     frame2.setLocation(950, 200);
                     frame2.setSize(400,300);
-                    //create JFrame
-                    
-                    System.out.println("Selected row" + java.util.Arrays.toString(rowData));
+                    /////////////////////////////////////
+
+                    //ดึงข้อมูลออกมาจาก Config Data
+                    ArrayList<String> textFieldDataList = new ArrayList<>();
+                    Component[] components = frame2.getContentPane().getComponents();
+                    for (Component component : components) {
+                        if (component instanceof JTextField) {
+
+                            JTextField textField = (JTextField) component;
+                            String text = textField.getText();
+
+                            textFieldDataList.add(text);
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////
+
+                    //ดึงข้อมูลจากjtextfieldของconfig Data
+                    String dataFromTextField1 = textFieldDataList.get(0);
+                    String dataFromTextField2 = textFieldDataList.get(1);
+                    String dataFromTextField3 = textFieldDataList.get(2);
+                    String dataFromTextField4 = textFieldDataList.get(3);
+                    String dataFromTextField5 = textFieldDataList.get(4);
+                    String dataFromTextField6 = textFieldDataList.get(5);
+                    String dataFromTextField7 = textFieldDataList.get(6);
+                    String dataFromTextField8 = textFieldDataList.get(7);
+                    String dataFromTextField9 = textFieldDataList.get(8);
+                    String dataFromTextField10 = textFieldDataList.get(9);
+
+                    System.out.println(dataFromTextField10);
+                    //System.out.println("Selected row" + java.util.Arrays.toString(rowData));
+
                 } else {
                     System.out.println("No Row Selected");
                 }
@@ -92,6 +128,13 @@ public class MMS extends JFrame implements ActionListener {
                     table.getCellEditor().stopCellEditing();
                 }
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
+                //model.removeRow(row);
+                Object[] rowData = new Object[1];
+                rowData[0] = model.getValueAt(row, 0);
+
+                //เอาDataของjtableตัวแรกมา
+                String rowDataString = rowData[0].toString();
+                System.out.println(rowDataString);
                 model.removeRow(row);
             }
 
