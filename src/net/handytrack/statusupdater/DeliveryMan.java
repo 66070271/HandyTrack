@@ -94,9 +94,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        table.getColumnModel().getColumn(5).setPreferredWidth(50);
 
 
-//        TableColumn statusColumn = table.getColumnModel().getColumn(4); // Status column index is now 4
-//        statusColumn.setCellEditor(new DefaultCellEditor(status));
-
         // Custom TableCellRenderer for button in column 5
         TableColumn deleteColumn = table.getColumnModel().getColumn(6); // Action column index is 5
         deleteColumn.setCellRenderer(new ButtonRenderer());
@@ -184,69 +181,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //            e.printStackTrace();
 //        }
 //        return "Error";
-//    }
-
-//    //////////////////////////// Im INsane //////////////////////////////////
-//    public void Rtimes(String s) {
-//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
-//        try {
-//            ResultSet rs = DBquery.getInstance().getSelect(sql);
-//            if (rs.next()) {
-//                String timereceive = rs.getString("Recieved");
-//                sc.getRtime().setText(timereceive);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    public void Stimes(String s) {
-//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
-//        try {
-//            ResultSet rs = DBquery.getInstance().getSelect(sql);
-//            if (rs.next()) {
-//                String timereceive = rs.getString("Sorting");
-//                return timereceive;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    public void Ttimes(String s) {
-//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
-//        try {
-//            ResultSet rs = DBquery.getInstance().getSelect(sql);
-//            if (rs.next()) {
-//                String timereceive = rs.getString("In Transit");
-//                return timereceive;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "Error";
-//    }
-//    public void Dtimes(String s) {
-//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
-//        try {
-//            ResultSet rs = DBquery.getInstance().getSelect(sql);
-//            if (rs.next()) {
-//                String timereceive = rs.getString("Delivery");
-//                return timereceive;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "Error";
-//    }
-//    public void Ctimes(String s) {
-//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
-//        try {
-//            ResultSet rs = DBquery.getInstance().getSelect(sql);
-//            if (rs.next()) {
-//                String timereceive = rs.getString("Complete");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 //    }
 
     ///////////////////////////// EVENT (sort function) ////////////////////////////////////
