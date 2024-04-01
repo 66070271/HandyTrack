@@ -45,12 +45,12 @@ public class DeliveryMan implements ActionListener, ItemListener {
 
         sc = new StatusChanger();
 
-        String[] columnNames = {"Track Number", "Receiver", "Address", "Contact", "Status", "Action"};
+        String[] columnNames = {"Track Number", "Receiver", "Address", "Contact", "Type", "Status", "Action"};
         model = new DefaultTableModel(columnNames, 0) {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
             public boolean isCellEditable(int row, int column) {
-                // Make columns 4 and 5 editable
-                return column == 5;
+                // Make columns 6 editable
+                return column == 6;
             }
         };
 
@@ -98,7 +98,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        statusColumn.setCellEditor(new DefaultCellEditor(status));
 
         // Custom TableCellRenderer for button in column 5
-        TableColumn deleteColumn = table.getColumnModel().getColumn(5); // Action column index is 5
+        TableColumn deleteColumn = table.getColumnModel().getColumn(6); // Action column index is 5
         deleteColumn.setCellRenderer(new ButtonRenderer());
         deleteColumn.setCellEditor(new ButtonEditor());
 
@@ -145,9 +145,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String padd = rs.getString("Province");
                 String zadd = rs.getString("Zip");
                 String pnum = rs.getString("contactNum");
+                String gtype = rs.getString("Type");
                 String gstatus = rs.getString("Status");
                 String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
-                String[] row = {trackn, rname, address, pnum, gstatus, "Change"};
+                String[] row = {trackn, rname, address, pnum, gtype, gstatus, "Change"};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -157,49 +158,48 @@ public class DeliveryMan implements ActionListener, ItemListener {
     }
 
     /////////////////////////////// Get Time for Status Chagner GUI ////////////////////////////////////////////
-    public String getSorttime(int state, String s) {
-        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
-        try {
-            ResultSet rs = DBquery.getInstance().getSelect(sql);
-            if (rs.next()) {
-                String timereceive = rs.getString("Recieved");
-                String timesort = rs.getString("Sorting");
-                String timetransit = rs.getString("Transit");
-                String timedelivery = rs.getString("Delivery");
-                String timecomplete = rs.getString("Finish");
-                if (state == 1) {
-                    return timereceive;
-                } else if (state == 2) {
-                    return timesort;
-                } else if (state == 3) {
-                    return timetransit;
-                } else if (state == 4) {
-                    return timedelivery;
-                } else if (state == 5) {
-                    return timecomplete;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Error";
-    }
-
-//    //////////////////////////// Im INsane //////////////////////////////////
-//    public String Rtimes(String s) {
+//    public String getSorttime(int state, String s) {
 //        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
 //        try {
 //            ResultSet rs = DBquery.getInstance().getSelect(sql);
 //            if (rs.next()) {
 //                String timereceive = rs.getString("Recieved");
-//                return timereceive;
+//                String timesort = rs.getString("Sorting");
+//                String timetransit = rs.getString("Transit");
+//                String timedelivery = rs.getString("Delivery");
+//                String timecomplete = rs.getString("Finish");
+//                if (state == 1) {
+//                    return timereceive;
+//                } else if (state == 2) {
+//                    return timesort;
+//                } else if (state == 3) {
+//                    return timetransit;
+//                } else if (state == 4) {
+//                    return timedelivery;
+//                } else if (state == 5) {
+//                    return timecomplete;
+//                }
 //            }
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
 //        return "Error";
 //    }
-//    public String Stimes(String s) {
+
+//    //////////////////////////// Im INsane //////////////////////////////////
+//    public void Rtimes(String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+//        try {
+//            ResultSet rs = DBquery.getInstance().getSelect(sql);
+//            if (rs.next()) {
+//                String timereceive = rs.getString("Recieved");
+//                sc.getRtime().setText(timereceive);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void Stimes(String s) {
 //        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
 //        try {
 //            ResultSet rs = DBquery.getInstance().getSelect(sql);
@@ -210,9 +210,8 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        return "Error";
 //    }
-//    public String Ttimes(String s) {
+//    public void Ttimes(String s) {
 //        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
 //        try {
 //            ResultSet rs = DBquery.getInstance().getSelect(sql);
@@ -225,7 +224,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        }
 //        return "Error";
 //    }
-//    public String Dtimes(String s) {
+//    public void Dtimes(String s) {
 //        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
 //        try {
 //            ResultSet rs = DBquery.getInstance().getSelect(sql);
@@ -238,18 +237,16 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        }
 //        return "Error";
 //    }
-//    public String Ctimes(String s) {
+//    public void Ctimes(String s) {
 //        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
 //        try {
 //            ResultSet rs = DBquery.getInstance().getSelect(sql);
 //            if (rs.next()) {
 //                String timereceive = rs.getString("Complete");
-//                return timereceive;
 //            }
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        return "Error";
 //    }
 
     ///////////////////////////// EVENT (sort function) ////////////////////////////////////
@@ -284,7 +281,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
             String data1 = model.getValueAt(selectedRow, 0).toString();
 
             if (!sc.getStatus().equals("null")) {
-                table.setValueAt(sc.getStatus(), selectedRow, 4);
+                table.setValueAt(sc.getStatus(), selectedRow, 5);
             } else {
                 System.out.println(sc.getStatus());
             }
@@ -360,9 +357,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
         public ButtonEditor() {
             button = new JButton("Change");
             button.addActionListener(e -> {
-//                fireEditingStopped();
+                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
-                String currentstats = model.getValueAt(selectedRow, 4).toString();
+                String currentstats = model.getValueAt(selectedRow, 5).toString();
                 String tracknm = model.getValueAt(selectedRow, 0).toString();
 //                String rtime = getSorttime(1, tracknm);
 //                String stime = getSorttime(2, tracknm);
