@@ -1,8 +1,11 @@
 package net.handytrack.HANDYTRACKMAIN;
+import net.handytrack.manager.MMS;
+import net.handytrack.statusupdater.DeliveryMan;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class ManageGUI {
+public class ManageGUI implements ActionListener{
     private JFrame fr;
     private JButton person,parcel,cus,update;
     public ManageGUI(){
@@ -24,7 +27,22 @@ public class ManageGUI {
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fr.setSize(300,200);
         fr.setResizable(false);
-        fr.setLocation(800,450);
+        fr.setLocation(1380,150);
+        update.addActionListener(this);
+        parcel.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(update)){
+            new DeliveryMan();
+        }else if(e.getSource().equals(parcel)){
+            MMS ms = new MMS();
+            ms.setVisible(true);
+            ms.setSize(1700,750);
+            ms.setLocation(100,100);
+            ms.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
     }
 
     public static void main(String[] args) {

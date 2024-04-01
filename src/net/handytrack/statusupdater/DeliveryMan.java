@@ -108,9 +108,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
         blank1.setBackground(new Color(210, 224, 251));
         blank2.setBackground(new Color(210, 224, 251));
 
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fr.setSize(1400, 750);
         fr.setVisible(true);
+        fr.setLocation(300,200);
 
 /////////////////////////////// Listener for Event  ////////////////////////////////
         search.addActionListener(this);

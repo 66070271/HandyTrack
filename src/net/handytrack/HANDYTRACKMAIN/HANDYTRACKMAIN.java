@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import net.handytrack.psm.psm;
 
 public class HANDYTRACKMAIN implements MouseListener {
 
@@ -143,6 +144,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setJMenuBar(jm);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(800, 800);
+        fr.setLocation(600,150);
         fr.setVisible(false);
     }
 
@@ -168,11 +170,11 @@ public class HANDYTRACKMAIN implements MouseListener {
             }
             if (e.getSource().equals(ladd)) {
 //                resizeFrame(false);
-                a.setVisible(true);
-                p.setVisible(false);
-                s.setVisible(false);
-                t.setVisible(false);
-                m.setVisible(false);
+                psm p = new psm();
+                p.setVisible(true);
+                p.setLocation(50,250);
+
+
             }
             if (e.getSource().equals(lsum)) {
 //                resizeFrame(false);

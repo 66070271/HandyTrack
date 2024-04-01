@@ -159,7 +159,7 @@ public class LoginEdit implements ActionListener{
         /////////////////////////////////////////////////////////////////
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(350, 400);
-        fr.setLocation(600, 200);
+        fr.setLocation(800, 300);
         fr.setResizable(false);
         fr.setVisible(true);
     }
