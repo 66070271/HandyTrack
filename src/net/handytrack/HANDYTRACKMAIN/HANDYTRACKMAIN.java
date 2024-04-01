@@ -21,10 +21,8 @@ public class HANDYTRACKMAIN implements MouseListener {
     private JLabel ladd, lsum, ltrac, lpro, lman;
     private JMenu mm;
     private profile p;
-    private add a;
     private summarize s;
-    private track t;
-    private manage m;
+
 
     private LoginEdit g;
     private User user;
@@ -53,16 +51,11 @@ public class HANDYTRACKMAIN implements MouseListener {
         lsum = new JLabel("Summarize", JLabel.CENTER);
         lman = new JLabel("Manage", JLabel.CENTER);
         p = new profile();
-        a = new add();
         s = new summarize();
-        t = new track();
-        m = new manage();
+
 
         pbpro.add(p);
-        pbadd.add(a);
         pbsum.add(s);
-        pbtrac.add(t);
-        pbman.add(m);
 
         ImageIcon ipro = new ImageIcon("resources/Picture/Profile.png");
         ImageIcon iadd = new ImageIcon("resources/Picture/Add.png");
@@ -158,24 +151,15 @@ public class HANDYTRACKMAIN implements MouseListener {
         try {
             if (e.getSource().equals(lpro)) {
                 p.setVisible(true);
-                a.setVisible(false);
-                s.setVisible(false);
-                t.setVisible(false);
-                m.setVisible(false);
             }
             if (e.getSource().equals(ladd)) {
                 psm p = new psm();
                 p.setVisible(true);
                 p.setLocation(50,250);
-
-
             }
             if (e.getSource().equals(lsum)) {
-                p.setVisible(false);
-                a.setVisible(false);
                 s.setVisible(true);
-                t.setVisible(false);
-                m.setVisible(false);
+                p.setVisible(false);
             }
             if (e.getSource().equals(ltrac)) {
                 new RealTrack();
@@ -187,7 +171,7 @@ public class HANDYTRACKMAIN implements MouseListener {
             ex.printStackTrace();
         }
     }
-
+        //
     @Override
     public void mousePressed(MouseEvent e) {
     }

@@ -3,6 +3,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighte
 import net.handytrack.customer.CustomerGUI;
 import net.handytrack.customer.CustomerManagement;
 import net.handytrack.database.DBquery;
+import net.handytrack.statusupdater.DeliveryMan;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +23,10 @@ public class employee implements ActionListener {
     private JTable table;
     private JFrame frame;
     private JPanel panel1, panel2, space1, space2;
-    private JButton done, search, sdefault;
+    private JButton search, sdefault;
     private JTextField searchtf;
     private JLabel lb2;
+    private EmployeeGUI egui;
 
     public employee() {
         frame = new JFrame("Employee Management");
@@ -35,26 +37,34 @@ public class employee implements ActionListener {
         space1 = new JPanel();
         space2 = new JPanel();
 
+        String[] col = {"Username", "Name", "Surname", "Telephone", "Email", "Job position", "Setting"};
+        model = new DefaultTableModel(col, 0) {
+            @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
+            public boolean isCellEditable(int row, int column) {
+                // Make columns 6 editable
+                return column == 6;
+            }
+        };
 
         search = new JButton("Search");
         sdefault = new JButton("Set Default");
         searchtf = new JTextField(20);
-        lb2 = new JLabel("Sorted by Customer Name or Phone Number : ");
+        lb2 = new JLabel("Sorted by Username or Name : ");
         frame.add(panel2, BorderLayout.NORTH);
         panel2.add(lb2);
         panel2.add(searchtf);
         panel2.add(search);
         panel2.add(sdefault);
 
-        String sql = "SELECT* FROM login";
+        String sql = "SELECT * FROM login";
         setTable(sql);
 
         JTable table = new JTable(model);
         scrollPane = new JScrollPane(table);
 
         TableColumn deleteColumn = table.getColumnModel().getColumn(6); // Action column index is 5
-        deleteColumn.setCellRenderer(new employee.ButtonRenderer());
-        deleteColumn.setCellEditor(new employee.ButtonEditor());
+        deleteColumn.setCellRenderer(new ButtonRenderer());
+        deleteColumn.setCellEditor(new ButtonEditor());
 
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.pack();
@@ -63,11 +73,10 @@ public class employee implements ActionListener {
 
         search.addActionListener(this);
         sdefault.addActionListener(this);
+        egui.getDone().addActionListener(this);
     }
 
     public void setTable(String sql) {
-        String[] col = {"Username", "Name", "Surname", "Telephone", "Email", "Job position", "Setting"};
-        model = new DefaultTableModel(col, 0);
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()) {
@@ -77,7 +86,7 @@ public class employee implements ActionListener {
                 String tel = rs.getString("tel");
                 String mail = rs.getString("email");
                 String job = rs.getString("jobposition");
-                String[] row = {user, name, surname, tel, mail, job};
+                String[] row = {user, name, surname, tel, mail, job, "Update"};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -85,7 +94,31 @@ public class employee implements ActionListener {
         }
         table.setModel(model);
     }
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(search)) {
+            String kw = searchtf.getText();
+            if (kw.equals("")) {
+                model.setRowCount(0);
+                String sql = "SELECT * FROM login;";
+                setTable(sql);
+            } else {
+                model.setRowCount(0);
+                String searchh = String.format("SELECT * FROM login WHERE (username = '%s' OR name = '%s')", kw, kw);
+                setTable(searchh);
+            }
+        } else if (e.getSource().equals(sdefault)) {
+            searchtf.setText("");
+            model.setRowCount(0);
+            String sql = "SELECT * FROM login;";
+            setTable(sql);
+        } else if (e.getSource().equals(egui.getDone())) {
+            System.out.println(egui.getTname());
+            System.out.println(egui.getTsurname());
+            System.out.println(egui.getTcontact());
+            System.out.println(egui.getTemail());
+        }
+    }
     public String getTel() {
         return this.tel;
     }
@@ -116,7 +149,7 @@ public class employee implements ActionListener {
         private JButton button;
 
         public ButtonEditor() {
-            button = new JButton("Edit");
+            button = new JButton("Update");
             button.addActionListener(e -> {
 //                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
@@ -127,32 +160,20 @@ public class employee implements ActionListener {
 
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            return null;
+            return button;
         }
 
         @Override
         public Object getCellEditorValue() {
-            return null;
+            return "Update";
         }
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(search)) {
-            String kw = searchtf.getText();
-            if (kw.equals("")) {
-                model.setRowCount(0);
-                String sql = "SELECT * FROM login;";
-                setTable(sql);
-            } else {
-                model.setRowCount(0);
-                String searchh = String.format("SELECT * FROM login WHERE (username = '%s' OR tel = '%s')", kw, kw);
-                setTable(searchh);
-            }
-        } else if (e.getSource().equals(sdefault)) {
-            searchtf.setText("");
-            model.setRowCount(0);
-            String sql = "SELECT * FROM login;";
-            setTable(sql);
-        }
+
+    public void getUpdateInfo(String name, String surname, String contact, String mail) {
+        System.out.println(name);
+        System.out.println(surname);
+        System.out.println(contact);
+        System.out.println(mail);
+
     }
 }
