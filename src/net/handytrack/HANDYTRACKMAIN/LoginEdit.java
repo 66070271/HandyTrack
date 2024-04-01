@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class LoginEdit {
     private int userId;
     private String name;
@@ -274,7 +276,13 @@ public class LoginEdit {
                 String input = JOptionPane.showInputDialog(fr, "Contact the relevant person to request a key \n\n Enter organization's key", "Forgot Password", JOptionPane.QUESTION_MESSAGE);
                 if ("organization_key".equals(input)) {
                     String username = JOptionPane.showInputDialog(fr, "Please fill your Username", null, JOptionPane.QUESTION_MESSAGE);
-
+                    ResultSet rs = DBquery.getInstance().getSelect(String.format("SELECT * FROM login WHERE username = '%s'",username));
+                try {
+                        JOptionPane.showMessageDialog(fr, "Your Password is:" + rs.getString("password"), "Invalid organization's key", JOptionPane.INFORMATION_MESSAGE);
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(fr, "Invalid Username", null, JOptionPane.ERROR_MESSAGE);
+                }
 
                 } else {
                     JOptionPane.showMessageDialog(fr, "Wrong Password!!!", "Invalid organization's key", JOptionPane.WARNING_MESSAGE);
