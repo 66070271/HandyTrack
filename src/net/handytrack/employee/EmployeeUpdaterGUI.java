@@ -2,23 +2,21 @@ package net.handytrack.employee;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
-import net.handytrack.customer.customer;
-import net.handytrack.database.DBmanipulation;
+
 import java.awt.event.*;
 
-public class EmployeeGUI implements ActionListener{
+public class EmployeeUpdaterGUI implements ActionListener{
     private JFrame fr;
     private JLabel lname,lsurname,lcontact,lemail;
     private JTextField tname, tsurname, tcontact, temail;
     private JPanel p1,p2,p3,p4,p5;
     private JButton done;
     private String name, surname, contact, email;
-    private employee emp;
+    private EmployeeManagement emp;
 
-    public EmployeeGUI(){
+    public EmployeeUpdaterGUI(){
         fr = new JFrame("Employee Info Updater");
         lname = new JLabel("Name : ");
         lsurname = new JLabel("Surname : ");
@@ -53,6 +51,8 @@ public class EmployeeGUI implements ActionListener{
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fr.setVisible(false);
         fr.pack();
+//        fr.setSize(1400, 750);
+        fr.setLocation(1150,300);
 
     }
 
@@ -76,7 +76,7 @@ public class EmployeeGUI implements ActionListener{
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        new EmployeeGUI();
+        new EmployeeUpdaterGUI();
     }
 
     public JTextField getTcontact() {

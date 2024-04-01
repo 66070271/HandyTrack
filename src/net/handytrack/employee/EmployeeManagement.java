@@ -1,9 +1,7 @@
 package net.handytrack.employee;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import net.handytrack.customer.CustomerGUI;
-import net.handytrack.customer.CustomerManagement;
+import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
-import net.handytrack.statusupdater.DeliveryMan;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,10 +12,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-public class employee implements ActionListener {
-    private String name;
-    private String tel;
-    private ResultSet rs;
+public class EmployeeManagement implements ActionListener {
+//    private String name;
+//    private String tel;
+//    private ResultSet rs;
     private DefaultTableModel model;
     private JScrollPane scrollPane;
     private JTable table;
@@ -26,9 +24,9 @@ public class employee implements ActionListener {
     private JButton search, sdefault;
     private JTextField searchtf;
     private JLabel lb2;
-    private EmployeeGUI egui;
+    private EmployeeUpdaterGUI egui;
 
-    public employee() {
+    public EmployeeManagement() {
         frame = new JFrame("Employee Management");
 
         panel1 = new JPanel();
@@ -36,7 +34,7 @@ public class employee implements ActionListener {
         table = new JTable();
         space1 = new JPanel();
         space2 = new JPanel();
-        egui = new EmployeeGUI();
+        egui = new EmployeeUpdaterGUI();
         String[] col = {"Username", "Name", "Surname", "Telephone", "Email", "Job position", "Setting"};
         model = new DefaultTableModel(col, 0) {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
@@ -45,6 +43,9 @@ public class employee implements ActionListener {
                 return column == 6;
             }
         };
+
+        table = new JTable(model);
+        scrollPane = new JScrollPane(table);
 
         search = new JButton("Search");
         sdefault = new JButton("Set Default");
@@ -59,9 +60,6 @@ public class employee implements ActionListener {
         String sql = "SELECT * FROM login";
         setTable(sql);
 
-        JTable table = new JTable(model);
-        scrollPane = new JScrollPane(table);
-
         TableColumn deleteColumn = table.getColumnModel().getColumn(6); // Action column index is 5
         deleteColumn.setCellRenderer(new ButtonRenderer());
         deleteColumn.setCellEditor(new ButtonEditor());
@@ -70,10 +68,15 @@ public class employee implements ActionListener {
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setSize(1400, 750);
+        frame.setLocation(300,200);
 
         search.addActionListener(this);
         sdefault.addActionListener(this);
         egui.getDone().addActionListener(this);
+
+        table.setRowSelectionAllowed(true);
+        table.setCellSelectionEnabled(true);
     }
 
     public void setTable(String sql) {
@@ -113,15 +116,24 @@ public class employee implements ActionListener {
             String sql = "SELECT * FROM login;";
             setTable(sql);
         }else if(e.getSource().equals(egui.getDone())) {
-            System.out.println(egui.getTname().getText());
-            System.out.println(egui.getTsurname().getText());
-            System.out.println(egui.getTcontact().getText());
-            System.out.println(egui.getTemail().getText());
+            int selectedRow = table.getSelectedRow();
+            table.setValueAt(egui.getTname().getText(), selectedRow, 1);
+            table.setValueAt(egui.getTsurname().getText(), selectedRow, 2);
+            table.setValueAt(egui.getTcontact().getText(), selectedRow, 3);
+            table.setValueAt(egui.getTemail().getText(), selectedRow, 4);
+
+            String username = model.getValueAt(selectedRow, 0).toString();
+            String name = model.getValueAt(selectedRow, 1).toString();
+            String surname = model.getValueAt(selectedRow, 2).toString();
+            String phonenum = model.getValueAt(selectedRow, 3).toString();
+            String email = model.getValueAt(selectedRow, 4).toString();
+            String sql = String.format("UPDATE login SET name = '%s', surename = '%s', tel = '%s', email = '%s' WHERE username = '%s'", name, surname, phonenum, email, username);
+            DBmanipulation.getInstance().getUpdate(sql);
         }
     }
-    public String getTel() {
-        return this.tel;
-    }
+//    public String getTel() {
+//        return this.tel;
+//    }
 
     public static void main(String[] args) {
         try {
@@ -129,7 +141,7 @@ public class employee implements ActionListener {
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        new employee();
+        new EmployeeManagement();
     }
 
     class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -152,9 +164,10 @@ public class employee implements ActionListener {
             button = new JButton("Update");
             button.addActionListener(e -> {
 //                fireEditingStopped();
-                int selectedRow = table.getSelectedRow();
                 /// RIGHT HERE (Time in CurrentStats GUI)
                 egui.getFrame().setVisible(true);
+                int selectedRow = table.getSelectedRow();
+                System.out.println(selectedRow);
             });
         }
 
@@ -167,13 +180,5 @@ public class employee implements ActionListener {
         public Object getCellEditorValue() {
             return "Update";
         }
-    }
-
-    public void getUpdateInfo(String name, String surname, String contact, String mail) {
-        System.out.println(name);
-        System.out.println(surname);
-        System.out.println(contact);
-        System.out.println(mail);
-
     }
 }
