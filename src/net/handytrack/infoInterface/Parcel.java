@@ -1,7 +1,7 @@
 package net.handytrack.infoInterface;
 
 public interface Parcel {
-    public abstract int getCost();
+    public abstract Double getCost();
 
     public abstract String getType();
 
