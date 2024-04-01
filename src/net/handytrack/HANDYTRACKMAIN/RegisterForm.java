@@ -48,7 +48,7 @@ public class RegisterForm {
         job.setFont(new Font("Arial", Font.BOLD, 16));
         p13.setLayout(new BorderLayout());
             p13.add(job,BorderLayout.WEST);
-        String[] items = {"Deliver Man", "Officer"};
+        String[] items = {"Delivery Man", "Officer"};
         JComboBox<String> combo;
         combo = new JComboBox<>(items);
 
