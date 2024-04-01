@@ -2,6 +2,7 @@ package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBquery;
+import net.handytrack.tracker.RealTrack;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginEdit {
+public class LoginEdit implements ActionListener{
     private int userId;
     private String name;
     private String num;
@@ -108,7 +109,7 @@ public class LoginEdit {
         stylePanel(p9);
         stylePanel(p10);
         stylePanel(p11);
-
+        guestModeButton.addActionListener(this);
 
         pwel.setPreferredSize(new Dimension(350, 100));
         p1.setPreferredSize(new Dimension(50, 200));
@@ -346,6 +347,11 @@ public class LoginEdit {
     private void stylePanel(JPanel p){
         p.setOpaque(true);
         p.setBackground(new Color(210, 224, 251));
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource().equals(guestModeButton)){
+            new RealTrack();
+        }
     }
     public int getuserId() {
         return userId;

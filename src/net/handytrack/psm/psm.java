@@ -537,7 +537,7 @@ public class psm extends javax.swing.JFrame {
                         .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Big", "Fragile"}));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Big", "Fragile","Normal"}));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Freeze", "Normal"}));
 
@@ -765,6 +765,8 @@ public class psm extends javax.swing.JFrame {
                                 "VALUES('%s','%s','%s','%.2f','%s','%d','%s','%s','%s','%d','%s','%s','%s','Receive','%s');"
                         , track, sender, recive, weight, type, number, option, sex, road, zip, district, country, time,cost);
                 String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track, time);
+                String sqt = String.format("INSERT INTO customer (name,tel,History) VALUES('%s','%s','%s')", sender, number,track);
+                DBmanipulation.getInstance().getUpdate(sqt);
                 DBmanipulation.getInstance().getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
             } catch (NumberFormatException e) {
