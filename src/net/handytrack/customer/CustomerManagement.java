@@ -17,6 +17,7 @@ import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class CustomerManagement implements ActionListener {
     private JFrame fr;
@@ -27,6 +28,9 @@ public class CustomerManagement implements ActionListener {
     private JButton done, search, sdefault;
     private JTextField searchtf;
     private JLabel lb2;
+    private ArrayList<String> data;
+    private String gname,gcontact;
+
 
     public CustomerManagement() {
         fr = new JFrame("Customer Updater");
@@ -119,6 +123,17 @@ public class CustomerManagement implements ActionListener {
             e.printStackTrace();
         }
         table.setModel(model);
+    }
+    public void setData() {
+        int selectedRow = table.getSelectedRow();
+        this.gname = model.getValueAt(selectedRow, 0).toString();
+        this.gcontact = model.getValueAt(selectedRow,1).toString();
+        this.data.add(gname);
+        this.data.add(gcontact);
+    }
+
+    public ArrayList<String> getData() {
+        return this.data;
     }
 
     ///////////////////////////// EVENT (sort function) ////////////////////////////////////
