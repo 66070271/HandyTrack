@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_1_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_1_12__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_4_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_4_06__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_17_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_17_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_19_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_19_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_21_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_21_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_2_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_2_39__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_08__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_08__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_10__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_34_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_34_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_55_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_55_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_11_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_11_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_23_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_23_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_22_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_22_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_33_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_33_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/database/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/database/DBconnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/database/DBmanipulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/database/DBmanipulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/database/DBquery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/database/DBquery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/infoInterface/Parcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/infoInterface/Parcel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/tracker/ParcelInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/tracker/ParcelInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginEdit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/LoginGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +55,12 @@
     "Application.CustomerManagement.executor": "Run",
     "Application.DeliveryMan.executor": "Run",
     "Application.HANDYTRACKMAIN.executor": "Run",
+    "Application.LoginEdit (1).executor": "Run",
+    "Application.LoginEdit (2).executor": "Run",
+    "Application.LoginEdit (3).executor": "Run",
+    "Application.LoginEdit (4).executor": "Run",
+    "Application.LoginEdit (5).executor": "Run",
+    "Application.LoginEdit.executor": "Run",
     "Application.LoginGUI (1).executor": "Run",
     "Application.LoginGUI (2).executor": "Run",
     "Application.LoginGUI (3).executor": "Run",
@@ -80,7 +69,6 @@
     "Application.LoginGUI.executor": "Run",
     "Application.MMS (1).executor": "Run",
     "Application.MMS.executor": "Run",
-    "Application.RealTrack.executor": "Run",
     "Application.RegisterForm (1).executor": "Run",
     "Application.RegisterForm.executor": "Run",
     "Application.RegisterGUI.executor": "Run",
@@ -115,9 +103,9 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RealTrack">
-    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
+  <component name="RunManager" selected="Application.LoginEdit">
+    <configuration name="LoginEdit (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -129,8 +117,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+    <configuration name="LoginEdit (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -142,21 +130,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RealTrack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.tracker.RealTrack" />
-      <module name="HandyTrack" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="net.handytrack.tracker.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegisterForm (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
+    <configuration name="LoginEdit (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -168,8 +143,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
+    <configuration name="LoginEdit (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+      <module name="HandyTrack" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginEdit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -183,18 +171,18 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RealTrack" />
-        <item itemvalue="Application.LoginGUI" />
-        <item itemvalue="Application.HANDYTRACKMAIN" />
-        <item itemvalue="Application.RegisterForm" />
-        <item itemvalue="Application.RegisterForm (1)" />
+        <item itemvalue="Application.LoginEdit" />
+        <item itemvalue="Application.LoginEdit (1)" />
+        <item itemvalue="Application.LoginEdit (5)" />
+        <item itemvalue="Application.LoginEdit (4)" />
+        <item itemvalue="Application.LoginEdit (3)" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="jdk-17.0.9-corretto-17.0.9-4caba194b151-107bc6b7" />
       </set>
     </attachedChunks>
   </component>
@@ -314,7 +302,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711922683134</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711943555407</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711943555407</updated>
+    </task>
+    <task id="LOCAL-00015" summary="wasd">
+      <option name="closed" value="true" />
+      <created>1711944169081</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711944169081</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

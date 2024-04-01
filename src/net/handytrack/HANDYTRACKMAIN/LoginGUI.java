@@ -123,7 +123,7 @@ public class LoginGUI {
             public void actionPerformed(ActionEvent e) {
                 String input = JOptionPane.showInputDialog(fr, "Contact the relevant person to request a key \n\n Enter organization's key", "Forgot Password", JOptionPane.QUESTION_MESSAGE);
                 if ("organization_key".equals(input)) {
-                    JOptionPane.showMessageDialog(fr, "Your password is: *******");
+                    //JOptionPane.showMessageDialog(fr, "Your password is: *******");
                 } else {
                     JOptionPane.showMessageDialog(fr, "Wrong Password!!!", "Invalid organization's key", JOptionPane.WARNING_MESSAGE);
                 }
