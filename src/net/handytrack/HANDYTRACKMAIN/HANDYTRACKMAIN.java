@@ -2,6 +2,7 @@ package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBquery;
+import net.handytrack.tracker.RealTrack;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -142,7 +143,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setJMenuBar(jm);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(800, 800);
-        fr.setVisible(true);
+        fr.setVisible(false);
     }
 
     public static void main(String[] args) {
@@ -182,20 +183,10 @@ public class HANDYTRACKMAIN implements MouseListener {
                 m.setVisible(false);
             }
             if (e.getSource().equals(ltrac)) {
-                resizeFrame(false);
-                p.setVisible(false);
-                a.setVisible(false);
-                s.setVisible(false);
-                t.setVisible(true);
-                m.setVisible(false);
+                new RealTrack();
             }
             if (e.getSource().equals(lman)) {
-                resizeFrame(false);
-                p.setVisible(false);
-                a.setVisible(false);
-                s.setVisible(false);
-                t.setVisible(false);
-                m.setVisible(true);
+                new ManageGUI();
             }
         } catch (Exception ex) {
             ex.printStackTrace();
