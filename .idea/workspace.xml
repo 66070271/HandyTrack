@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_52_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_52_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/tracker/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/tracker/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/DB.db" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DB.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/DB.db-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/statusupdater/DeliveryMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/statusupdater/DeliveryMan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/statusupdater/StatusChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/statusupdater/StatusChanger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,51 +52,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CustomerGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CustomerManagement.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DeliveryMan.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HANDYTRACKMAIN.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (3).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (4).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (5).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (3).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (4).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (5).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MMS (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.MMS.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RealTrack.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegisterForm (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegisterForm.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegisterGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.customer.executor&quot;: &quot;Run&quot;,
-    &quot;Application.net.handytrack.Login.LoginGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.psm (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.psm.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CustomerGUI.executor": "Run",
+    "Application.CustomerManagement.executor": "Run",
+    "Application.DeliveryMan (1).executor": "Run",
+    "Application.DeliveryMan (2).executor": "Run",
+    "Application.DeliveryMan (3).executor": "Run",
+    "Application.DeliveryMan (4).executor": "Run",
+    "Application.DeliveryMan.executor": "Run",
+    "Application.HANDYTRACKMAIN.executor": "Run",
+    "Application.LoginEdit (1).executor": "Run",
+    "Application.LoginEdit (2).executor": "Run",
+    "Application.LoginEdit (3).executor": "Run",
+    "Application.LoginEdit (4).executor": "Run",
+    "Application.LoginEdit (5).executor": "Run",
+    "Application.LoginEdit.executor": "Run",
+    "Application.LoginGUI (1).executor": "Run",
+    "Application.LoginGUI (2).executor": "Run",
+    "Application.LoginGUI (3).executor": "Run",
+    "Application.LoginGUI (4).executor": "Run",
+    "Application.LoginGUI (5).executor": "Run",
+    "Application.LoginGUI.executor": "Run",
+    "Application.MMS (1).executor": "Run",
+    "Application.MMS.executor": "Run",
+    "Application.RealTrack.executor": "Run",
+    "Application.RegisterForm (1).executor": "Run",
+    "Application.RegisterForm.executor": "Run",
+    "Application.RegisterGUI.executor": "Run",
+    "Application.customer.executor": "Run",
+    "Application.net.handytrack.Login.LoginGUI.executor": "Run",
+    "Application.psm (1).executor": "Run",
+    "Application.psm.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\resources\Picture" />
@@ -103,13 +111,13 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RealTrack">
-    <configuration name="LoginEdit (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+  <component name="RunManager" selected="Application.DeliveryMan (5)">
+    <configuration name="DeliveryMan (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,12 +125,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEdit (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+    <configuration name="DeliveryMan (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,12 +138,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEdit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+    <configuration name="DeliveryMan (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,12 +151,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RealTrack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.tracker.RealTrack" />
+    <configuration name="DeliveryMan (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.tracker.*" />
+          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,12 +164,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
+    <configuration name="DeliveryMan" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
+          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -171,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RealTrack" />
-        <item itemvalue="Application.LoginEdit" />
-        <item itemvalue="Application.LoginEdit (3)" />
-        <item itemvalue="Application.LoginEdit (2)" />
-        <item itemvalue="Application.RegisterForm" />
+        <item itemvalue="Application.DeliveryMan (5)" />
+        <item itemvalue="Application.DeliveryMan (2)" />
+        <item itemvalue="Application.DeliveryMan (1)" />
+        <item itemvalue="Application.DeliveryMan (4)" />
+        <item itemvalue="Application.DeliveryMan" />
       </list>
     </recent_temporary>
   </component>
@@ -354,6 +362,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="z" />
     <MESSAGE value="wasd" />
-    <option name="LAST_COMMIT_MESSAGE" value="wasd" />
+    <MESSAGE value="change bg and statuschanger gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="change bg and statuschanger gui" />
   </component>
 </project>

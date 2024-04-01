@@ -30,7 +30,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JTextField searchtf;
     private JLabel lb1, lb2, typelabel;
     private StatusChanger sc;
-    private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete;
+    private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete, sname;
 
     public DeliveryMan() {
         fr = new JFrame("Delivery Status Updater");
@@ -144,7 +144,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()) {
                 String trackn = rs.getString("TrackNum");
-//                String id = rs.getString("ID");
                 String rname = rs.getString("NameR");
                 String radd = rs.getString("Road");
                 String dadd = rs.getString("District");
@@ -302,7 +301,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String contact = model.getValueAt(selectedRow, 3).toString();
                 String type = model.getValueAt(selectedRow, 4).toString();
                 String status = model.getValueAt(selectedRow, 5).toString();
-                sc.getRtime().setText(String.format("<html>%s<br>%s<br>%s<br>%s<br>%s<br>%s</html>", tracknm, rname, address, contact, type, status));
+//                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Contact : %s<br>Address : %s<br>Receiver : %s<br>Type : %s<br>Status : %s</html>", tracknm, rname, address, contact, type, status));
+                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Receiver : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        " Contact : %s<br>Address %s<br>Type : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        " Status : %s</html>", tracknm, rname, contact, address, type, status));
 //                String rtime = getSorttime(1, tracknm);
 //                String stime = getSorttime(2, tracknm);
 //                String ttime = getSorttime(3, tracknm);
