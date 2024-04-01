@@ -510,7 +510,7 @@ public class RegisterForm {
         ResultSet rs = DBquery.getInstance().getSelect(sql);
         Boolean b = null;
         try {
-            if (rs.next()) {
+            if (rs.next()){
                 if (username.equals(rs.getString("username"))){
                      b = true;
                 }

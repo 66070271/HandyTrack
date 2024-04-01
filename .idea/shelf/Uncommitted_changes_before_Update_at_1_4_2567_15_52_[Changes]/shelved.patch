@@ -1,0 +1,328 @@
+Index: src/net/handytrack/customer/CustomerManagement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package net.handytrack.customer;\r\n\r\nimport com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;\r\nimport net.handytrack.database.DBmanipulation;\r\nimport net.handytrack.database.DBquery;\r\n\r\nimport javax.swing.*;\r\nimport javax.swing.table.DefaultTableModel;\r\nimport javax.swing.table.TableCellEditor;\r\nimport javax.swing.table.TableCellRenderer;\r\nimport javax.swing.table.TableColumn;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.awt.event.ItemEvent;\r\nimport java.awt.event.ItemListener;\r\nimport java.sql.ResultSet;\r\nimport java.time.LocalDateTime;\r\nimport java.time.format.DateTimeFormatter;\r\n\r\npublic class CustomerManagement implements ActionListener {\r\n    private JFrame fr;\r\n    private JTable table;\r\n    private DefaultTableModel model;\r\n    private JScrollPane scrollPane;\r\n    private JPanel pn1, pn2, blank1, blank2;\r\n    private JButton done, search, sdefault;\r\n    private JTextField searchtf;\r\n    private JLabel lb2;\r\n\r\n    public CustomerManagement() {\r\n        fr = new JFrame(\"Customer Updater\");\r\n        String[] columnNames = { \"Customer\",  \"Contact\",  \"Action\"};\r\n        model = new DefaultTableModel(columnNames, 0) {\r\n            @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้\r\n            public boolean isCellEditable(int row, int column) {\r\n                // Make columns 4 and 5 editable\r\n                return column == 2;\r\n            }\r\n        };\r\n\r\n        table = new JTable(model);\r\n        scrollPane = new JScrollPane(table);\r\n        pn1 = new JPanel();\r\n        pn2 = new JPanel();\r\n\r\n        blank1 = new JPanel();\r\n        blank2 = new JPanel();\r\n        fr.add(blank1, BorderLayout.EAST);\r\n        fr.add(blank2, BorderLayout.WEST);\r\n\r\n        done = new JButton(\"Done!\");\r\n\r\n        search = new JButton(\"Seach\");\r\n        sdefault = new JButton(\"Set Default\");\r\n        searchtf = new JTextField(20);\r\n        lb2 = new JLabel(\"Sorted by Customer Name or Phone Number : \");\r\n        fr.add(pn2, BorderLayout.NORTH);\r\n        pn2.add(lb2);\r\n        pn2.add(searchtf);\r\n        pn2.add(search);\r\n        pn2.add(sdefault);\r\n\r\n\r\n/////////////////////////////////// JTable Set /////////////////////////////////////////////\r\n        String sql = \"SELECT * FROM customer;\";\r\n        setTable(sql);\r\n\r\n/////////////////////////////// ขนาด Column ของ JTable  ////////////////////////////////\r\n//        table.getColumnModel().getColumn(0).setPreferredWidth(10);\r\n//        table.getColumnModel().getColumn(1).setPreferredWidth(20);\r\n//        table.getColumnModel().getColumn(2).setPreferredWidth(90);\r\n//        table.getColumnModel().getColumn(3).setPreferredWidth(50);\r\n//        table.getColumnModel().getColumn(4).setPreferredWidth(40);\r\n//        table.getColumnModel().getColumn(5).setPreferredWidth(50);\r\n\r\n        // Custom TableCellRenderer for button in column 5\r\n        TableColumn deleteColumn = table.getColumnModel().getColumn(2); // Action column index is 5\r\n        deleteColumn.setCellRenderer(new ButtonRenderer());\r\n        deleteColumn.setCellEditor(new ButtonEditor());\r\n\r\n        fr.add(scrollPane, BorderLayout.CENTER);\r\n\r\n        pn1.add(done);\r\n        fr.add(pn1, BorderLayout.SOUTH);\r\n\r\n        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n//        fr.pack();\r\n        fr.setSize(800, 600);\r\n        fr.setVisible(true);\r\n\r\n/////////////////////////////// Set Font  ////////////////////////////////\r\n//        done.setFont(new Font(\"Arial\", Font.BOLD, 14));\r\n\r\n        search.addActionListener(this);\r\n        sdefault.addActionListener(this);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        try {\r\n            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());\r\n        } catch (Exception ex) {\r\n            System.err.println(\"Failed to initialize LaF\");\r\n        }\r\n        new CustomerManagement();\r\n    }\r\n\r\n    ///////////////////////////// SQL ////////////////////////////////////\r\n    public void setTable(String sql) {\r\n        try {\r\n            ResultSet rs = DBquery.getInstance().getSelect(sql);\r\n            while (rs.next()) {\r\n                String sname = rs.getString(\"NameS\");\r\n                String pnum = rs.getString(\"contactNum\");\r\n                String[] row = { sname,  pnum,  \"Edit\"};\r\n                model.addRow(row);\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        table.setModel(model);\r\n    }\r\n\r\n    ///////////////////////////// EVENT (sort function) ////////////////////////////////////\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {\r\n        if (e.getSource().equals(search)) {\r\n            String kw = searchtf.getText();\r\n            if (kw.equals(\"\")) {\r\n                model.setRowCount(0);\r\n                String sql = \"SELECT * FROM customer;\";\r\n                setTable(sql);\r\n            } else {\r\n                model.setRowCount(0);\r\n                String searchh = String.format(\"SELECT * FROM customer WHERE (NameS = '%s' OR contactNum = '%s')\", kw, kw);\r\n                setTable(searchh);\r\n            }\r\n        } else if (e.getSource().equals(sdefault)) {\r\n            searchtf.setText(\"\");\r\n            model.setRowCount(0);\r\n            String sql = \"SELECT * FROM customer;\";\r\n            setTable(sql);\r\n        }\r\n    }\r\n\r\n    //////////////////// FOR JUST DELETE BUTTON ON 5TH COLUMN ////////////////\r\n    class ButtonRenderer extends JButton implements TableCellRenderer {\r\n        public ButtonRenderer() {\r\n            setOpaque(true);\r\n        }\r\n\r\n        @Override\r\n        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {\r\n            setText((value == null) ? \"\" : value.toString());\r\n            return this;\r\n        }\r\n    }\r\n\r\n    // Custom TableCellEditor for button\r\n    class ButtonEditor extends AbstractCellEditor implements TableCellEditor {\r\n        private JButton button;\r\n\r\n        public ButtonEditor() {\r\n            button = new JButton(\"Edit\");\r\n            button.addActionListener(e -> {\r\n//                fireEditingStopped();\r\n                int selectedRow = table.getSelectedRow();\r\n                /// RIGHT HERE (Time in CurrentStats GUI)\r\n                new CustomerGUI();\r\n            });\r\n        }\r\n\r\n        @Override\r\n        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {\r\n            return button;\r\n        }\r\n\r\n        @Override\r\n        public Object getCellEditorValue() {\r\n            return \"\";\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/customer/CustomerManagement.java b/src/net/handytrack/customer/CustomerManagement.java
+--- a/src/net/handytrack/customer/CustomerManagement.java	(revision 0987debaf8b6b4ab1d31988400a6664f84fe8206)
++++ b/src/net/handytrack/customer/CustomerManagement.java	(date 1711953533728)
+@@ -63,7 +63,7 @@
+ 
+ 
+ /////////////////////////////////// JTable Set /////////////////////////////////////////////
+-        String sql = "SELECT * FROM customer;";
++        String sql = "SELECT * FROM customer";
+         setTable(sql);
+ 
+ /////////////////////////////// ขนาด Column ของ JTable  ////////////////////////////////
+@@ -110,8 +110,8 @@
+         try {
+             ResultSet rs = DBquery.getInstance().getSelect(sql);
+             while (rs.next()) {
+-                String sname = rs.getString("NameS");
+-                String pnum = rs.getString("contactNum");
++                String sname = rs.getString("name");
++                String pnum = rs.getString("tel");
+                 String[] row = { sname,  pnum,  "Edit"};
+                 model.addRow(row);
+             }
+@@ -128,17 +128,17 @@
+             String kw = searchtf.getText();
+             if (kw.equals("")) {
+                 model.setRowCount(0);
+-                String sql = "SELECT * FROM customer;";
++                String sql = "SELECT * FROM customer";
+                 setTable(sql);
+             } else {
+                 model.setRowCount(0);
+-                String searchh = String.format("SELECT * FROM customer WHERE (NameS = '%s' OR contactNum = '%s')", kw, kw);
++                String searchh = String.format("SELECT * FROM customer WHERE (name = '%s' OR tel = '%s')", kw, kw);
+                 setTable(searchh);
+             }
+         } else if (e.getSource().equals(sdefault)) {
+             searchtf.setText("");
+             model.setRowCount(0);
+-            String sql = "SELECT * FROM customer;";
++            String sql = "SELECT * FROM customer";
+             setTable(sql);
+         }
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" name=\"Changes\" comment=\"wasd\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_34_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_34_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_55_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_55_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_11_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_11_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_23_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_23_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_22_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_22_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_33_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_33_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/resources/DB.db\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/resources/DB.db\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;CapybaraCapybara&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"8bb20f0f-6121-4dfa-ad71-39c9bbff5f7d\" />\r\n        <option name=\"url\" value=\"https://github.com/66070271/HandyTrack.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2eQBug1I7OWKShm4zqqmxMp2yM6\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.CustomerGUI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.CustomerManagement.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.DeliveryMan.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.HANDYTRACKMAIN.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginGUI (1).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginGUI (2).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginGUI (3).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginGUI (4).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginGUI (5).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginGUI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.MMS (1).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.MMS.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.RegisterForm (1).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.RegisterForm.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.RegisterGUI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.customer.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.net.handytrack.Login.LoginGUI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.psm (1).executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.psm.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\pleum\\IdeaProjects\\HandyTrack\\resources\\Picture\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\noras\\IdeaProjects\\HandyTrack\\src\\net\\handytrack\\psm\" />\r\n      <recent name=\"C:\\Users\\noras\\IdeaProjects\\HandyTrack\\src\\net\\handytrack\\manager\" />\r\n      <recent name=\"C:\\Users\\pleum\\IdeaProjects\\HandyTrack\\src\\net\\handytrack\\Login\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.LoginGUI\">\r\n    <configuration name=\"CustomerManagement\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.customer.CustomerManagement\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.customer.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"HANDYTRACKMAIN\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginGUI\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.LoginGUI\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RegisterForm (1)\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.RegisterForm\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RegisterForm\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.RegisterForm\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.LoginGUI\" />\r\n        <item itemvalue=\"Application.HANDYTRACKMAIN\" />\r\n        <item itemvalue=\"Application.RegisterForm\" />\r\n        <item itemvalue=\"Application.RegisterForm (1)\" />\r\n        <item itemvalue=\"Application.CustomerManagement\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" name=\"Changes\" comment=\"\" />\r\n      <created>1711827146159</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1711827146159</updated>\r\n      <workItem from=\"1711827147318\" duration=\"6673000\" />\r\n      <workItem from=\"1711881258917\" duration=\"14423000\" />\r\n      <workItem from=\"1711896729547\" duration=\"67000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711885425182</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711885425182</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887119497</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887119497</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887180884</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887180884</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887343340</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887343340</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887435562</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887435562</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887509749</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887509749</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711897157211</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711897157211</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711897398341</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711897398341</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711913005548</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711913005548</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711918426483</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711918426483</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711921422067</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711921422067</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711922588172</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711922588172</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711922683134</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711922683134</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"14\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"z\" />\r\n    <MESSAGE value=\"wasd\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"wasd\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0987debaf8b6b4ab1d31988400a6664f84fe8206)
++++ b/.idea/workspace.xml	(date 1711960391208)
+@@ -4,17 +4,26 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
++    <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="a">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_1_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_1_12__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_4_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_4_2567_4_06__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_17_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_17_34__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_19_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_19_34__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_21_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_21_26__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_2_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_2_39__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_08__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_08__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_3_2567_3_10__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_34_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_34_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_55_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_12_55_AM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_1_27_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_1_27_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_11_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_11_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_23_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_2_23_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_22_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_22_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_33_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_4_33_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/resources/DB.db" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DB.db" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/summarize.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/net/handytrack/customer/CustomerManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/customer/CustomerManagement.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/net/handytrack/statusupdater/DeliveryMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/statusupdater/DeliveryMan.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -56,44 +65,50 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.CustomerGUI.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.CustomerManagement.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.DeliveryMan.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.HANDYTRACKMAIN.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LoginGUI (1).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LoginGUI (2).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LoginGUI (3).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LoginGUI (4).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LoginGUI (5).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.LoginGUI.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.MMS (1).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.MMS.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.RegisterForm (1).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.RegisterForm.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.RegisterGUI.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.customer.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.net.handytrack.Login.LoginGUI.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.psm (1).executor&quot;: &quot;Run&quot;,
+-    &quot;Application.psm.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.CustomerGUI.executor": "Run",
++    "Application.CustomerManagement (1).executor": "Run",
++    "Application.CustomerManagement (2).executor": "Run",
++    "Application.CustomerManagement (3).executor": "Run",
++    "Application.CustomerManagement.executor": "Run",
++    "Application.DeliveryMan (1).executor": "Run",
++    "Application.DeliveryMan (2).executor": "Run",
++    "Application.DeliveryMan (3).executor": "Run",
++    "Application.DeliveryMan (4).executor": "Run",
++    "Application.DeliveryMan (5).executor": "Run",
++    "Application.DeliveryMan.executor": "Run",
++    "Application.HANDYTRACKMAIN.executor": "Run",
++    "Application.LoginGUI (1).executor": "Run",
++    "Application.LoginGUI (2).executor": "Run",
++    "Application.LoginGUI (3).executor": "Run",
++    "Application.LoginGUI (4).executor": "Run",
++    "Application.LoginGUI (5).executor": "Run",
++    "Application.LoginGUI.executor": "Run",
++    "Application.MMS (1).executor": "Run",
++    "Application.MMS.executor": "Run",
++    "Application.RegisterGUI.executor": "Run",
++    "Application.customer.executor": "Run",
++    "Application.net.handytrack.Login.LoginGUI.executor": "Run",
++    "Application.psm (1).executor": "Run",
++    "Application.psm.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "git-widget-placeholder": "master",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/User/IdeaProjects/HandyTrack/resources/TimingFramework-0.55.jar",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\resources\Picture" />
+@@ -104,13 +119,13 @@
+       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.LoginGUI">
+-    <configuration name="CustomerManagement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.customer.CustomerManagement" />
++  <component name="RunManager" selected="Application.DeliveryMan">
++    <configuration name="DeliveryMan (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.customer.*" />
++          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -118,12 +133,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
++    <configuration name="DeliveryMan (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
++          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -131,12 +146,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
++    <configuration name="DeliveryMan (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
++          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -144,12 +159,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="RegisterForm (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
++    <configuration name="DeliveryMan (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
++          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -157,12 +172,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="RegisterForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.RegisterForm" />
++    <configuration name="DeliveryMan" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.statusupdater.DeliveryMan" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
++          <option name="PATTERN" value="net.handytrack.statusupdater.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -172,11 +187,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.LoginGUI" />
+-        <item itemvalue="Application.HANDYTRACKMAIN" />
+-        <item itemvalue="Application.RegisterForm" />
+-        <item itemvalue="Application.RegisterForm (1)" />
+-        <item itemvalue="Application.CustomerManagement" />
++        <item itemvalue="Application.DeliveryMan" />
++        <item itemvalue="Application.DeliveryMan (1)" />
++        <item itemvalue="Application.DeliveryMan (5)" />
++        <item itemvalue="Application.DeliveryMan (4)" />
++        <item itemvalue="Application.DeliveryMan (3)" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -279,29 +294,29 @@
+       <option name="project" value="LOCAL" />
+       <updated>1711918426483</updated>
+     </task>
+-    <task id="LOCAL-00011" summary="wasd">
++    <task id="LOCAL-00011" summary="a">
+       <option name="closed" value="true" />
+-      <created>1711921422067</created>
++      <created>1711919917131</created>
+       <option name="number" value="00011" />
+       <option name="presentableId" value="LOCAL-00011" />
+       <option name="project" value="LOCAL" />
+-      <updated>1711921422067</updated>
++      <updated>1711919917131</updated>
+     </task>
+-    <task id="LOCAL-00012" summary="wasd">
++    <task id="LOCAL-00012" summary="add type on jtable">
+       <option name="closed" value="true" />
+-      <created>1711922588172</created>
++      <created>1711958008639</created>
+       <option name="number" value="00012" />
+       <option name="presentableId" value="LOCAL-00012" />
+       <option name="project" value="LOCAL" />
+-      <updated>1711922588172</updated>
++      <updated>1711958008639</updated>
+     </task>
+-    <task id="LOCAL-00013" summary="wasd">
++    <task id="LOCAL-00013" summary="a">
+       <option name="closed" value="true" />
+-      <created>1711922683134</created>
++      <created>1711959154321</created>
+       <option name="number" value="00013" />
+       <option name="presentableId" value="LOCAL-00013" />
+       <option name="project" value="LOCAL" />
+-      <updated>1711922683134</updated>
++      <updated>1711959154321</updated>
+     </task>
+     <option name="localTasksCounter" value="14" />
+     <servers />
+@@ -323,6 +338,8 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="z" />
+     <MESSAGE value="wasd" />
+-    <option name="LAST_COMMIT_MESSAGE" value="wasd" />
++    <MESSAGE value="add type on jtable" />
++    <MESSAGE value="a" />
++    <option name="LAST_COMMIT_MESSAGE" value="a" />
+   </component>
+ </project>
+\ No newline at end of file
