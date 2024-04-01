@@ -16,6 +16,8 @@ public class customer{
             }
         }catch(SQLException e){
             e.printStackTrace();
+        }finally {
+            DBquery.getInstance().disconnect();
         }
     }
     public String getTel(){

@@ -45,6 +45,7 @@ public class CustomerGUI implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(done)){
             DBmanipulation.getInstance().getUpdate("UPDATE customer SET name = '%s' WHERE name ='%s'");
+            DBmanipulation.getInstance().disconnect();
         }
     }
 

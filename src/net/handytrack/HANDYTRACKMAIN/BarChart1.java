@@ -23,10 +23,10 @@ public class BarChart1 extends JPanel {
 
     private void fetchDataFromDatabase() {
         frequencyMap = new HashMap<>();
-
+        DBquery dbQuery = DBquery.getInstance();
+        ResultSet rs = dbQuery.getSelect("SELECT Status FROM product");
         try {
-            DBquery dbQuery = DBquery.getInstance();
-            ResultSet rs = dbQuery.getSelect("SELECT Status FROM product");
+
 
             while (rs.next()) {
                 String status = rs.getString("Status");
@@ -34,6 +34,8 @@ public class BarChart1 extends JPanel {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            dbQuery.disconnect();
         }
     }
 

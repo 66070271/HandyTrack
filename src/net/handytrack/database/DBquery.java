@@ -41,5 +41,14 @@ public class DBquery extends DBconnect {
     public void getUpdate(String s) {
 
     }
+    public void disconnect() {
+        try {
+            stm.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

@@ -1,6 +1,8 @@
 package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import net.handytrack.database.DBconnect;
+import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 import net.handytrack.tracker.RealTrack;
 
@@ -134,7 +136,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(800, 800);
         fr.setLocation(600,150);
-        fr.setVisible(false);
+        fr.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -191,6 +193,7 @@ public class HANDYTRACKMAIN implements MouseListener {
     public void fetchUser() {
         String sql = String.format("SELECT * FROM login WHERE iduser = '%d'", this.keyuser);
         ResultSet rs = DBquery.getInstance().getSelect(sql);
+        DBquery.getInstance().disconnect();
         try {
             if (rs.next()) {
                 this.user = new User(rs.getString("name"), rs.getString("surename"), rs.getString("email"), rs.getString("tel"));
@@ -201,11 +204,15 @@ public class HANDYTRACKMAIN implements MouseListener {
                 p.getEmail().setText("Email : " + user.getEmail());
                 p.getAllname().setText("Name : " + user.getName() + " " + user.getSurename());
                 p.getAllname().setFont(new Font("Aerial", Font.PLAIN, 24));
+
             }
             p.getEmail().setFont(new Font("Aerial", Font.PLAIN, 24));
             p.getLtel().setFont(new Font("Aerial", Font.PLAIN, 24));
+
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+
         }
     }
 

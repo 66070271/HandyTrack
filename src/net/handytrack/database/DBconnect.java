@@ -25,14 +25,6 @@ public abstract class DBconnect {
 
     public abstract void getUpdate(String s);
 
-    public void disconnect() {
-        try {
-            stm.close();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+    public abstract void  disconnect();
 
 }

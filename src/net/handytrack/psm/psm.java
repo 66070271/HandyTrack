@@ -92,26 +92,7 @@ public class psm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new psm().setVisible(true);
-            }
-        });
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -765,10 +746,10 @@ public class psm extends javax.swing.JFrame {
                                 "VALUES('%s','%s','%s','%.2f','%s','%d','%s','%s','%s','%d','%s','%s','%s','Receive','%s');"
                         , track, sender, recive, weight, type, number, option, sex, road, zip, district, country, time,cost);
                 String sqi = String.format("INSERT INTO trackinfo (TrackNum,Recieved) VALUES('%s','%s')", track, time);
-                String sqt = String.format("INSERT INTO customer (name,tel,History) VALUES('%s','%s','%s')", sender, number,track);
-                DBmanipulation.getInstance().getUpdate(sqt);
+
                 DBmanipulation.getInstance().getUpdate(sqi);
                 DBmanipulation.getInstance().getUpdate(sql);
+                DBmanipulation.getInstance().disconnect();
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }

@@ -1,0 +1,343 @@
+Index: src/net/handytrack/employee/EmployeeUpdaterGUI.java
+===================================================================
+diff --git a/src/net/handytrack/employee/EmployeeUpdaterGUI.java b/src/net/handytrack/employee/EmployeeUpdaterGUI.java
+deleted file mode 100644
+--- a/src/net/handytrack/employee/EmployeeUpdaterGUI.java	(revision ab502cda7e4a7e13e408213f65553671f53e1797)
++++ /dev/null	(revision ab502cda7e4a7e13e408213f65553671f53e1797)
+@@ -1,98 +0,0 @@
+-package net.handytrack.employee;
+-
+-import java.awt.*;
+-import javax.swing.*;
+-
+-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
+-
+-import java.awt.event.*;
+-
+-public class EmployeeUpdaterGUI implements ActionListener{
+-    private JFrame fr;
+-    private JLabel lname,lsurname,lcontact,lemail;
+-    private JTextField tname, tsurname, tcontact, temail;
+-    private JPanel p1,p2,p3,p4,p5;
+-    private JButton done;
+-    private String name, surname, contact, email;
+-    private EmployeeManagement emp;
+-
+-    public EmployeeUpdaterGUI(){
+-        fr = new JFrame("Employee Info Updater");
+-        lname = new JLabel("Name : ");
+-        lsurname = new JLabel("Surname : ");
+-        lcontact = new JLabel("Tel : ");
+-        lemail = new JLabel("Email : ");
+-        tname = new JTextField(19);
+-        tsurname = new JTextField(19);
+-        tcontact = new JTextField(21);
+-        temail = new JTextField(20);
+-        p1 = new JPanel();
+-        p2 =new JPanel();
+-        p3 = new JPanel();
+-        p4 = new JPanel();
+-        p5 = new JPanel();
+-        done = new JButton("SUBMIT");
+-        fr.setLayout(new GridLayout(5,1));
+-        p1.add(lname);
+-        p1.add(tname);
+-        p2.add(lsurname);
+-        p2.add(tsurname);
+-        p4.add(lcontact);
+-        p4.add(tcontact);
+-        p5.add(lemail);
+-        p5.add(temail);
+-        p3.add(done);
+-
+-        fr.add(p1);
+-        fr.add(p2);
+-        fr.add(p4);
+-        fr.add(p5);
+-        fr.add(p3);
+-        fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+-        fr.setVisible(false);
+-        fr.pack();
+-//        fr.setSize(1400, 750);
+-        fr.setLocation(1150,300);
+-
+-    }
+-
+-//    public customer getCustomer() {
+-//        return customer;
+-//    }
+-
+-    @Override
+-    public void actionPerformed(ActionEvent e) {
+-        if(e.getSource().equals(done)){
+-//            DBmanipulation.getInstance().getUpdate("UPDATE customer SET name = '%s' WHERE name ='%s'");
+-//            this.name = tname.getText();
+-
+-
+-        }
+-    }
+-
+-    public static void main(String[] args) {
+-        try {
+-            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
+-        } catch (Exception ex) {
+-            System.err.println("Failed to initialize LaF");
+-        }
+-        new EmployeeUpdaterGUI();
+-    }
+-
+-    public JTextField getTcontact() {
+-        return tcontact;
+-    }
+-    public JTextField getTname() {
+-        return tname;
+-    }
+-    public JTextField getTemail() {
+-        return temail;
+-    }
+-    public JTextField getTsurname() {
+-        return tsurname;
+-    }
+-    public JButton getDone() {
+-        return done;
+-    }
+-    public JFrame  getFrame(){return fr;}
+-}
+Index: src/net/handytrack/employee/EmployeeManagement.java
+===================================================================
+diff --git a/src/net/handytrack/employee/EmployeeManagement.java b/src/net/handytrack/employee/EmployeeManagement.java
+deleted file mode 100644
+--- a/src/net/handytrack/employee/EmployeeManagement.java	(revision ab502cda7e4a7e13e408213f65553671f53e1797)
++++ /dev/null	(revision ab502cda7e4a7e13e408213f65553671f53e1797)
+@@ -1,184 +0,0 @@
+-package net.handytrack.employee;
+-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+-import net.handytrack.database.DBmanipulation;
+-import net.handytrack.database.DBquery;
+-
+-import javax.swing.*;
+-import javax.swing.table.DefaultTableModel;
+-import javax.swing.table.TableCellEditor;
+-import javax.swing.table.TableCellRenderer;
+-import javax.swing.table.TableColumn;
+-import java.awt.*;
+-import java.awt.event.ActionEvent;
+-import java.awt.event.ActionListener;
+-import java.sql.*;
+-public class EmployeeManagement implements ActionListener {
+-//    private String name;
+-//    private String tel;
+-//    private ResultSet rs;
+-    private DefaultTableModel model;
+-    private JScrollPane scrollPane;
+-    private JTable table;
+-    private JFrame frame;
+-    private JPanel panel1, panel2, space1, space2;
+-    private JButton search, sdefault;
+-    private JTextField searchtf;
+-    private JLabel lb2;
+-    private EmployeeUpdaterGUI egui;
+-
+-    public EmployeeManagement() {
+-        frame = new JFrame("Employee Management");
+-
+-        panel1 = new JPanel();
+-        panel2 = new JPanel();
+-        table = new JTable();
+-        space1 = new JPanel();
+-        space2 = new JPanel();
+-        egui = new EmployeeUpdaterGUI();
+-        String[] col = {"Username", "Name", "Surname", "Telephone", "Email", "Job position", "Setting"};
+-        model = new DefaultTableModel(col, 0) {
+-            @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
+-            public boolean isCellEditable(int row, int column) {
+-                // Make columns 6 editable
+-                return column == 6;
+-            }
+-        };
+-
+-        table = new JTable(model);
+-        scrollPane = new JScrollPane(table);
+-
+-        search = new JButton("Search");
+-        sdefault = new JButton("Set Default");
+-        searchtf = new JTextField(20);
+-        lb2 = new JLabel("Sorted by Username or Name : ");
+-        frame.add(panel2, BorderLayout.NORTH);
+-        panel2.add(lb2);
+-        panel2.add(searchtf);
+-        panel2.add(search);
+-        panel2.add(sdefault);
+-
+-        String sql = "SELECT * FROM login";
+-        setTable(sql);
+-
+-        TableColumn deleteColumn = table.getColumnModel().getColumn(6); // Action column index is 5
+-        deleteColumn.setCellRenderer(new ButtonRenderer());
+-        deleteColumn.setCellEditor(new ButtonEditor());
+-
+-        frame.add(scrollPane, BorderLayout.CENTER);
+-        frame.pack();
+-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+-        frame.setVisible(true);
+-        frame.setSize(1400, 750);
+-        frame.setLocation(300,200);
+-
+-        search.addActionListener(this);
+-        sdefault.addActionListener(this);
+-        egui.getDone().addActionListener(this);
+-
+-        table.setRowSelectionAllowed(true);
+-        table.setCellSelectionEnabled(true);
+-    }
+-
+-    public void setTable(String sql) {
+-        try {
+-            ResultSet rs = DBquery.getInstance().getSelect(sql);
+-            while (rs.next()) {
+-                String user = rs.getString("username");
+-                String name = rs.getString("name");
+-                String surname = rs.getString("surename");
+-                String tel = rs.getString("tel");
+-                String mail = rs.getString("email");
+-                String job = rs.getString("jobposition");
+-                String[] row = {user, name, surname, tel, mail, job, "Update"};
+-                model.addRow(row);
+-            }
+-        } catch (Exception e) {
+-            e.printStackTrace();
+-        }
+-        table.setModel(model);
+-    }
+-    @Override
+-    public void actionPerformed(ActionEvent e) {
+-        if (e.getSource().equals(search)) {
+-            String kw = searchtf.getText();
+-            if (kw.equals("")) {
+-                model.setRowCount(0);
+-                String sql = "SELECT * FROM login;";
+-                setTable(sql);
+-            } else {
+-                model.setRowCount(0);
+-                String searchh = String.format("SELECT * FROM login WHERE (username = '%s' OR name = '%s')", kw, kw);
+-                setTable(searchh);
+-            }
+-        } else if (e.getSource().equals(sdefault)) {
+-            searchtf.setText("");
+-            model.setRowCount(0);
+-            String sql = "SELECT * FROM login;";
+-            setTable(sql);
+-        }else if(e.getSource().equals(egui.getDone())) {
+-            int selectedRow = table.getSelectedRow();
+-            table.setValueAt(egui.getTname().getText(), selectedRow, 1);
+-            table.setValueAt(egui.getTsurname().getText(), selectedRow, 2);
+-            table.setValueAt(egui.getTcontact().getText(), selectedRow, 3);
+-            table.setValueAt(egui.getTemail().getText(), selectedRow, 4);
+-
+-            String username = model.getValueAt(selectedRow, 0).toString();
+-            String name = model.getValueAt(selectedRow, 1).toString();
+-            String surname = model.getValueAt(selectedRow, 2).toString();
+-            String phonenum = model.getValueAt(selectedRow, 3).toString();
+-            String email = model.getValueAt(selectedRow, 4).toString();
+-            String sql = String.format("UPDATE login SET name = '%s', surename = '%s', tel = '%s', email = '%s' WHERE username = '%s'", name, surname, phonenum, email, username);
+-            DBmanipulation.getInstance().getUpdate(sql);
+-        }
+-    }
+-//    public String getTel() {
+-//        return this.tel;
+-//    }
+-
+-    public static void main(String[] args) {
+-        try {
+-            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
+-        } catch (Exception ex) {
+-            System.err.println("Failed to initialize LaF");
+-        }
+-        new EmployeeManagement();
+-    }
+-
+-    class ButtonRenderer extends JButton implements TableCellRenderer {
+-        public ButtonRenderer() {
+-            setOpaque(true);
+-        }
+-
+-        @Override
+-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+-            setText((value == null) ? "" : value.toString());
+-            return this;
+-        }
+-    }
+-
+-    // Custom TableCellEditor for button
+-    class ButtonEditor extends AbstractCellEditor implements TableCellEditor {
+-        private JButton button;
+-
+-        public ButtonEditor() {
+-            button = new JButton("Update");
+-            button.addActionListener(e -> {
+-//                fireEditingStopped();
+-                /// RIGHT HERE (Time in CurrentStats GUI)
+-                egui.getFrame().setVisible(true);
+-                int selectedRow = table.getSelectedRow();
+-                System.out.println(selectedRow);
+-            });
+-        }
+-
+-        @Override
+-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+-            return button;
+-        }
+-
+-        @Override
+-        public Object getCellEditorValue() {
+-            return "Update";
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: src/net/handytrack/tracker/ParcelInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license\r\n * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template\r\n */\r\n\r\n/**\r\n * @author marttpq\r\n */\r\npackage net.handytrack.tracker;\r\n\r\nimport net.handytrack.database.DBconnect;\r\nimport net.handytrack.database.DBmanipulation;\r\nimport net.handytrack.database.DBquery;\r\nimport net.handytrack.infoInterface.Parcel;\r\nimport net.handytrack.infoInterface.Person;\r\n\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\n\r\npublic class ParcelInfo implements Person, Parcel {\r\n    private String TrackNum;\r\n    private String Date;\r\n    private Double Cost;\r\n    private String NameS;\r\n    private String NameR;\r\n    private String Address;\r\n    private Double Weight;\r\n    private String Type;\r\n    private int Contact;\r\n    private String Status;\r\n    private ResultSet rs;\r\n\r\n    public ParcelInfo(String num) {\r\n        String sql = String.format(\"SELECT * FROM product WHERE TrackNum = '%s'\", num);\r\n        DBconnect db = new DBquery();\r\n        this.rs = querry(db,sql);\r\n        try {\r\n            if (this.rs.next()) {\r\n                this.Type = this.rs.getString(\"Type\");\r\n                this.NameS = this.rs.getString(\"NameS\");\r\n                this.NameR = this.rs.getString(\"NameR\");\r\n                this.Date = this.rs.getString(\"Date\");\r\n                this.Cost = Double.parseDouble(this.rs.getString(\"Cost\"));\r\n                this.Address = this.rs.getString(\"Address\");\r\n                this.Weight = Double.valueOf(this.rs.getString(\"Weight\"));\r\n                this.Contact = this.rs.getInt(\"contactNum\");\r\n                this.Status = this.rs.getString(\"Status\");\r\n            }\r\n        } catch (SQLException e) {\r\n            Status = \"Sorry, your package couldn't be found.\";\r\n        }\r\n    }\r\n    public ResultSet querry(DBconnect db,String sql){\r\n        return db.getSelect(sql);\r\n    }\r\n    public void update(DBconnect db,String sql){\r\n        db.getUpdate(sql);\r\n    }\r\n    public ResultSet querry(DBquery db,String sql){\r\n        return db.getSelect(sql);\r\n    }\r\n    public void update(DBmanipulation db,String sql){\r\n        db.getUpdate(sql);\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public String getNameS() {\r\n        return this.NameS;\r\n    }\r\n\r\n    @Override\r\n    public String getNameR() {\r\n        return this.NameR;\r\n    }\r\n\r\n    @Override\r\n    public String getDate() {\r\n        return this.Date;\r\n    }\r\n\r\n    @Override\r\n    public Double getCost() {\r\n        return this.Cost;\r\n    }\r\n\r\n    @Override\r\n    public String getAddress() {\r\n        return this.Address;\r\n    }\r\n\r\n    @Override\r\n    public Double getWeight() {\r\n        return this.Weight;\r\n    }\r\n\r\n    @Override\r\n    public String getType() {\r\n        return this.Type;\r\n    }\r\n\r\n    @Override\r\n    public int getContact() {\r\n        return this.Contact;\r\n    }\r\n\r\n    @Override\r\n    public String getStatus() {\r\n        return this.Status;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/tracker/ParcelInfo.java b/src/net/handytrack/tracker/ParcelInfo.java
+--- a/src/net/handytrack/tracker/ParcelInfo.java	(revision ab502cda7e4a7e13e408213f65553671f53e1797)
++++ b/src/net/handytrack/tracker/ParcelInfo.java	(date 1712002171594)
+@@ -54,7 +54,7 @@
+         return db.getSelect(sql);
+     }
+     public void update(DBconnect db,String sql){
+-        db.getUpdate(sql);
++        db.getSelect(sql);
+     }
+     public ResultSet querry(DBquery db,String sql){
+         return db.getSelect(sql);
+Index: src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package net.handytrack.HANDYTRACKMAIN;\r\n\r\nimport com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;\r\nimport net.handytrack.database.DBquery;\r\nimport net.handytrack.tracker.RealTrack;\r\n\r\nimport javax.swing.*;\r\nimport javax.swing.border.LineBorder;\r\nimport java.awt.*;\r\nimport java.awt.event.MouseEvent;\r\nimport java.awt.event.MouseListener;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport net.handytrack.psm.psm;\r\n\r\npublic class HANDYTRACKMAIN implements MouseListener {\r\n\r\n    private JFrame fr;\r\n    private JPanel part1, part2, ppro, padd, psum, ptrac, pman, pbpro, pbadd, pbsum, pbtrac, pbman;\r\n    private JMenuBar jm;\r\n    private JLabel ladd, lsum, ltrac, lpro, lman;\r\n    private JMenu mm;\r\n    private profile p;\r\n    private summarize s;\r\n\r\n\r\n    private LoginEdit g;\r\n    private User user;\r\n    private int keyuser;\r\n\r\n    public HANDYTRACKMAIN() {\r\n\r\n        fr = new JFrame(\"HANDYTRACKMAIN\");\r\n        part1 = new JPanel();\r\n        part2 = new JPanel();\r\n        ppro = new JPanel();\r\n        psum = new JPanel();\r\n        padd = new JPanel();\r\n        pman = new JPanel();\r\n        ptrac = new JPanel();\r\n        pbpro = new JPanel();\r\n        pbadd = new JPanel();\r\n        pbsum = new JPanel();\r\n        pbtrac = new JPanel();\r\n        pbman = new JPanel();\r\n        jm = new JMenuBar();\r\n        mm = new JMenu(\"File\");\r\n        ladd = new JLabel(\"Add\", JLabel.CENTER);\r\n        ltrac = new JLabel(\"Track\", JLabel.CENTER);\r\n        lpro = new JLabel(\"Profile\", JLabel.CENTER);\r\n        lsum = new JLabel(\"Summarize\", JLabel.CENTER);\r\n        lman = new JLabel(\"Manage\", JLabel.CENTER);\r\n        p = new profile();\r\n        s = new summarize();\r\n\r\n\r\n        pbpro.add(p);\r\n        pbsum.add(s);\r\n\r\n        ImageIcon ipro = new ImageIcon(\"resources/Picture/Profile.png\");\r\n        ImageIcon iadd = new ImageIcon(\"resources/Picture/Add.png\");\r\n        ImageIcon isum = new ImageIcon(\"resources/Picture/Summarize.png\");\r\n        ImageIcon iset = new ImageIcon(\"resources/Picture/Setting.png\");\r\n        ImageIcon man = new ImageIcon(\"resources/Picture/manipulate.png\");\r\n\r\n        fr.setLayout(new BorderLayout());\r\n\r\n        jm.add(mm);\r\n\r\n        lpro.setIcon(ipro);\r\n        ladd.setIcon(iadd);\r\n        lsum.setIcon(isum);\r\n        ltrac.setIcon(iset);\r\n        lman.setIcon(man);\r\n\r\n        lpro.setFont(new Font(\"Aerial\", Font.PLAIN, 20));\r\n        ladd.setFont(new Font(\"Aerial\", Font.PLAIN, 20));\r\n        lsum.setFont(new Font(\"Aerial\", Font.PLAIN, 20));\r\n        ltrac.setFont(new Font(\"Aerial\", Font.PLAIN, 20));\r\n        lman.setFont(new Font(\"Aerial\", Font.PLAIN, 20));\r\n        lpro.setForeground(new Color(0,0,16));\r\n        ladd.setForeground(new Color(0,0,16));\r\n        lsum.setForeground(new Color(0,0,16));\r\n        ltrac.setForeground(new Color(0,0,16));\r\n        lman.setForeground(new Color(0,0,16));\r\n\r\n        part1.setLayout(new GridLayout(1, 5));\r\n        ppro.add(lpro);\r\n        ppro.setBackground(new Color(249, 245, 246));\r\n        padd.add(ladd);\r\n        padd.setBackground(new Color(255, 230, 230));\r\n        psum.add(lsum);\r\n        psum.setBackground(new Color(225, 175, 209));\r\n        ptrac.add(ltrac);\r\n        ptrac.setBackground(new Color(173, 136, 198));\r\n        pman.add(lman);\r\n        pman.setBackground(new Color(116, 105, 182));\r\n        part1.add(ppro);\r\n        part1.add(padd);\r\n        part1.add(psum);\r\n        part1.add(ptrac);\r\n        part1.add(pman);\r\n\r\n        ppro.setBorder(new LineBorder(Color.BLACK, 1));\r\n        padd.setBorder(new LineBorder(Color.BLACK, 1));\r\n        psum.setBorder(new LineBorder(Color.BLACK, 1));\r\n        ptrac.setBorder(new LineBorder(Color.BLACK, 1));\r\n        pman.setBorder(new LineBorder(Color.BLACK, 1));\r\n\r\n        //add Listener\r\n        ladd.addMouseListener(this);\r\n        ltrac.addMouseListener(this);\r\n        lpro.addMouseListener(this);\r\n        lsum.addMouseListener(this);\r\n        lman.addMouseListener(this);\r\n\r\n        part2.setLayout(new BorderLayout());\r\n        part2.setBackground(new Color(210, 224, 251));\r\n        part2.setLayout(new OverlayLayout(part2));\r\n        part2.add(p);\r\n        part2.add(s);\r\n\r\n\r\n//         ตั้งค่าให้แสดง JPanel ที่มีส่วนของ Profile เมื่อโปรแกรมเริ่มต้นการทำงาน\r\n        p.setVisible(true);\r\n        s.setVisible(false);\r\n\r\n\r\n        //set JFrame\r\n        fr.setLocation(500, 150);\r\n        fr.add(part1, BorderLayout.NORTH);\r\n        fr.add(part2, BorderLayout.CENTER);\r\n        fr.setJMenuBar(jm);\r\n        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        fr.setSize(800, 800);\r\n        fr.setLocation(600,150);\r\n        fr.setVisible(false);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        try {\r\n            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());\r\n        } catch (Exception ex) {\r\n            System.err.println(\"Failed to initialize LaF\");\r\n        }\r\n        new HANDYTRACKMAIN();\r\n    }\r\n\r\n    @Override\r\n    public void mouseClicked(MouseEvent e) {\r\n        try {\r\n            if (e.getSource().equals(lpro)) {\r\n                p.setVisible(true);\r\n            }\r\n            if (e.getSource().equals(ladd)) {\r\n                psm p = new psm();\r\n                p.setVisible(true);\r\n                p.setLocation(50,250);\r\n            }\r\n            if (e.getSource().equals(lsum)) {\r\n                s.setVisible(true);\r\n            }\r\n            if (e.getSource().equals(ltrac)) {\r\n                new RealTrack();\r\n            }\r\n            if (e.getSource().equals(lman)) {\r\n                new ManageGUI();\r\n            }\r\n        } catch (Exception ex) {\r\n            ex.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void mousePressed(MouseEvent e) {\r\n    }\r\n\r\n    @Override\r\n    public void mouseReleased(MouseEvent e) {\r\n    }\r\n\r\n    @Override\r\n    public void mouseEntered(MouseEvent e) {\r\n    }\r\n\r\n    @Override\r\n    public void mouseExited(MouseEvent e) {\r\n    }\r\n\r\n    public void fetchUser() {\r\n        String sql = String.format(\"SELECT * FROM login WHERE iduser = '%d'\", this.keyuser);\r\n        ResultSet rs = DBquery.getInstance().getSelect(sql);\r\n        try {\r\n            if (rs.next()) {\r\n                this.user = new User(rs.getString(\"name\"), rs.getString(\"surename\"), rs.getString(\"email\"), rs.getString(\"tel\"));\r\n                p.getLname().setText(\"Hi \" + user.getName() + \".\");\r\n                p.getLname().setFont(new Font(\"Aerial\", Font.PLAIN, 32));\r\n                p.getLtel().setText(\"Tel : \" + user.getTel());\r\n                p.setKeyuser(this.keyuser);\r\n                p.getEmail().setText(\"Email : \" + user.getEmail());\r\n                p.getAllname().setText(\"Name : \" + user.getName() + \" \" + user.getSurename());\r\n                p.getAllname().setFont(new Font(\"Aerial\", Font.PLAIN, 24));\r\n            }\r\n            p.getEmail().setFont(new Font(\"Aerial\", Font.PLAIN, 24));\r\n            p.getLtel().setFont(new Font(\"Aerial\", Font.PLAIN, 24));\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void setname(String s, String a) {\r\n        p.setName(s);\r\n        p.setName(a);\r\n    }\r\n\r\n    public JFrame getFrame() {\r\n        return this.fr;\r\n    }\r\n\r\n    public void setKeyuser(int key) {\r\n        this.keyuser = key;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java b/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java
+--- a/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java	(revision ab502cda7e4a7e13e408213f65553671f53e1797)
++++ b/src/net/handytrack/HANDYTRACKMAIN/HANDYTRACKMAIN.java	(date 1712002171592)
+@@ -159,6 +159,7 @@
+             }
+             if (e.getSource().equals(lsum)) {
+                 s.setVisible(true);
++                p.setVisible(false);
+             }
+             if (e.getSource().equals(ltrac)) {
+                 new RealTrack();
+@@ -170,7 +171,7 @@
+             ex.printStackTrace();
+         }
+     }
+-
++        //
+     @Override
+     public void mousePressed(MouseEvent e) {
+     }

@@ -35,6 +35,8 @@ public class TrackInfo implements Status {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBquery.getInstance().disconnect();
         }
     }
 

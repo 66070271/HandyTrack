@@ -25,17 +25,17 @@ public class BarChart extends JPanel {
 
     private void fetchDataFromDatabase() {
         frequencyMap = new HashMap<>();
-
+        DBquery dbQuery = DBquery.getInstance();
+        ResultSet rs = dbQuery.getSelect("SELECT type FROM product");
         try {
-            DBquery dbQuery = DBquery.getInstance();
-            ResultSet rs = dbQuery.getSelect("SELECT type FROM product");
-
             while (rs.next()) {
                 String type = rs.getString("type");
                 frequencyMap.put(type, frequencyMap.getOrDefault(type, 0) + 1);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            dbQuery.disconnect();
         }
     }
 

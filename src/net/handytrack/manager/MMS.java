@@ -142,6 +142,7 @@ public class MMS extends JFrame implements ActionListener {
                 String sql = String.format("DELETE FROM product WHERE TrackNum = '%s' ", rowDataString);
                 DBmanipulation.getInstance().getUpdate(sql);
                 model.removeRow(row);
+                DBmanipulation.getInstance().disconnect();
             }
 
             @Override
@@ -244,7 +245,9 @@ public class MMS extends JFrame implements ActionListener {
         }
     } catch (Exception e) {
         e.printStackTrace();
-    }
+    }finally {
+            DBquery.getInstance().disconnect();
+        }
         table.setModel(model);
 
         
@@ -300,6 +303,7 @@ public class MMS extends JFrame implements ActionListener {
             DefaultTableModel model = (DefaultTableModel)table.getModel();
             DBmanipulation.getInstance().getUpdate(sql);
             UpdateDataFromSQL();
+            DBmanipulation.getInstance().disconnect();
 
         }
     }
@@ -328,6 +332,8 @@ public class MMS extends JFrame implements ActionListener {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            DBquery.getInstance().disconnect();
         }
     }
     public void search(String text) {

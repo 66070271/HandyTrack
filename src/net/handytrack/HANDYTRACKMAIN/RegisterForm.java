@@ -149,8 +149,11 @@ public class RegisterForm {
                     try {
                         String sql = String.format("INSERT INTO login(name, surename, tel, email, username, password, jobposition) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",firstName,lastName,phoneNumber,email,username,password,selectedPosition);
                         DBmanipulation.getInstance().getUpdate(sql);
+
                     } catch (Exception ex) {
                         ex.printStackTrace();
+                    }finally {
+                        DBmanipulation.getInstance().disconnect();
                     }
                     // Perform registration process
                     JOptionPane.showMessageDialog(fr, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -159,6 +162,7 @@ public class RegisterForm {
                     JOptionPane.showMessageDialog(fr, "Failed to register.", "Error", JOptionPane.ERROR_MESSAGE);
                     //check error
                     checkEmptyAndInvalidFields();
+
                 }
             }
 
@@ -520,6 +524,7 @@ public class RegisterForm {
 
 
         }finally {
+            DBquery.getInstance().disconnect();
 
         }
         return a;

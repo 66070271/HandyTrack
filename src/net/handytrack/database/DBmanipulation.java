@@ -29,7 +29,18 @@ public class DBmanipulation extends DBconnect {
             stm.executeUpdate(s);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            disconnect();
         }
+    }
+    public void disconnect() {
+        try {
+            stm.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

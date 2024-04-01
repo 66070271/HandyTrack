@@ -147,6 +147,8 @@ public class DeliveryMan implements ActionListener, ItemListener {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            DBquery.getInstance().disconnect();
         }
         table.setModel(model);
     }
@@ -187,6 +189,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
             }
             String sql = String.format("UPDATE product SET Status = '%s' WHERE TrackNum = '%s'", sc.getStatus(), data1);
             DBmanipulation.getInstance().getUpdate(sql);
+
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             time = dtf.format(LocalDateTime.now());
 

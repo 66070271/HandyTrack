@@ -87,6 +87,8 @@ public class Option implements ActionListener{
 
             }catch(SQLException ex){
                 ex.printStackTrace();
+            }finally {
+                DBquery.getInstance().disconnect();
             }
         }else if(e.getSource().equals(exit)){
             fr.dispose();

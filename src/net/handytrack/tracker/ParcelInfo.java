@@ -48,6 +48,8 @@ public class ParcelInfo implements Person, Parcel {
             }
         } catch (SQLException e) {
             Status = "Sorry, your package couldn't be found.";
+        }finally {
+            db.disconnect();
         }
     }
     public ResultSet querry(DBconnect db,String sql){

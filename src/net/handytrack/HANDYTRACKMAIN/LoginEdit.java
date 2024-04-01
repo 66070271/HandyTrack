@@ -1,12 +1,14 @@
 package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 import net.handytrack.tracker.RealTrack;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Arc2D;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -179,25 +181,34 @@ public class LoginEdit implements ActionListener{
 
         String sql = String.format("SELECT * FROM login WHERE username = '%s' and password = '%s'", name, pass);
         ResultSet rs = DBquery.getInstance().getSelect(sql);
+
         try {
             if (rs.next()) {
                 userId = rs.getInt("iduser"); // Store the userId if login is successful
                 String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'", userId);
                 ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
+
                 if (rs1.getString("password").equals(pass)) {
                     hdm.setKeyuser(this.userId);
                     hdm.fetchUser();
+
                     return true;
+
                 } else {
+
                     return false;
                 }
             } else {
                 return false;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }finally {
+            DBquery.getInstance().disconnect();
         }
+
     }
     private void setWelcomeLabel(JLabel l){
         l.setFont(new Font("Arial", Font.BOLD, 24));
@@ -283,15 +294,19 @@ public class LoginEdit implements ActionListener{
                 if ("organization_key".equals(input)) {
                     String username = JOptionPane.showInputDialog(fr, "Please fill your Username", null, JOptionPane.QUESTION_MESSAGE);
                     ResultSet rs = DBquery.getInstance().getSelect(String.format("SELECT * FROM login WHERE username = '%s'",username));
+
                 try {
                         JOptionPane.showMessageDialog(fr, "Your Password is:" + rs.getString("password"), "Invalid organization's key", JOptionPane.INFORMATION_MESSAGE);
                 }catch (SQLException ex){
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(fr, "Invalid Username", null, JOptionPane.ERROR_MESSAGE);
+                }finally {
+                    DBquery.getInstance().disconnect();
                 }
 
                 } else {
                     JOptionPane.showMessageDialog(fr, "Wrong Password!!!", "Invalid organization's key", JOptionPane.WARNING_MESSAGE);
+
                 }
             }
         });
