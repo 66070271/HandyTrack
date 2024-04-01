@@ -447,7 +447,7 @@ public class MMS extends JFrame implements ActionListener {
     private JPanel jPanel1;
     private JPanel jPanel2;
     private ScrollPaneWin111 scrollPaneWin1111;
-    private javax.swing.JTable table;
+    public javax.swing.JTable table;
     private JTextField txtSearch;
     private Component component[];
     // End of variables declaration//GEN-END:variables
