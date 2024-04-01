@@ -3,6 +3,7 @@ package net.handytrack.statusupdater;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
+import net.handytrack.tracker.TrackInfo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,12 +23,12 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JFrame fr;
     private JTable table;
     private DefaultTableModel model;
-    private JComboBox statussort;
+    private JComboBox statussort, typesort;
     private JScrollPane scrollPane;
     private JPanel pn1, pn2, blank1, blank2;
     private JButton done, search, sdefault;
     private JTextField searchtf;
-    private JLabel lb1, lb2;
+    private JLabel lb1, lb2, typelabel;
     private StatusChanger sc;
     private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete;
 
@@ -41,15 +42,20 @@ public class DeliveryMan implements ActionListener, ItemListener {
         statussort.addItem("Delivery");
         statussort.addItem("Complete");
         statussort.setSelectedIndex(0);
-
+//        typesort = new JComboBox();
+//        typesort.addItem("-");
+//        typesort.addItem("Normal");
+//        typesort.addItem("Freeze");
+//        typesort.setSelectedIndex(0);
+//        typelabel = new JLabel("Sorted by Type : ");
         sc = new StatusChanger();
 
-        String[] columnNames = {"Track Num", "Receiver", "Address", "Contact", "Status", "Action"};
+        String[] columnNames = {"Track Number", "Receiver", "Address", "Contact", "Type", "Status", "Action"};
         model = new DefaultTableModel(columnNames, 0) {
             @Override ///ทำให้ Column อื่นๆที่ไม่ได้ Set ไว้แก้ไขไม่ได้
             public boolean isCellEditable(int row, int column) {
-                // Make columns 4 and 5 editable
-                return column == 5;
+                // Make columns 6 editable
+                return column == 6;
             }
         };
 
@@ -68,9 +74,11 @@ public class DeliveryMan implements ActionListener, ItemListener {
         search = new JButton("Seach");
         sdefault = new JButton("Set Default");
         searchtf = new JTextField(20);
-        lb1 = new JLabel("Sorted by Name or ID : ");
+        lb1 = new JLabel("Sorted by Name or Track Number : ");
         lb2 = new JLabel("Sorted by Status : ");
         fr.add(pn2, BorderLayout.NORTH);
+//        pn2.add(typelabel);
+//        pn2.add(typesort);
         pn2.add(lb2);
         pn2.add(statussort);
         pn2.add(lb1);
@@ -79,7 +87,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         pn2.add(sdefault);
 
 
-/////////////////////////////////// DateTime /////////////////////////////////////////////
+/////////////////////////////////// JTable Set /////////////////////////////////////////////
         String sql = "SELECT * FROM product;";
         setTable(sql);
 
@@ -92,15 +100,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //        table.getColumnModel().getColumn(4).setPreferredWidth(40);
 //        table.getColumnModel().getColumn(5).setPreferredWidth(50);
 
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-//        time = dtf.format(LocalDateTime.now());
-//        System.out.println(time);
-
-//        TableColumn statusColumn = table.getColumnModel().getColumn(4); // Status column index is now 4
-//        statusColumn.setCellEditor(new DefaultCellEditor(status));
 
         // Custom TableCellRenderer for button in column 5
-        TableColumn deleteColumn = table.getColumnModel().getColumn(5); // Action column index is 5
+        TableColumn deleteColumn = table.getColumnModel().getColumn(6); // Action column index is 5
         deleteColumn.setCellRenderer(new ButtonRenderer());
         deleteColumn.setCellEditor(new ButtonEditor());
 
@@ -110,19 +112,17 @@ public class DeliveryMan implements ActionListener, ItemListener {
         fr.add(pn1, BorderLayout.SOUTH);
 
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        fr.pack();
-        fr.setSize(1200, 600);
-//        fr.setSize(1920, 1080);
+        fr.setSize(1400, 750);
         fr.setVisible(true);
 
 /////////////////////////////// Set Font  ////////////////////////////////
-        done.setFont(new Font("Arial", Font.BOLD, 14));
+//        done.setFont(new Font("Arial", Font.BOLD, 14));
 
         search.addActionListener(this);
         sdefault.addActionListener(this);
         statussort.addItemListener(this);
         sc.getDone().addActionListener(this);
-
+//        typesort.addItemListener(this);
     }
 
     public static void main(String[] args) {
@@ -147,9 +147,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String padd = rs.getString("Province");
                 String zadd = rs.getString("Zip");
                 String pnum = rs.getString("contactNum");
+                String gtype = rs.getString("Type");
                 String gstatus = rs.getString("Status");
                 String address = (radd + ", " + dadd + ", " + padd + ", " + zadd);
-                String[] row = {trackn, rname, address, pnum, gstatus, "Change"};
+                String[] row = {trackn, rname, address, pnum, gtype, gstatus, "Change"};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -159,33 +160,33 @@ public class DeliveryMan implements ActionListener, ItemListener {
     }
 
     /////////////////////////////// Get Time for Status Chagner GUI ////////////////////////////////////////////
-    public String getSorttime(int state, String sqlin) {
-        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", sqlin);
-        try {
-            ResultSet rs = DBquery.getInstance().getSelect(sql);
-            if (rs.next()) {
-                String timereceive = rs.getString("Recieved");
-                String timesort = rs.getString("Sorting");
-                String timetransit = rs.getString("Transit");
-                String timedelivery = rs.getString("Delivery");
-                String timecomplete = rs.getString("Finish");
-                if (state == 1) {
-                    return timereceive;
-                } else if (state == 2) {
-                    return timesort;
-                } else if (state == 3) {
-                    return timetransit;
-                } else if (state == 4) {
-                    return timedelivery;
-                } else if (state == 5) {
-                    return timecomplete;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Error";
-    }
+//    public String getSorttime(int state, String s) {
+//        String sql = String.format("SELECT * FROM trackinfo WHERE TrackNum = '%s'", s);
+//        try {
+//            ResultSet rs = DBquery.getInstance().getSelect(sql);
+//            if (rs.next()) {
+//                String timereceive = rs.getString("Recieved");
+//                String timesort = rs.getString("Sorting");
+//                String timetransit = rs.getString("Transit");
+//                String timedelivery = rs.getString("Delivery");
+//                String timecomplete = rs.getString("Finish");
+//                if (state == 1) {
+//                    return timereceive;
+//                } else if (state == 2) {
+//                    return timesort;
+//                } else if (state == 3) {
+//                    return timetransit;
+//                } else if (state == 4) {
+//                    return timedelivery;
+//                } else if (state == 5) {
+//                    return timecomplete;
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "Error";
+//    }
 
     ///////////////////////////// EVENT (sort function) ////////////////////////////////////
     @Override
@@ -219,7 +220,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
             String data1 = model.getValueAt(selectedRow, 0).toString();
 
             if (!sc.getStatus().equals("null")) {
-                table.setValueAt(sc.getStatus(), selectedRow, 4);
+                table.setValueAt(sc.getStatus(), selectedRow, 5);
             } else {
                 System.out.println(sc.getStatus());
             }
@@ -264,14 +265,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String sortt = String.format("SELECT * FROM product WHERE Status = '%s'", selectSort);
                 setTable(sortt);
             }
-//            if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("")) {
-//                String sss = "SELECT * FROM product";
-//                setTable(sss);
-//            }
-//            else if (statussort.getSelectedIndex() == 0 & searchtf.getText().equals("") != true) {
-//                String sss = "SELECT * FROM product WHERE NameR = '%s' OR ID = '%s'";
-//                setTable(sss);
-//        }
         }
     }
 
@@ -295,10 +288,17 @@ public class DeliveryMan implements ActionListener, ItemListener {
         public ButtonEditor() {
             button = new JButton("Change");
             button.addActionListener(e -> {
-//                fireEditingStopped();
+                fireEditingStopped();
                 int selectedRow = table.getSelectedRow();
-                String currentstats = model.getValueAt(selectedRow, 4).toString();
+                String currentstats = model.getValueAt(selectedRow, 5).toString();
                 String tracknm = model.getValueAt(selectedRow, 0).toString();
+//                String rtime = getSorttime(1, tracknm);
+//                String stime = getSorttime(2, tracknm);
+//                String ttime = getSorttime(3, tracknm);
+//                String dtime = getSorttime(4, tracknm);
+//                String ctime = getSorttime(5, tracknm);
+
+
                 /// RIGHT HERE (Time in CurrentStats GUI)
                 if (currentstats.equals("Receive")) {
                     sc.getReceives().setEnabled(false);
@@ -306,7 +306,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getInTransits().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
-                    sc.getRtime().setText(getSorttime(1, tracknm));
+//                    sc.getRtime().setText(rtime);
                     sc.getStime().setText("");
                     sc.getTtime().setText("");
                     sc.getDtime().setText("");
@@ -317,8 +317,8 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getInTransits().setEnabled(true);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
-                    sc.getRtime().setText(getSorttime(1, tracknm));
-                    sc.getStime().setText(getSorttime(2, tracknm));
+//                    sc.getRtime().setText(rtime);
+//                    sc.getStime().setText(stime);
                     sc.getTtime().setText("");
                     sc.getDtime().setText("");
                     sc.getCtime().setText("");
@@ -328,9 +328,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(true);
                     sc.getCompletes().setEnabled(false);
-                    sc.getRtime().setText(getSorttime(1, tracknm));
-                    sc.getStime().setText(getSorttime(2, tracknm));
-                    sc.getTtime().setText(getSorttime(3, tracknm));
+//                    sc.getRtime().setText(rtime);
+//                    sc.getStime().setText(stime);
+//                    sc.getTtime().setText(ttime);
                     sc.getDtime().setText("");
                     sc.getCtime().setText("");
                 } else if (currentstats.equals("Delivery")) {
@@ -339,10 +339,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(true);
-                    sc.getRtime().setText(getSorttime(1, tracknm));
-                    sc.getStime().setText(getSorttime(2, tracknm));
-                    sc.getTtime().setText(getSorttime(3, tracknm));
-                    sc.getDtime().setText(getSorttime(4, tracknm));
+//                    sc.getRtime().setText(rtime);
+//                    sc.getStime().setText(stime);
+//                    sc.getTtime().setText(ttime);
+//                    sc.getDtime().setText(dtime);
                     sc.getCtime().setText("");
                 } else if (currentstats.equals("Complete")) {
                     sc.getReceives().setEnabled(false);
@@ -350,11 +350,11 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getInTransits().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
                     sc.getCompletes().setEnabled(false);
-                    sc.getRtime().setText(getSorttime(1, tracknm));
-                    sc.getStime().setText(getSorttime(2, tracknm));
-                    sc.getTtime().setText(getSorttime(3, tracknm));
-                    sc.getDtime().setText(getSorttime(4, tracknm));
-                    sc.getCtime().setText(getSorttime(5, tracknm));
+//                    sc.getRtime().setText(rtime);
+//                    sc.getStime().setText(stime);
+//                    sc.getTtime().setText(ttime);
+//                    sc.getDtime().setText(dtime);
+//                    sc.getCtime().setText(ctime);
                 }
                 sc.getFr().setVisible(true);
             });

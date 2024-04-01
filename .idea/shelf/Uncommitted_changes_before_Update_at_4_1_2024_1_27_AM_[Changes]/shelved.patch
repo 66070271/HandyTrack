@@ -1,0 +1,164 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" name=\"Changes\" comment=\"wasd\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/NormalTypeCreator.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/TypeCreator.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/type/FreezeType.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/type/NormalType.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/type/Type.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/product/Type.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"52b44c84-adb6-473e-a908-819da7a8df46\" name=\"Changes by tae\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/Example.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/FreezeTypeCreator.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/type/FreezeType.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/type/NormalType.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/net/handytrack/type/Type.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/net/handytrack/type/product/Type.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;CapybaraCapybara&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"8bb20f0f-6121-4dfa-ad71-39c9bbff5f7d\" />\r\n        <option name=\"url\" value=\"https://github.com/66070271/HandyTrack.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"LineStatusTrackerManager\">\r\n    <file path=\"$PROJECT_DIR$/src/net/handytrack/type/product/Type.java\">\r\n      <ranges>\r\n        <range start1=\"0\" end1=\"1\" start2=\"0\" end2=\"1\" changelist=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" />\r\n        <range start1=\"5\" end1=\"5\" start2=\"5\" end2=\"9\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n      </ranges>\r\n    </file>\r\n    <file path=\"$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java\">\r\n      <ranges>\r\n        <range start1=\"0\" end1=\"1\" start2=\"0\" end2=\"1\" changelist=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" />\r\n        <range start1=\"2\" end1=\"3\" start2=\"2\" end2=\"3\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"5\" end1=\"5\" start2=\"5\" end2=\"9\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"6\" end1=\"6\" start2=\"10\" end2=\"14\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"7\" end1=\"7\" start2=\"15\" end2=\"16\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"8\" end1=\"8\" start2=\"17\" end2=\"19\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"10\" end1=\"11\" start2=\"21\" end2=\"38\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"12\" end1=\"12\" start2=\"39\" end2=\"42\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n      </ranges>\r\n    </file>\r\n    <file path=\"$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java\">\r\n      <ranges>\r\n        <range start1=\"0\" end1=\"1\" start2=\"0\" end2=\"1\" changelist=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" />\r\n        <range start1=\"5\" end1=\"5\" start2=\"5\" end2=\"6\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"10\" end1=\"11\" start2=\"11\" end2=\"20\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n        <range start1=\"12\" end1=\"12\" start2=\"21\" end2=\"25\" changelist=\"52b44c84-adb6-473e-a908-819da7a8df46\" />\r\n      </ranges>\r\n    </file>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2eQBug1I7OWKShm4zqqmxMp2yM6\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.Example.executor\": \"Run\",\r\n    \"Application.HANDYTRACKMAIN.executor\": \"Run\",\r\n    \"Application.LoginGUI (1).executor\": \"Run\",\r\n    \"Application.LoginGUI (2).executor\": \"Run\",\r\n    \"Application.LoginGUI (3).executor\": \"Run\",\r\n    \"Application.LoginGUI (4).executor\": \"Run\",\r\n    \"Application.LoginGUI (5).executor\": \"Run\",\r\n    \"Application.LoginGUI.executor\": \"Run\",\r\n    \"Application.MMS.executor\": \"Run\",\r\n    \"Application.RegisterGUI.executor\": \"Run\",\r\n    \"Application.net.handytrack.Login.LoginGUI.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\pleum\\IdeaProjects\\HandyTrack\\resources\\Picture\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\pleum\\IdeaProjects\\HandyTrack\\src\\net\\handytrack\\Login\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"net.handytrack.type\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"net.handytrack.type\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.MMS\">\r\n    <configuration name=\"Example\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.type.Example\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.type.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"HANDYTRACKMAIN\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginGUI (3)\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.LoginGUI\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginGUI\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.HANDYTRACKMAIN.LoginGUI\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.HANDYTRACKMAIN.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MMS\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"net.handytrack.manager.MMS\" />\r\n      <module name=\"HandyTrack\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"net.handytrack.manager.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Example\" />\r\n        <item itemvalue=\"Application.MMS\" />\r\n        <item itemvalue=\"Application.LoginGUI\" />\r\n        <item itemvalue=\"Application.LoginGUI (3)\" />\r\n        <item itemvalue=\"Application.HANDYTRACKMAIN\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"00bdb3ab-7e66-4438-a7f7-8adc8ebe1973\" name=\"Changes\" comment=\"\" />\r\n      <created>1711827146159</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1711827146159</updated>\r\n      <workItem from=\"1711827147318\" duration=\"6673000\" />\r\n      <workItem from=\"1711881258917\" duration=\"14423000\" />\r\n      <workItem from=\"1711896729547\" duration=\"67000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711885425182</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711885425182</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887119497</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887119497</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887180884</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887180884</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887343340</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887343340</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887435562</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887435562</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711887509749</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711887509749</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711897157211</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711897157211</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711897398341</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711897398341</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"wasd\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711898893071</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711898893071</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"z\" />\r\n    <MESSAGE value=\"wasd\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"wasd\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision bb0f40f2340141133a42b199e33866f2934de205)
++++ b/.idea/workspace.xml	(date 1711908088514)
+@@ -5,19 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
+-      <change afterPath="$PROJECT_DIR$/src/net/handytrack/type/NormalTypeCreator.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/net/handytrack/type/TypeCreator.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/FreezeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/NormalType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/Type.java" afterDir="false" />
+-    </list>
+-    <list id="52b44c84-adb6-473e-a908-819da7a8df46" name="Changes by tae" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/net/handytrack/type/Example.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/net/handytrack/type/FreezeTypeCreator.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/FreezeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/NormalType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/Type.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -48,34 +36,6 @@
+       </UrlAndAccount>
+     </option>
+   </component>
+-  <component name="LineStatusTrackerManager">
+-    <file path="$PROJECT_DIR$/src/net/handytrack/type/product/Type.java">
+-      <ranges>
+-        <range start1="0" end1="1" start2="0" end2="1" changelist="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" />
+-        <range start1="5" end1="5" start2="5" end2="9" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-      </ranges>
+-    </file>
+-    <file path="$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java">
+-      <ranges>
+-        <range start1="0" end1="1" start2="0" end2="1" changelist="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" />
+-        <range start1="2" end1="3" start2="2" end2="3" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="5" end1="5" start2="5" end2="9" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="6" end1="6" start2="10" end2="14" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="7" end1="7" start2="15" end2="16" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="8" end1="8" start2="17" end2="19" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="10" end1="11" start2="21" end2="38" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="12" end1="12" start2="39" end2="42" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-      </ranges>
+-    </file>
+-    <file path="$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java">
+-      <ranges>
+-        <range start1="0" end1="1" start2="0" end2="1" changelist="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" />
+-        <range start1="5" end1="5" start2="5" end2="6" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="10" end1="11" start2="11" end2="20" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-        <range start1="12" end1="12" start2="21" end2="25" changelist="52b44c84-adb6-473e-a908-819da7a8df46" />
+-      </ranges>
+-    </file>
+-  </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 7
+ }</component>
+@@ -100,6 +60,7 @@
+     "Application.MMS.executor": "Run",
+     "Application.RegisterGUI.executor": "Run",
+     "Application.net.handytrack.Login.LoginGUI.executor": "Run",
++    "Application.psm.executor": "Run",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "git-widget-placeholder": "master",
+@@ -130,7 +91,7 @@
+       <recent name="net.handytrack.type" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.MMS">
++  <component name="RunManager" selected="Application.psm">
+     <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="net.handytrack.type.Example" />
+       <module name="HandyTrack" />
+@@ -144,8 +105,8 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
++    <configuration name="LoginGUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+@@ -157,7 +118,7 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="LoginGUI (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+@@ -170,12 +131,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
++    <configuration name="MMS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.manager.MMS" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.HANDYTRACKMAIN.*" />
++          <option name="PATTERN" value="net.handytrack.manager.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -183,12 +144,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="MMS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="net.handytrack.manager.MMS" />
++    <configuration name="psm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="net.handytrack.psm.psm" />
+       <module name="HandyTrack" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="net.handytrack.manager.*" />
++          <option name="PATTERN" value="net.handytrack.psm.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -198,11 +159,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.psm" />
+         <item itemvalue="Application.Example" />
+         <item itemvalue="Application.MMS" />
+         <item itemvalue="Application.LoginGUI" />
+         <item itemvalue="Application.LoginGUI (3)" />
+-        <item itemvalue="Application.HANDYTRACKMAIN" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -297,7 +258,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1711898893071</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="wasd">
++      <option name="closed" value="true" />
++      <created>1711903421082</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1711903421082</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">

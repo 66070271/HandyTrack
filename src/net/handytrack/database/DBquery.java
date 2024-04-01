@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class DBquery extends DBconnect {
     private static DBquery instance;
 
-    private DBquery() {
+    public DBquery() {
         super();
     }
 
-    private DBquery(String url) {
+    public DBquery(String url) {
         super(url);
     }
 
@@ -36,4 +36,10 @@ public class DBquery extends DBconnect {
         return rs;
 
     }
+
+    @Override
+    public void getUpdate(String s) {
+
+    }
+
 }

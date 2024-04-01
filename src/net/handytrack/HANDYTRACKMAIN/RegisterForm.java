@@ -14,7 +14,8 @@ public class RegisterForm {
     private JTextField firstNameField, lastNameField, phoneNumberField, emailField, usernameField;
     private JPasswordField passwordField, passwordagainField;
     private JButton registerButton, backToLogin;
-    private JPanel registerPanel, btnPanel, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12;
+    private JPanel registerPanel, btnPanel, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13;
+    private JLabel job;
 
 
     public RegisterForm(){
@@ -42,11 +43,19 @@ public class RegisterForm {
         p10 = new JPanel();
         p11 = new JPanel();
         p12 = new JPanel();
+        p13 = new JPanel();
+        job = new JLabel("Job Position");
+        job.setFont(new Font("Arial", Font.BOLD, 16));
+        p13.setLayout(new BorderLayout());
+            p13.add(job,BorderLayout.WEST);
+        String[] items = {"Delivery Man", "Officer"};
+        JComboBox<String> combo;
+        combo = new JComboBox<>(items);
 
         p2.setPreferredSize(new Dimension(400, 40));
-        p3.setPreferredSize(new Dimension(50, 520));
-        p4.setPreferredSize(new Dimension(50, 520));
-        p5.setPreferredSize(new Dimension(400, 40));
+        p3.setPreferredSize(new Dimension(50, 560));
+        p4.setPreferredSize(new Dimension(50, 560));
+        p5.setPreferredSize(new Dimension(400, 80));
         registerPanel.setPreferredSize(new Dimension(300, 520));
 
         // Set text field properties and listeners
@@ -57,6 +66,7 @@ public class RegisterForm {
         setConUsernameField(usernameField);
         setConPasswordField(passwordField);
         setConPasswordAgainField(passwordagainField);
+        setConJobPosition(combo);
 
         // Style GUI
         styleTextField(firstNameField);
@@ -79,12 +89,13 @@ public class RegisterForm {
         stylePanelRegisPanel(p10);
         stylePanelRegisPanel(p11);
         stylePanelRegisPanel(p12);
+        stylePanelRegisPanel(p13);
         styleButton(backToLogin);
         backToLogin.setBackground(new Color(210, 224, 251));
         styleButton(registerButton);
 
         registerPanel.setSize(400, 300);
-        registerPanel.setLayout(new GridLayout(13, 1));
+        registerPanel.setLayout(new GridLayout(15, 1));
         registerPanel.add(firstNameField);
         registerPanel.add(p6);
         registerPanel.add(lastNameField);
@@ -98,6 +109,8 @@ public class RegisterForm {
         registerPanel.add(passwordField);
         registerPanel.add(p12);
         registerPanel.add(passwordagainField);
+        registerPanel.add(p13);
+        registerPanel.add(combo);
 
         p5.add(backToLogin);p5.add(registerButton);
         p1.setLayout(new BorderLayout());
@@ -108,7 +121,7 @@ public class RegisterForm {
         fr.add(p1);
         fr.setLocation(900, 200);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fr.setSize(400, 600);
+        fr.setSize(400, 680);
         fr.setResizable(false);
         fr.setVisible(true);
         //back to login action listener
@@ -116,7 +129,7 @@ public class RegisterForm {
             @Override
             public void actionPerformed(ActionEvent e){
                 if (e.getSource()==backToLogin){
-                    new LoginGUI();
+                    new LoginEdit();
                     fr.dispose();
                 }
             }
@@ -132,8 +145,9 @@ public class RegisterForm {
                     String email = emailField.getText();
                     String username = usernameField.getText();
                     String password = String.valueOf(passwordField.getPassword());
+                    String selectedPosition = (String) combo.getSelectedItem();
                     try {
-                        String sql = String.format("INSERT INTO login(name, surename, tel, email, username, password) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",firstName,lastName,phoneNumber,email,username,password);
+                        String sql = String.format("INSERT INTO login(name, surename, tel, email, username, password, jobposition) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",firstName,lastName,phoneNumber,email,username,password,selectedPosition);
                         DBmanipulation.getInstance().getUpdate(sql);
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -407,6 +421,15 @@ public class RegisterForm {
             }
         });
     }
+    private void setConJobPosition(JComboBox cm){
+        cm.addActionListener(e -> {
+            String selectedPosition = (String) cm.getSelectedItem();
+            if (selectedPosition == null || selectedPosition.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please select a job position.", "Error", JOptionPane.ERROR_MESSAGE);
+                cm.setSelectedIndex(-1);
+            }
+        });
+    }
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -483,19 +506,22 @@ public class RegisterForm {
     }
     private boolean isUsernameDuplicate(String username) {
         // Connect to the database and check if username exists
-        String sql1 = String.format("SELECT * FROM login WHERE username = '%d'", username);
-        ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
+        String sql = String.format("SELECT * FROM login WHERE username = '%s'", username);
+        ResultSet rs = DBquery.getInstance().getSelect(sql);
+        Boolean b = null;
         try {
-            if (rs1.next()) {
-//                if (username.equals(sql1) == )
-                return true;
+            if (rs.next()) {
+                if (username.equals(rs.getString("username"))){
+                     b = true;
+                }
+
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+             b = false;
         } finally {
-//            dbConnect.disconnect(); // Disconnect from the database
+            DBquery.getInstance().disconnect(); // Disconnect from the database
         }
-        return false;
+        return b;
     }
     private boolean isValidRegistration() {
         // Check if all fields are filled correctly
@@ -510,8 +536,8 @@ public class RegisterForm {
                isValidEmail(emailField.getText()) &&
                isValidPasswordField(passwordField) &&
                isValidPasswordField(passwordagainField) &&
-               passwordFieldMatches(passwordField, passwordagainField); //&&
-//               !isUsernameDuplicate(usernameField.getText());  // Check if username is not duplicate
+               passwordFieldMatches(passwordField, passwordagainField) &&
+               !isUsernameDuplicate(usernameField.getText());  // Check if username is not duplicate
     }
     private void checkEmptyAndInvalidFields() {
         if (isEmptyFirstNameField(firstNameField)) {

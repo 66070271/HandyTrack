@@ -1,6 +1,7 @@
 package net.handytrack.database;
 
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBmanipulation extends DBconnect {
@@ -29,6 +30,11 @@ public class DBmanipulation extends DBconnect {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public ResultSet getSelect(String s) {
+        return null;
     }
 
 }
