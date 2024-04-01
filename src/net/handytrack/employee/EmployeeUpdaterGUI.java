@@ -43,6 +43,7 @@ public class EmployeeUpdaterGUI implements ActionListener{
         p5.add(temail);
         p3.add(done);
 
+
         fr.add(p1);
         fr.add(p2);
         fr.add(p4);
@@ -63,10 +64,7 @@ public class EmployeeUpdaterGUI implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(done)){
-//            DBmanipulation.getInstance().getUpdate("UPDATE customer SET name = '%s' WHERE name ='%s'");
-//            this.name = tname.getText();
-
-
+            ///
         }
     }
 

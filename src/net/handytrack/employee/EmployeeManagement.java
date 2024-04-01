@@ -116,6 +116,7 @@ public class EmployeeManagement implements ActionListener {
             String sql = "SELECT * FROM login;";
             setTable(sql);
         }else if(e.getSource().equals(egui.getDone())) {
+            egui.getFrame().dispose();
             int selectedRow = table.getSelectedRow();
             table.setValueAt(egui.getTname().getText(), selectedRow, 1);
             table.setValueAt(egui.getTsurname().getText(), selectedRow, 2);
@@ -129,6 +130,10 @@ public class EmployeeManagement implements ActionListener {
             String email = model.getValueAt(selectedRow, 4).toString();
             String sql = String.format("UPDATE login SET name = '%s', surename = '%s', tel = '%s', email = '%s' WHERE username = '%s'", name, surname, phonenum, email, username);
             DBmanipulation.getInstance().getUpdate(sql);
+            egui.getTname().setText("");
+            egui.getTsurname().setText("");
+            egui.getTcontact().setText("");
+            egui.getTemail().setText("");
         }
     }
 //    public String getTel() {
