@@ -15,12 +15,14 @@ public class summarize extends JPanel implements ActionListener {
         part2 = new JPanel();
         part3 = new JPanel();
         part4 = new JPanel();
-        jlum1 = new JLabel("Summary all items to PieChart", SwingConstants.CENTER);
+        jlum1 = new JLabel("Summary all items", SwingConstants.CENTER);
         jlum1.setFont(new Font("Arial", Font.PLAIN, 28));
         jlum2 = new JLabel("Showing Status Items", SwingConstants.CENTER);
         jlum2.setFont(new Font("Arial", Font.PLAIN, 28));
-        jum2 = new JButton("Create2");
+        jum2 = new JButton("Create");
         jum = new JButton("Create");
+        jum.setFont(new Font("Arial", Font.PLAIN, 28));
+        jum2.setFont(new Font("Arial", Font.PLAIN, 28));
 
         this.setLayout(new GridLayout(4, 1));
         part1.setLayout((new GridLayout(2,1)));
@@ -30,6 +32,17 @@ public class summarize extends JPanel implements ActionListener {
 
         part3.add(jum2);
         part3.add(jlum2);
+
+        part1.setBackground(new Color(210,224,251));
+        part3.setBackground(new Color(210,224,251));
+        jum.setBackground(new Color(173, 136, 198));
+        jum2.setBackground(new Color(173, 136, 198));
+        jum.setForeground(new Color(0,0,16));
+        jum2.setForeground(new Color(0,0,16));
+        jlum1.setForeground(new Color(0,0,16));
+        jlum2.setForeground(new Color(0,0,16));
+        jum.setForeground(new Color(0,0,16));
+        jum2.setForeground(new Color(0,0,16));
 
         this.add(part1);
         this.add(part2);
