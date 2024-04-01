@@ -302,9 +302,15 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 String type = model.getValueAt(selectedRow, 4).toString();
                 String status = model.getValueAt(selectedRow, 5).toString();
 //                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Contact : %s<br>Address : %s<br>Receiver : %s<br>Type : %s<br>Status : %s</html>", tracknm, rname, address, contact, type, status));
-                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Receiver : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                        " Contact : %s<br>Address %s<br>Type : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                        " Status : %s</html>", tracknm, rname, contact, address, type, status));
+//                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Receiver : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+//                        " Contact : %s<br>Address %s<br>Type : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+//                        " Status : %s</html>", tracknm, rname, contact, address, type, status));
+                sc.getTrack().setText(String.format("<html><b>Track : %s<b/><html>", tracknm));
+                sc.getReceiver().setText(String.format("Receiver : %s", rname));
+                sc.getContact().setText(String.format("Contact : %s", contact));
+                sc.getAddress().setText(String.format("Address : %s", address));
+                sc.getTypes().setText(String.format("Type : %s", type));
+                sc.getStatuss().setText(String.format("Current Status : %s", status));
 //                String rtime = getSorttime(1, tracknm);
 //                String stime = getSorttime(2, tracknm);
 //                String ttime = getSorttime(3, tracknm);
