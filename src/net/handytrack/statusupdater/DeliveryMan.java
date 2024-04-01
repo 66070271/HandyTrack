@@ -30,7 +30,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JTextField searchtf;
     private JLabel lb1, lb2, typelabel;
     private StatusChanger sc;
-    private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete;
+    private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete, sname;
 
     public DeliveryMan() {
         fr = new JFrame("Delivery Status Updater");
@@ -110,6 +110,10 @@ public class DeliveryMan implements ActionListener, ItemListener {
 
         pn1.add(done);
         fr.add(pn1, BorderLayout.SOUTH);
+        pn1.setBackground(new Color(210, 224, 251));
+        pn2.setBackground(new Color(210, 224, 251));
+        blank1.setBackground(new Color(210, 224, 251));
+        blank2.setBackground(new Color(210, 224, 251));
 
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(1400, 750);
@@ -140,7 +144,6 @@ public class DeliveryMan implements ActionListener, ItemListener {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()) {
                 String trackn = rs.getString("TrackNum");
-//                String id = rs.getString("ID");
                 String rname = rs.getString("NameR");
                 String radd = rs.getString("Road");
                 String dadd = rs.getString("District");
@@ -292,6 +295,16 @@ public class DeliveryMan implements ActionListener, ItemListener {
                 int selectedRow = table.getSelectedRow();
                 String currentstats = model.getValueAt(selectedRow, 5).toString();
                 String tracknm = model.getValueAt(selectedRow, 0).toString();
+
+                String rname = model.getValueAt(selectedRow, 1).toString();
+                String address = model.getValueAt(selectedRow, 2).toString();
+                String contact = model.getValueAt(selectedRow, 3).toString();
+                String type = model.getValueAt(selectedRow, 4).toString();
+                String status = model.getValueAt(selectedRow, 5).toString();
+//                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Contact : %s<br>Address : %s<br>Receiver : %s<br>Type : %s<br>Status : %s</html>", tracknm, rname, address, contact, type, status));
+                sc.getRtime().setText(String.format("<html><b>Track : %s</b><br>Receiver : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        " Contact : %s<br>Address %s<br>Type : %s &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        " Status : %s</html>", tracknm, rname, contact, address, type, status));
 //                String rtime = getSorttime(1, tracknm);
 //                String stime = getSorttime(2, tracknm);
 //                String ttime = getSorttime(3, tracknm);
@@ -307,10 +320,11 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getCompletes().setEnabled(false);
                     sc.getDeliverys().setEnabled(false);
 //                    sc.getRtime().setText(rtime);
-                    sc.getStime().setText("");
-                    sc.getTtime().setText("");
-                    sc.getDtime().setText("");
-                    sc.getCtime().setText("");
+//                    sc.getRtime().setText(rname + "\n" + address + "\n" + contact + "\n" + type + "\n" + status);
+//                    sc.getStime().setText("");
+//                    sc.getTtime().setText("");
+//                    sc.getDtime().setText("");
+//                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Sorting")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
@@ -319,9 +333,9 @@ public class DeliveryMan implements ActionListener, ItemListener {
                     sc.getCompletes().setEnabled(false);
 //                    sc.getRtime().setText(rtime);
 //                    sc.getStime().setText(stime);
-                    sc.getTtime().setText("");
-                    sc.getDtime().setText("");
-                    sc.getCtime().setText("");
+//                    sc.getTtime().setText("");
+//                    sc.getDtime().setText("");
+//                    sc.getCtime().setText("");
                 } else if (currentstats.equals("In Transit")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
@@ -331,8 +345,8 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //                    sc.getRtime().setText(rtime);
 //                    sc.getStime().setText(stime);
 //                    sc.getTtime().setText(ttime);
-                    sc.getDtime().setText("");
-                    sc.getCtime().setText("");
+//                    sc.getDtime().setText("");
+//                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Delivery")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
@@ -343,7 +357,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
 //                    sc.getStime().setText(stime);
 //                    sc.getTtime().setText(ttime);
 //                    sc.getDtime().setText(dtime);
-                    sc.getCtime().setText("");
+//                    sc.getCtime().setText("");
                 } else if (currentstats.equals("Complete")) {
                     sc.getReceives().setEnabled(false);
                     sc.getSortings().setEnabled(false);
