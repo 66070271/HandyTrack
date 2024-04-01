@@ -1,11 +1,9 @@
 package net.handytrack.HANDYTRACKMAIN;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import net.handytrack.HANDYTRACKMAIN.RegisterForm;
 import net.handytrack.database.DBquery;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
@@ -86,7 +84,6 @@ public class LoginEdit {
         p3.setBackground(Color.WHITE);
         ppro.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
         ppas.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
-        //p4.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.BLACK));
         setConUsernameField(usernameField);
         setConPasswordField(passwordField);
         setConSigninButton(signinButton);
@@ -116,7 +113,6 @@ public class LoginEdit {
         p8.setPreferredSize(new Dimension(120, 75));
         p9.setPreferredSize(new Dimension(115, 75));
         p10.setPreferredSize(new Dimension(115, 75));
-        // p11.setPreferredSize(new Dimension(350,50));
         p7.add(forgotPasswordButton);
         p11.add(signupButton);
         plogo.add(logolabel);
@@ -166,7 +162,7 @@ public class LoginEdit {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        new LoginGUI();
+        new LoginEdit();
     }
 
     public Boolean loginuser() {
@@ -277,7 +273,9 @@ public class LoginEdit {
             public void actionPerformed(ActionEvent e) {
                 String input = JOptionPane.showInputDialog(fr, "Contact the relevant person to request a key \n\n Enter organization's key", "Forgot Password", JOptionPane.QUESTION_MESSAGE);
                 if ("organization_key".equals(input)) {
-                    JOptionPane.showMessageDialog(fr, "Your password is: *******");
+                    String username = JOptionPane.showInputDialog(fr, "Please fill your Username", null, JOptionPane.QUESTION_MESSAGE);
+
+
                 } else {
                     JOptionPane.showMessageDialog(fr, "Wrong Password!!!", "Invalid organization's key", JOptionPane.WARNING_MESSAGE);
                 }
