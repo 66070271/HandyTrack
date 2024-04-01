@@ -2,7 +2,7 @@ package net.handytrack.type.product;
 
 public class NormalType implements TypeC {
     private static final double rate = 1 ;
-    private double weight;
+    private final double weight;
     private double extra_cost = 0;
     public NormalType(double weight){
         this.weight = weight;
