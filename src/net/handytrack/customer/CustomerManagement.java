@@ -110,8 +110,8 @@ public class CustomerManagement implements ActionListener {
         try {
             ResultSet rs = DBquery.getInstance().getSelect(sql);
             while (rs.next()) {
-                String sname = rs.getString("NameS");
-                String pnum = rs.getString("contactNum");
+                String sname = rs.getString("name");
+                String pnum = rs.getString("tel");
                 String[] row = { sname,  pnum,  "Edit"};
                 model.addRow(row);
             }
@@ -132,7 +132,7 @@ public class CustomerManagement implements ActionListener {
                 setTable(sql);
             } else {
                 model.setRowCount(0);
-                String searchh = String.format("SELECT * FROM customer WHERE (NameS = '%s' OR contactNum = '%s')", kw, kw);
+                String searchh = String.format("SELECT * FROM customer WHERE (name = '%s' OR tel = '%s')", kw, kw);
                 setTable(searchh);
             }
         } else if (e.getSource().equals(sdefault)) {
