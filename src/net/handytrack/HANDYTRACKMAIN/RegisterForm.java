@@ -508,20 +508,21 @@ public class RegisterForm {
         // Connect to the database and check if username exists
         String sql = String.format("SELECT * FROM login WHERE username = '%s'", username);
         ResultSet rs = DBquery.getInstance().getSelect(sql);
-        Boolean b = null;
+        Boolean a =false;
         try {
             if (rs.next()){
-                if (username.equals(rs.getString("username"))){
-                     b = true;
+                if (username.equals(rs.getString("username"))) {
+                    a = true;
                 }
 
             }
-        } catch (SQLException e) {
-             b = false;
-        } finally {
-            DBquery.getInstance().disconnect(); // Disconnect from the database
+        } catch(SQLException e) {
+
+
+        }finally {
+
         }
-        return b;
+        return a;
     }
     private boolean isValidRegistration() {
         // Check if all fields are filled correctly

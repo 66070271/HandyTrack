@@ -146,7 +146,7 @@ public class RealTrack implements ActionListener, FocusListener, KeyListener {
         fr.setResizable(false);
         fr.setSize(1000, 700);
         fr.setLocation(460, 200);
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fr.setVisible(true);
     }
 
@@ -257,7 +257,7 @@ public class RealTrack implements ActionListener, FocusListener, KeyListener {
                     soPic.setText(String.format("<html>'%s'<br>Your Parcel is Sorted.</html>", ti.getSort()));
                     tranPic.setText(String.format("<html>'%s'<br>Your Parcel is Transited.</html>", ti.getTransit()));
                     delPic.setText(String.format("<html>'%s'<br>Your Parcel is been arrange<br>for delivery by driver.</html>", ti.getDelivery()));
-                    finishPic.setText(String.format("<html>'%s'<br>Successful delivery.</html>", ti.getDelivery()));
+                    finishPic.setText(String.format("<html>'%s'<br>Successful delivery.</html>", ti.getFinish()));
                 }
 
 
