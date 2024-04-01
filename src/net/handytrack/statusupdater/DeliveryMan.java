@@ -23,12 +23,12 @@ public class DeliveryMan implements ActionListener, ItemListener {
     private JFrame fr;
     private JTable table;
     private DefaultTableModel model;
-    private JComboBox statussort;
+    private JComboBox statussort, typesort;
     private JScrollPane scrollPane;
     private JPanel pn1, pn2, blank1, blank2;
     private JButton done, search, sdefault;
     private JTextField searchtf;
-    private JLabel lb1, lb2;
+    private JLabel lb1, lb2, typelabel;
     private StatusChanger sc;
     private String selectSort, time, timereceive, timesort, timetransit, timedelivery, timecomplete;
 
@@ -42,7 +42,12 @@ public class DeliveryMan implements ActionListener, ItemListener {
         statussort.addItem("Delivery");
         statussort.addItem("Complete");
         statussort.setSelectedIndex(0);
-
+//        typesort = new JComboBox();
+//        typesort.addItem("-");
+//        typesort.addItem("Normal");
+//        typesort.addItem("Freeze");
+//        typesort.setSelectedIndex(0);
+//        typelabel = new JLabel("Sorted by Type : ");
         sc = new StatusChanger();
 
         String[] columnNames = {"Track Number", "Receiver", "Address", "Contact", "Type", "Status", "Action"};
@@ -69,9 +74,11 @@ public class DeliveryMan implements ActionListener, ItemListener {
         search = new JButton("Seach");
         sdefault = new JButton("Set Default");
         searchtf = new JTextField(20);
-        lb1 = new JLabel("Sorted by Name or ID : ");
+        lb1 = new JLabel("Sorted by Name or Track Number : ");
         lb2 = new JLabel("Sorted by Status : ");
         fr.add(pn2, BorderLayout.NORTH);
+//        pn2.add(typelabel);
+//        pn2.add(typesort);
         pn2.add(lb2);
         pn2.add(statussort);
         pn2.add(lb1);
@@ -117,7 +124,7 @@ public class DeliveryMan implements ActionListener, ItemListener {
         sdefault.addActionListener(this);
         statussort.addItemListener(this);
         sc.getDone().addActionListener(this);
-
+//        typesort.addItemListener(this);
     }
 
     public static void main(String[] args) {
