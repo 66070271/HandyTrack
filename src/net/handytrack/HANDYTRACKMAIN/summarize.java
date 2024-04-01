@@ -31,7 +31,7 @@ public class summarize extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             if (e.getSource().equals(jum)) {
-                JFrame frame = new JFrame("Bar Chart");
+                JFrame frame = new JFrame("Show Items Frequency");
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new BarChart()); // สร้าง MDI ของ BarChart
                 frame.pack();

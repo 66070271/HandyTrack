@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00bdb3ab-7e66-4438-a7f7-8adc8ebe1973" name="Changes" comment="wasd">
+      <change afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/BarChart1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_3_48_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_3_48_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_3_54_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_3_54_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_5_39_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_5_39_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_5_41_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_2024_5_41_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/FreezeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/type/product/NormalType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/DB.db" beforeDir="false" afterPath="$PROJECT_DIR$/resources/DB.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/BarChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/handytrack/HANDYTRACKMAIN/BarChart.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,50 +54,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CustomerGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CustomerManagement.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DeliveryMan.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HANDYTRACKMAIN.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (3).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (4).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit (5).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginEdit.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (3).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (4).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI (5).executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MMS (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.MMS.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegisterForm (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegisterForm.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RegisterGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.customer.executor&quot;: &quot;Run&quot;,
-    &quot;Application.net.handytrack.Login.LoginGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.psm (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.psm.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BarChart.executor": "Run",
+    "Application.BarChart1.executor": "Run",
+    "Application.CustomerGUI.executor": "Run",
+    "Application.CustomerManagement.executor": "Run",
+    "Application.DeliveryMan.executor": "Run",
+    "Application.HANDYTRACKMAIN.executor": "Run",
+    "Application.LoginEdit (1).executor": "Run",
+    "Application.LoginEdit (2).executor": "Run",
+    "Application.LoginEdit (3).executor": "Run",
+    "Application.LoginEdit (4).executor": "Run",
+    "Application.LoginEdit (5).executor": "Run",
+    "Application.LoginEdit.executor": "Run",
+    "Application.LoginGUI (1).executor": "Run",
+    "Application.LoginGUI (2).executor": "Run",
+    "Application.LoginGUI (3).executor": "Run",
+    "Application.LoginGUI (4).executor": "Run",
+    "Application.LoginGUI (5).executor": "Run",
+    "Application.LoginGUI.executor": "Run",
+    "Application.MMS (1).executor": "Run",
+    "Application.MMS.executor": "Run",
+    "Application.PieChartExample.executor": "Run",
+    "Application.RegisterForm (1).executor": "Run",
+    "Application.RegisterForm.executor": "Run",
+    "Application.RegisterGUI.executor": "Run",
+    "Application.customer.executor": "Run",
+    "Application.net.handytrack.Login.LoginGUI.executor": "Run",
+    "Application.psm (1).executor": "Run",
+    "Application.psm.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/marttpq/Desktop/HProJect/HandyTrack/resources/TimingFramework-0.55.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\resources\Picture" />
@@ -103,9 +111,9 @@
       <recent name="C:\Users\pleum\IdeaProjects\HandyTrack\src\net\handytrack\Login" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginEdit">
-    <configuration name="LoginEdit (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+  <component name="RunManager" selected="Application.BarChart1">
+    <configuration name="BarChart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.BarChart" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -117,8 +125,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEdit (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+    <configuration name="BarChart1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.BarChart1" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -130,8 +138,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEdit (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+    <configuration name="HANDYTRACKMAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.HANDYTRACKMAIN" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -143,8 +151,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEdit (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+    <configuration name="LoginGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginGUI" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -156,8 +164,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEdit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.LoginEdit" />
+    <configuration name="PieChartExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.handytrack.HANDYTRACKMAIN.PieChartExample" />
       <module name="HandyTrack" />
       <extension name="coverage">
         <pattern>
@@ -171,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LoginEdit" />
-        <item itemvalue="Application.LoginEdit (1)" />
-        <item itemvalue="Application.LoginEdit (5)" />
-        <item itemvalue="Application.LoginEdit (4)" />
-        <item itemvalue="Application.LoginEdit (3)" />
+        <item itemvalue="Application.BarChart1" />
+        <item itemvalue="Application.BarChart" />
+        <item itemvalue="Application.HANDYTRACKMAIN" />
+        <item itemvalue="Application.LoginGUI" />
+        <item itemvalue="Application.PieChartExample" />
       </list>
     </recent_temporary>
   </component>
