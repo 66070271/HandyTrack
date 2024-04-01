@@ -2,21 +2,23 @@ package net.handytrack.employee;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.*;
-
+import net.handytrack.customer.customer;
+import net.handytrack.database.DBmanipulation;
 import java.awt.event.*;
 
-public class EmployeeUpdaterGUI implements ActionListener{
+public class EmployeeGUI implements ActionListener{
     private JFrame fr;
     private JLabel lname,lsurname,lcontact,lemail;
     private JTextField tname, tsurname, tcontact, temail;
     private JPanel p1,p2,p3,p4,p5;
     private JButton done;
     private String name, surname, contact, email;
-    private EmployeeManagement emp;
+    private employee emp;
 
-    public EmployeeUpdaterGUI(){
+    public EmployeeGUI(){
         fr = new JFrame("Employee Info Updater");
         lname = new JLabel("Name : ");
         lsurname = new JLabel("Surname : ");
@@ -50,10 +52,8 @@ public class EmployeeUpdaterGUI implements ActionListener{
         fr.add(p5);
         fr.add(p3);
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fr.setVisible(false);
+        fr.setVisible(true);
         fr.pack();
-//        fr.setSize(1400, 750);
-        fr.setLocation(1150,300);
 
     }
 
@@ -74,7 +74,7 @@ public class EmployeeUpdaterGUI implements ActionListener{
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        new EmployeeUpdaterGUI();
+        new EmployeeGUI();
     }
 
     public JTextField getTcontact() {
@@ -92,5 +92,4 @@ public class EmployeeUpdaterGUI implements ActionListener{
     public JButton getDone() {
         return done;
     }
-    public JFrame  getFrame(){return fr;}
 }

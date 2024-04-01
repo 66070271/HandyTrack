@@ -54,7 +54,7 @@ public class ParcelInfo implements Person, Parcel {
         return db.getSelect(sql);
     }
     public void update(DBconnect db,String sql){
-        db.getUpdate(sql);
+        db.getSelect(sql);
     }
     public ResultSet querry(DBquery db,String sql){
         return db.getSelect(sql);
