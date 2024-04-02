@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class DBmanipulation extends DBconnect {
     private static DBmanipulation instance;
 
-    private DBmanipulation() {
+    public DBmanipulation() {
         super();
     }
 
-    private DBmanipulation(String url) {
+    public DBmanipulation(String url) {
         super(url);
     }
 

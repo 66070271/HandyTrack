@@ -139,14 +139,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         fr.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        new HANDYTRACKMAIN();
-    }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -194,7 +187,6 @@ public class HANDYTRACKMAIN implements MouseListener {
     public void fetchUser() {
         String sql = String.format("SELECT * FROM login WHERE iduser = '%d'", this.keyuser);
         ResultSet rs = DBquery.getInstance().getSelect(sql);
-        DBquery.getInstance().disconnect();
         try {
             if (rs.next()) {
                 this.user = new User(rs.getString("name"), rs.getString("surename"), rs.getString("email"), rs.getString("tel"));
@@ -213,7 +205,7 @@ public class HANDYTRACKMAIN implements MouseListener {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-
+            DBquery.getInstance().disconnect();
         }
     }
 

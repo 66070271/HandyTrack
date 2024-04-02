@@ -4,6 +4,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighte
 import net.handytrack.database.DBmanipulation;
 import net.handytrack.database.DBquery;
 import net.handytrack.tracker.RealTrack;
+import org.sqlite.core.DB;
 
 import javax.swing.*;
 import java.awt.*;
@@ -178,16 +179,19 @@ public class LoginEdit implements ActionListener{
     public Boolean loginuser() {
         String name = usernameField.getText();
         String pass = new String(passwordField.getPassword());
-
         String sql = String.format("SELECT * FROM login WHERE username = '%s' and password = '%s'", name, pass);
-        ResultSet rs = DBquery.getInstance().getSelect(sql);
-
+        DBquery db  = new DBquery();
+        ResultSet rs = db.getSelect(sql);
+        try{
+            userId = rs.getInt("iduser");
+        }catch(SQLException ex){
+        }
+        String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'", userId);
+        DBquery db1  = new DBquery();
+        ResultSet rs1 = db1.getSelect(sql1);
         try {
             if (rs.next()) {
-                userId = rs.getInt("iduser"); // Store the userId if login is successful
-                String sql1 = String.format("SELECT * FROM login WHERE iduser = '%d'", userId);
-                ResultSet rs1 = DBquery.getInstance().getSelect(sql1);
-
+                 // Store the userId if login is successful
                 if (rs1.getString("password").equals(pass)) {
                     hdm.setKeyuser(this.userId);
                     hdm.fetchUser();
@@ -198,7 +202,9 @@ public class LoginEdit implements ActionListener{
 
                     return false;
                 }
+
             } else {
+                DBquery.getInstance().disconnect();
                 return false;
             }
 
@@ -206,7 +212,8 @@ public class LoginEdit implements ActionListener{
             e.printStackTrace();
             return false;
         }finally {
-            DBquery.getInstance().disconnect();
+            db1.disconnect();
+            db.disconnect();
         }
 
     }
